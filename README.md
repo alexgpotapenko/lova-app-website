@@ -20,6 +20,27 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Brand color semantics
+
+We use brand tokens instead of status colors:
+
+- `key` = brand blue (use this instead of `primary`)
+- `accent` = brand green (NOT success)
+
+HeroUI mapping for compatibility:
+- `primary` → key (brand blue)
+- `green` → accent (brand green)
+
+We removed the `highlight` palette from the brand system.
+
+Rule of thumb: in this project, use **key instead of primary**.
+
+For a quick visual check, see the “Brand color check” block on the dashboard.
+
+## Editor Tailwind warnings
+
+Tailwind v4 uses CSS directives like `@apply`, and HeroUI adds `@plugin` / `@source`. VSCode/Cursor may flag these as `unknownAtRules` without Tailwind-aware tooling, even though the app builds correctly. Project-wide editor settings live in `.vscode/settings.json` and suppress only this specific warning.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

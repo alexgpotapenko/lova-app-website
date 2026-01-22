@@ -9,6 +9,9 @@ let currentLocale = DEFAULT_LOCALE;
 export const setLocale = (locale) => {
   if (dictionaries[locale]) {
     currentLocale = locale;
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("poleno-locale-change"));
+    }
   }
 };
 
@@ -19,3 +22,12 @@ export const t = (key) => {
 
 export const getLocale = () => currentLocale;
 export const locales = Object.keys(dictionaries);
+
+export const subscribeLocale = (callback) => {
+  if (typeof window === "undefined") return () => {};
+
+  const handleLocale = () => callback(getLocale());
+  window.addEventListener("poleno-locale-change", handleLocale);
+
+  return () => window.removeEventListener("poleno-locale-change", handleLocale);
+};

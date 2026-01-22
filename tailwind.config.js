@@ -1,6 +1,14 @@
+// tailwind.config.js
+const { heroui } = require("@heroui/theme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx}"],
+  content: [
+    "./src/**/*.{js,jsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: ["bg-key-600", "hover:bg-key-700", "text-white"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -30,21 +38,8 @@ module.exports = {
           900: "#0f1408",
           950: "#0a0e05",
         },
-        highlight: {
-          50: "#fff2ec",
-          100: "#ffe0d5",
-          200: "#ffc1ac",
-          300: "#ffa283",
-          400: "#ff835a",
-          500: "#e84610",
-          600: "#c13a0d",
-          700: "#9a2e0a",
-          800: "#732207",
-          900: "#4c1604",
-          950: "#330f03",
-        },
       },
     },
   },
-  plugins: [],
+  plugins: [heroui()],
 };
