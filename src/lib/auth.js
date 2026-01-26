@@ -9,7 +9,7 @@ export const isLoggedIn = () => {
 export const login = (email, password) => {
   if (typeof window === "undefined") return false;
   const isValid =
-    email === "demo@swisens.ch" && password === "mpswisens";
+    email === "admin@swisens.ch" && password === "mpswisens";
 
   if (isValid) {
     window.localStorage.setItem(SESSION_KEY, DEMO_SESSION);

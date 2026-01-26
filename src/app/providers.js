@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { getLocale, subscribeLocale } from "@/i18n";
 
 export default function Providers({ children }) {
@@ -11,6 +11,7 @@ export default function Providers({ children }) {
 
   return (
     <HeroUIProvider>
+      <ToastProvider placement="bottom-center" toastOffset={32} />
       <div data-locale={locale}>{children}</div>
     </HeroUIProvider>
   );

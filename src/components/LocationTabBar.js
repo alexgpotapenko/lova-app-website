@@ -20,7 +20,7 @@ export default function LocationTabBar({
             size="md"
             radius="full"
             variant={isActive ? "solid" : "bordered"}
-            color={isActive ? "primary" : "default"}
+            color={isActive ? "success" : "default"}
             className={isActive ? "text-white" : "text-slate-700"}
             onPress={() => onChange(tab.key)}
           >

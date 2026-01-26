@@ -9,9 +9,10 @@ export default function TabBar({
   onChange,
   showAdd = false,
   addButtonProps = {},
+  className = "",
 }) {
   return (
-    <div className="flex items-center gap-4 border-b border-slate-200">
+    <div className={`flex items-center gap-4 border-b border-slate-200 ${className}`}>
       <div>
         <Tabs
           selectedKey={activeKey}
@@ -25,7 +26,7 @@ export default function TabBar({
             tabList: "gap-4 p-0 h-auto",
             tab: "h-auto px-0 py-3 text-base font-medium text-slate-500",
             tabContent: "w-full group-data-[selected=true]:text-slate-900",
-            cursor: "bg-slate-900 h-0.5 w-full",
+            cursor: "bg-green-500 h-0.5 w-full",
           }}
         >
           {tabs.map((tab) => (

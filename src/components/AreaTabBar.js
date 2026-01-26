@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { t } from "@/i18n";
 import { getCity, subscribeCity } from "@/lib/city";
 import TabBar from "@/components/TabBar";
+import { currentUser, subscribeUsers } from "@/lib/mockAdmin";
 
 const cityAreas = {
   zurich: [
@@ -20,6 +21,7 @@ const cityAreas = {
 
 export default function AreaTabBar({ onAreaChange = () => {} }) {
   const [city, setCity] = useState(getCity());
+  const [role, setRole] = useState(currentUser.role);
   const [activeByCity, setActiveByCity] = useState({
     zurich: "center",
     basel: "center",
@@ -30,6 +32,8 @@ export default function AreaTabBar({ onAreaChange = () => {} }) {
     setCity(getCity());
     return subscribeCity(setCity);
   }, []);
+
+  useEffect(() => subscribeUsers(() => setRole(currentUser.role)), []);
 
   const tabs = useMemo(() => cityAreas[city] || cityAreas.zurich, [city]);
   const activeKey = activeByCity[city] || tabs[0]?.key;
@@ -59,6 +63,8 @@ export default function AreaTabBar({ onAreaChange = () => {} }) {
     }
   }, [translatedTabs, activeKey, onAreaChange]);
 
+  const isAdmin = role === "admin";
+
   return (
     <TabBar
       tabs={translatedTabs}
@@ -69,7 +75,7 @@ export default function AreaTabBar({ onAreaChange = () => {} }) {
           [city]: key,
         }));
       }}
-      showAdd
+      showAdd={isAdmin}
       addButtonProps={{
         className: "text-slate-700",
         ariaLabel: t("dashboard.area.add"),

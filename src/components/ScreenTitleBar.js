@@ -1,7 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button, Dropdown, DropdownMenu, DropdownItem, DropdownTrigger } from "@heroui/react";
-import { DotsThree, Gear, Trash } from "@phosphor-icons/react";
+import { ArrowLeft, DotsThree } from "@phosphor-icons/react";
 import { t } from "@/i18n";
 
 export default function ScreenTitleBar({
@@ -9,18 +10,67 @@ export default function ScreenTitleBar({
   showMenu = false,
   menuItems = [],
   primaryLabel,
+  primaryAriaLabel,
   onPrimaryPress = () => {},
+  primaryVariant = "solid",
+  primaryColor = "primary",
+  primaryRadius = "full",
+  primaryClassName = "",
+  primaryStartContent = null,
+  primaryIconOnly = false,
+  primarySize = "lg",
+  primaryAfterMenu = false,
+  showBack = false,
+  onBackPress,
+  titleClassName = "",
+  spacingClassName = "pb-10 pt-10",
 }) {
-  const showActions = Boolean(primaryLabel) || showMenu;
+  const router = useRouter();
+  const showActions = Boolean(primaryLabel) || primaryIconOnly || showMenu;
+  const handleBackPress = () => {
+    if (onBackPress) {
+      onBackPress();
+      return;
+    }
+    router.back();
+  };
 
   return (
-    <div className="flex items-start justify-between gap-6 pb-8 pt-10">
-      <h1 className="text-4xl font-semibold text-slate-900">{title}</h1>
+    <div className={`flex items-start gap-6 ${spacingClassName}`}>
+      <div className="flex flex-1 items-center gap-3">
+        {showBack ? (
+          <Button
+            isIconOnly
+            variant="bordered"
+            radius="full"
+            size="lg"
+            aria-label={t("screenTitle.back.aria")}
+            onPress={handleBackPress}
+          >
+            <ArrowLeft size={18} weight="bold" />
+          </Button>
+        ) : null}
+        <div className="w-full py-1">
+          <h1 className={`text-4xl font-semibold text-slate-900 ${titleClassName}`}>
+            {title}
+          </h1>
+        </div>
+      </div>
       {showActions ? (
-        <div className="flex items-center gap-3">
-          {primaryLabel ? (
-            <Button color="primary" size="lg" radius="md" onPress={onPrimaryPress}>
-              {primaryLabel}
+        <div className="ml-auto flex items-center gap-3">
+          {!primaryAfterMenu && (primaryLabel || primaryIconOnly) ? (
+            <Button
+              isIconOnly={primaryIconOnly}
+              color={primaryColor}
+              variant={primaryVariant}
+              size={primarySize}
+              radius={primaryRadius}
+              onPress={onPrimaryPress}
+              className={primaryClassName}
+              startContent={primaryIconOnly ? undefined : primaryStartContent}
+              aria-label={primaryIconOnly ? primaryAriaLabel || primaryLabel : undefined}
+            >
+              {primaryIconOnly ? primaryStartContent : primaryLabel}
             </Button>
           ) : null}
           {showMenu ? (
@@ -30,7 +80,7 @@ export default function ScreenTitleBar({
                   isIconOnly
                   variant="bordered"
                   radius="full"
-                  size="md"
+                  size="lg"
                   aria-label={t("screenTitle.menu.aria")}
                 >
                   <DotsThree size={18} weight="bold" />
@@ -50,6 +100,21 @@ export default function ScreenTitleBar({
                 ))}
               </DropdownMenu>
             </Dropdown>
+          ) : null}
+          {primaryAfterMenu && (primaryLabel || primaryIconOnly) ? (
+            <Button
+              isIconOnly={primaryIconOnly}
+              color={primaryColor}
+              variant={primaryVariant}
+              size={primarySize}
+              radius={primaryRadius}
+              onPress={onPrimaryPress}
+              className={primaryClassName}
+              startContent={primaryIconOnly ? undefined : primaryStartContent}
+              aria-label={primaryIconOnly ? primaryAriaLabel || primaryLabel : undefined}
+            >
+              {primaryIconOnly ? primaryStartContent : primaryLabel}
+            </Button>
           ) : null}
         </div>
       ) : null}

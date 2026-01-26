@@ -11,3 +11,10 @@
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
 }
+
+
+button:disabled,
+button[aria-disabled="true"],
+[role="button"][aria-disabled="true"] {
+  cursor: not-allowed;
+}

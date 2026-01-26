@@ -7,7 +7,14 @@ module.exports = {
     "./src/**/*.{js,jsx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
-  safelist: ["bg-key-600", "hover:bg-key-700", "text-white"],
+  safelist: [
+    "bg-key-600",
+    "hover:bg-key-700",
+    "text-white",
+    "bg-gradient-to-r",
+    "from-primary-500",
+    "to-green-500",
+  ],
   darkMode: "class",
   theme: {
     extend: {

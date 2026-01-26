@@ -9,6 +9,7 @@ import ContentContainer from "@/components/ContentContainer";
 import UserProfileMenu from "@/components/UserProfileMenu";
 import LocationTabBar from "@/components/LocationTabBar";
 import { getCity, setCity, subscribeCity } from "@/lib/city";
+import { currentUser, subscribeUsers } from "@/lib/mockAdmin";
 
 const cities = [
   { id: "zurich", labelKey: "topbar.city.zurich" },
@@ -19,6 +20,7 @@ const cities = [
 export default function TopBar() {
   const pathname = usePathname();
   const [activeCity, setActiveCity] = useState(getCity());
+  const [role, setRole] = useState(currentUser.role);
   const showCities = pathname === "/";
 
   useEffect(() => {
@@ -26,9 +28,13 @@ export default function TopBar() {
     return subscribeCity(setActiveCity);
   }, []);
 
+  useEffect(() => subscribeUsers(() => setRole(currentUser.role)), []);
+
+  const isAdmin = role === "admin";
+
   return (
     <>
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-20 bg-white shadow-[0_2px_3px_theme(colors.slate.900/0.06)]">
         <ContentContainer>
           {/* Shared width constraint lives in ContentContainer. */}
           <div className="flex items-stretch justify-between">
@@ -57,7 +63,7 @@ export default function TopBar() {
                   setCity(nextCity);
                   setActiveCity(nextCity);
                 }}
-                showAdd
+                showAdd={isAdmin}
                 addButtonProps={{
                   className: "text-slate-700",
                   ariaLabel: t("topbar.addButtonAria"),
