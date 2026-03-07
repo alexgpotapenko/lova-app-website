@@ -46,6 +46,12 @@ h1 {
   font-weight: 600;
 }
 
+@media (max-width: 767px) {
+  h1 {
+    font-size: clamp(2.25rem, 1.88rem + 1.7vw, 3rem);
+  }
+}
+
 h2 {
   font-size: clamp(2rem, 1.62rem + 1.65vw, 2.75rem);
   line-height: 1.12;
