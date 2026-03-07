@@ -24,6 +24,14 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
 body {
   @apply antialiased;
   background-color: var(--color-lova-bg);
