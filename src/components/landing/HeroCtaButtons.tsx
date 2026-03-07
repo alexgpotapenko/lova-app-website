@@ -7,7 +7,7 @@ type HeroCtaButtonsProps = {
 
 export default function HeroCtaButtons({ className = "" }: HeroCtaButtonsProps) {
   return (
-    <div className={`flex flex-col items-center gap-3 ${className}`.trim()}>
+    <div className={`flex items-center justify-center gap-3 ${className}`.trim()}>
       <LandingButton
         href="#"
         label={
@@ -25,7 +25,16 @@ export default function HeroCtaButtons({ className = "" }: HeroCtaButtonsProps) 
       />
       <LandingButton
         href="#features-start"
-        label="Discover More"
+        label={
+          <>
+            <span className="md:hidden">
+              Discover
+              <br />
+              More
+            </span>
+            <span className="hidden md:inline">Discover More</span>
+          </>
+        }
         variant="secondary"
       />
     </div>
