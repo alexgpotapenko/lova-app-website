@@ -126,12 +126,6 @@ export default function HeroScrollSection() {
         iconEl.style.left = `${x}px`;
         iconEl.style.top = `${y}px`;
         iconEl.style.opacity = "1";
-        const glassBox = iconEl.firstElementChild as HTMLElement | null;
-        if (glassBox) {
-          glassBox.style.opacity = "1";
-          glassBox.style.backdropFilter = "";
-          glassBox.style.removeProperty("-webkit-backdrop-filter");
-        }
       }
 
       for (let i = 0; i < BG_PARTICLES.length; i += 1) {
