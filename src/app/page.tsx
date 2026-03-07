@@ -48,13 +48,13 @@ const globalFeatureRows = [
 export default function Home() {
   return (
     <main className="min-h-screen pb-28 text-black">
-      <section className="flex flex-col items-center pt-[80px]">
+      <section className="flex flex-col items-center pt-16">
         <Image
           src="/logo.svg"
           alt="Lova"
           width={120}
           height={120}
-          className="mb-[64px]"
+          className="mb-12"
           priority
         />
         <SectionHeader
