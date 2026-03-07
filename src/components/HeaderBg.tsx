@@ -36,7 +36,7 @@ export default function HeaderBg() {
 
   return (
     <div
-      className={`${isPinned ? "fixed top-0" : "absolute"} inset-x-0 -z-[1] pointer-events-none`}
+      className={`${isPinned ? "fixed top-0" : "absolute"} inset-x-0 -z-[1] pointer-events-none origin-top scale-50 transform-gpu md:scale-100`}
       style={isPinned ? undefined : { top: SCROLL_LOCK_PX }}
       aria-hidden
     >
