@@ -18,6 +18,12 @@
   color-scheme: light;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   @apply antialiased;
   background-color: var(--color-lova-bg);

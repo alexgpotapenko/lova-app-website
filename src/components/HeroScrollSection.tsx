@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Iphone from "@/components/Iphone";
 import EntityIcon from "@/components/EntityIcon";
 
@@ -102,6 +102,7 @@ export default function HeroScrollSection() {
   const iconRefs = useRef<Array<HTMLDivElement | null>>([]);
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const rafRef = useRef<number | null>(null);
+  const [sceneScale, setSceneScale] = useState(1);
 
   useEffect(() => {
     const applyProgress = (
@@ -188,9 +189,35 @@ export default function HeroScrollSection() {
     };
   }, []);
 
+  useEffect(() => {
+    const updateScale = () => {
+      // 24px + 24px layout paddings from .layout-container
+      const availableWidth = Math.max(280, window.innerWidth - 48);
+      const nextScale = Math.min(1, availableWidth / WRAPPER_WIDTH);
+      setSceneScale(nextScale);
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+
+    return () => {
+      window.removeEventListener("resize", updateScale);
+    };
+  }, []);
+
   return (
-    <section className="hero-scroll-section w-full flex flex-col items-center py-16">
-      <div className="relative inline-block w-[460px] h-[960px]">
+    <section className="hero-scroll-section w-full overflow-x-clip py-16">
+      <div
+        className="relative w-full"
+        style={{ height: WRAPPER_HEIGHT * sceneScale }}
+      >
+        <div
+          className="absolute left-1/2 top-0 h-[960px] w-[460px]"
+          style={{
+            transform: `translateX(-50%) scale(${sceneScale})`,
+            transformOrigin: "top center",
+          }}
+        >
         <div
           className="absolute left-0 z-20"
           style={{ top: PHONE_TOP_OFFSET }}
@@ -254,6 +281,7 @@ export default function HeroScrollSection() {
             <EntityIcon variant={variant} glass tiltAll />
           </div>
         ))}
+        </div>
       </div>
     </section>
   );
