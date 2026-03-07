@@ -155,7 +155,7 @@ export default function EntityDescriptionContent() {
             <button
               key={tab.key}
               type="button"
-              className={`cursor-pointer rounded-full px-6 py-3 text-lg font-semibold transition-all duration-300 ease-out md:text-xl ${
+              className={`cursor-pointer rounded-full px-6 py-3 text-base font-semibold transition-all duration-300 ease-out md:text-xl ${
                 isActive
                   ? tab.activeClass
                   : "bg-transparent text-slate-700 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.55)] hover:text-black"
