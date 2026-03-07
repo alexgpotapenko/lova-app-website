@@ -65,7 +65,13 @@ export default function Home() {
               what matters
             </>
           }
-          description="One device. One vault. No account, no cloud, no tracking."
+          description={
+            <>
+              Keep your logins, cards, and subscriptions organized
+              <br />
+              in one secure place
+            </>
+          }
         />
         <HeroCtaButtons className="mt-8" />
       </section>

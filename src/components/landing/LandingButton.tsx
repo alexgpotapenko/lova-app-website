@@ -29,7 +29,7 @@ export default function LandingButton({
   return (
     <a href={href} className={`${base} ${styles} ${className}`.trim()}>
       {leadingIcon ? <span aria-hidden>{leadingIcon}</span> : null}
-      <span className="text-center leading-tight">{label}</span>
+      <span className="text-center">{label}</span>
       {trailingIcon ? <span aria-hidden>{trailingIcon}</span> : null}
     </a>
   );

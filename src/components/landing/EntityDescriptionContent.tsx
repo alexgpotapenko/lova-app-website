@@ -168,10 +168,70 @@ export default function EntityDescriptionContent() {
         })}
       </div>
 
-      <div className="grid grid-cols-2 items-start gap-4 sm:gap-5">
+      <div className="overflow-visible md:hidden">
+        <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-visible">
+          <div className="overflow-x-auto overflow-y-visible scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="px-6 overflow-visible">
+              <div className="w-[672px] min-w-[672px] overflow-visible">
+                <div className="grid grid-cols-2 items-start gap-5 overflow-visible">
+                  <div className="min-w-0">
+                    <div className="relative w-full overflow-visible">
+                  <div className="overflow-hidden rounded-[24px]">
+                    <Image
+                      src={activeScreenSrc}
+                      alt="Lova app screenshot"
+                      width={420}
+                      height={912}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                  <div
+                    className="pointer-events-none absolute z-10 hidden transition-all duration-500 ease-out md:block"
+                    style={{
+                      left: `calc(${iconPlacement.xPercent}% + ${iconPlacement.offsetX}px)`,
+                      top: `calc(${iconPlacement.yPercent}% + ${iconPlacement.offsetY}px)`,
+                      transform: `translate(-50%, -50%) rotate(${iconPlacement.rotateDeg}deg)`,
+                    }}
+                  >
+                    <EntityIcon variant={activeIconVariant} size={128} />
+                  </div>
+                </div>
+              </div>
+
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`mobile-${activeEntity}`}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className="flex min-w-0 flex-col gap-5 overflow-visible"
+                    >
+                      {features.map((feature) => (
+                        <EntityFeatureCard
+                          key={`mobile-card-${feature.title}`}
+                          title={feature.title}
+                          description={feature.description}
+                          illustration={
+                            feature.illustrationKey
+                              ? renderIllustration(feature.illustrationKey)
+                              : undefined
+                          }
+                        />
+                      ))}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden grid-cols-2 items-start gap-5 md:grid">
         <div className="min-w-0">
           <div className="relative w-full">
-            <div className="overflow-hidden rounded-[24px] shadow-[0_20px_72px_rgba(15,23,42,0.05)]">
+            <div className="overflow-hidden rounded-[24px]">
               <Image
                 src={activeScreenSrc}
                 alt="Lova app screenshot"
