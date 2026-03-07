@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 type LandingButtonProps = {
   href: string;
-  label: string;
+  label: ReactNode;
   variant?: "primary" | "secondary";
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
@@ -27,7 +27,7 @@ export default function LandingButton({
   return (
     <a href={href} className={`${base} ${styles}`}>
       {leadingIcon ? <span aria-hidden>{leadingIcon}</span> : null}
-      <span>{label}</span>
+      <span className="text-center leading-tight">{label}</span>
       {trailingIcon ? <span aria-hidden>{trailingIcon}</span> : null}
     </a>
   );
