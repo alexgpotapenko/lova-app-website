@@ -171,7 +171,7 @@ export default function EntityDescriptionContent() {
       <div className="overflow-visible md:hidden">
         <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-visible">
           <div className="overflow-x-auto overflow-y-visible scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="px-6 overflow-visible">
+            <div className="inline-flex overflow-visible pl-6 pr-6">
               <div className="w-[672px] min-w-[672px] overflow-visible">
                 <div className="grid grid-cols-2 items-start gap-5 overflow-visible">
                   <div className="min-w-0">
