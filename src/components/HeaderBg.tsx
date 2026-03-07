@@ -2,18 +2,17 @@
 
 import { useEffect, useState } from "react";
 
-const SCROLL_LOCK_PX = 800;
+const SCROLL_LOCK_PX = 1000;
 
 export default function HeaderBg() {
-  const [translateY, setTranslateY] = useState(0);
+  const [isPinned, setIsPinned] = useState(true);
 
   useEffect(() => {
     let rafId: number | null = null;
 
     const updatePosition = () => {
       const y = window.scrollY;
-      const nextTranslate = y > SCROLL_LOCK_PX ? -(y - SCROLL_LOCK_PX) : 0;
-      setTranslateY(nextTranslate);
+      setIsPinned(y <= SCROLL_LOCK_PX);
     };
 
     const onScrollOrResize = () => {
@@ -37,8 +36,8 @@ export default function HeaderBg() {
 
   return (
     <div
-      className="fixed inset-x-0 top-0 -z-[1] pointer-events-none"
-      style={{ transform: `translate3d(0, ${translateY}px, 0)` }}
+      className={`${isPinned ? "fixed top-0" : "absolute"} inset-x-0 -z-[1] pointer-events-none`}
+      style={isPinned ? undefined : { top: SCROLL_LOCK_PX }}
       aria-hidden
     >
       {/* Bounding box 1740×800, top -200px, blur 200px, opacity 30% */}
