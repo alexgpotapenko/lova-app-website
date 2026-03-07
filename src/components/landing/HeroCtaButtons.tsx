@@ -13,6 +13,7 @@ export default function HeroCtaButtons({ className = "" }: HeroCtaButtonsProps) 
         label="Get on the App Store"
         variant="primary"
         leadingIcon={<AppleLogo size={18} weight="fill" />}
+        className="px-6 py-3 text-lg font-semibold md:text-xl"
       />
     </div>
   );
