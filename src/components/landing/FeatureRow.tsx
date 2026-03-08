@@ -18,7 +18,7 @@ export default function FeatureRow({
       </div>
       <div>
         <h3 className="text-base font-medium text-black">{title}</h3>
-        <p className="mt-1 text-sm leading-6 text-black">{description}</p>
+        <p className="mt-1 h-body-base">{description}</p>
       </div>
     </div>
   );

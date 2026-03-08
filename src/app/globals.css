@@ -11,6 +11,7 @@
   --color-lova-blue-100: #dce8ff;
   --color-lova-green-100: #d9f5e6;
   --color-lova-purple-100: #ece0fb;
+  --color-lova-orange-100: #fce8dc;
   --color-lova-bg: #f2f2f6;
 }
 
@@ -72,6 +73,13 @@ h2 {
   font-size: 17px;
   line-height: 1.5;
   font-weight: 600;
+}
+
+.h-body-base {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #475569;
 }
 
 .glass-color-particle {

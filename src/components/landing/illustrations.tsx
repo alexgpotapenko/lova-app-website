@@ -1,6 +1,8 @@
 import {
   ArrowRight,
   Bank,
+  BellRinging,
+  CaretUpDown,
   CreditCard,
   EnvelopeSimple,
   LockKey,
@@ -24,7 +26,65 @@ export type IllustrationKey =
   | "cards-2"
   | "cards-3"
   | "subscriptions-1"
-  | "subscriptions-2";
+  | "subscriptions-2"
+  | "subscriptions-3";
+
+const PIE_COLOR_POOL = [
+  "#3b82f6", // blue-500
+  "#22c55e", // green-500
+  "#a855f7", // purple-500
+  "#f97316", // orange-500
+  "#14b8a6", // teal-500
+  "#eab308", // yellow-500
+  "#ef4444", // red-500
+  "#6366f1", // indigo-500
+];
+
+type DonutSegment = {
+  color: string;
+  length: number;
+  startAngleDeg: number;
+};
+
+const DONUT_RADIUS = 20;
+const DONUT_STROKE_WIDTH = 4;
+const DONUT_GAP_PX = 3;
+
+function pickUniqueRandomColors(pool: string[], count: number): string[] {
+  const colors = [...pool];
+  for (let i = colors.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [colors[i], colors[j]] = [colors[j], colors[i]];
+  }
+  return colors.slice(0, Math.min(count, colors.length));
+}
+
+function getRandomDonutSegments(): DonutSegment[] {
+  const selected = pickUniqueRandomColors(PIE_COLOR_POOL, 5);
+  const minPortion = 10;
+  const segmentCount = 5;
+  const remaining = 100 - minPortion * segmentCount;
+  const weights = Array.from({ length: segmentCount }, () => Math.random());
+  const sum = weights.reduce((acc, value) => acc + value, 0);
+  const portions = weights.map((value) => minPortion + (value / sum) * remaining);
+  const circumference = 2 * Math.PI * DONUT_RADIUS;
+  const effectiveGap = DONUT_GAP_PX;
+
+  let currentAngle = 0;
+  return selected.map((color, idx) => {
+    const portion = portions[idx] / 100;
+    const segmentLength = Math.max(0, portion * circumference - effectiveGap);
+    const segment: DonutSegment = {
+      color,
+      length: segmentLength,
+      startAngleDeg: currentAngle,
+    };
+    currentAngle += portion * 360;
+    return segment;
+  });
+}
+
+const SUBSCRIPTIONS_DONUT_SEGMENTS = getRandomDonutSegments();
 
 export function renderIllustration(key: IllustrationKey) {
   if (key === "logins-1") {
@@ -149,6 +209,75 @@ export function renderIllustration(key: IllustrationKey) {
             <CreditCard size={24} weight="regular" />
           </div>
         </div>
+      </div>
+    );
+  }
+
+  if (key === "subscriptions-1") {
+    return (
+      <div className="flex items-center justify-start">
+        <div className="inline-flex h-12 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+          <Image
+            src="/features/icloud-logo.png"
+            alt="iCloud"
+            width={24}
+            height={24}
+            className="h-6 w-6 rounded-[6px] object-cover"
+          />
+          <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm text-slate-700">
+            In 2 days: <strong>$2.99</strong>
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (key === "subscriptions-2") {
+    return (
+      <div className="flex w-full items-center">
+        <div className="flex w-full items-center gap-0">
+          <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+            <Image
+              src="/features/netflix-logo.png"
+              alt="Netflix"
+              width={24}
+              height={24}
+              className="h-6 w-6 rounded-[6px] object-cover"
+            />
+            <span className="inline-flex min-w-0 flex-1 items-center gap-1 whitespace-nowrap text-sm text-slate-700">
+              <span>
+                Remind before: <strong>1 week</strong>
+              </span>
+              <CaretUpDown size={12} weight="bold" className="text-slate-500" />
+            </span>
+          </div>
+          <span className="-ml-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-orange-100 text-lova-orange shadow-[0_0_0_3px_#fff]">
+            <BellRinging size={24} weight="fill" />
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (key === "subscriptions-3") {
+    return (
+      <div className="flex items-center justify-start">
+        <svg width="48" height="48" viewBox="0 0 48 48" aria-label="Subscription donut chart">
+          {SUBSCRIPTIONS_DONUT_SEGMENTS.map((segment, idx) => (
+            <circle
+              key={`${segment.color}-${idx}`}
+              cx="24"
+              cy="24"
+              r={DONUT_RADIUS}
+              fill="none"
+              stroke={segment.color}
+              strokeWidth={DONUT_STROKE_WIDTH}
+              strokeLinecap="butt"
+              strokeDasharray={`${segment.length} ${2 * Math.PI * DONUT_RADIUS - segment.length}`}
+              transform={`rotate(${segment.startAngleDeg - 90} 24 24)`}
+            />
+          ))}
+        </svg>
       </div>
     );
   }

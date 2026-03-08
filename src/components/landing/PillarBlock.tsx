@@ -17,10 +17,10 @@ export default function PillarBlock({
         {icon}
       </div>
       <h3 className="text-xl font-semibold text-black">{title}</h3>
-      <p className="mt-2 text-sm leading-7 text-black">{description}</p>
+      <p className="mt-2 h-body-base">{description}</p>
       <ul className="mt-3 space-y-2.5">
         {bullets.map((item) => (
-          <li key={item} className="flex gap-2.5 text-sm leading-6 text-black">
+          <li key={item} className="flex gap-2.5 h-body-base">
             <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
             <span>{item}</span>
           </li>

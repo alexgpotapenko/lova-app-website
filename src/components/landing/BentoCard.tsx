@@ -64,13 +64,11 @@ export default function BentoCard({
       <h3 className={`${featured ? "text-xl md:text-2xl" : "text-lg"} font-semibold text-slate-900`}>
         {title}
       </h3>
-      {description ? (
-        <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
-      ) : null}
+      {description ? <p className="mt-2 h-body-base">{description}</p> : null}
       {items && items.length > 0 ? (
         <ul className="mt-3 space-y-2.5">
           {items.map((item) => (
-            <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+            <li key={item} className="flex gap-2 h-body-base">
               <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
               <span>{item}</span>
             </li>

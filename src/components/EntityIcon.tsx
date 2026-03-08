@@ -2,10 +2,11 @@ import {
   Key,
   CreditCard,
   CalendarCheck,
-  PushPin,
+  Link,
   FileArrowDown,
   ShieldCheckered,
 } from "@phosphor-icons/react/ssr";
+import type { ComponentType } from "react";
 
 const DEFAULT_BOX_SIZE = 128;
 const DEFAULT_ICON_SIZE = 72;
@@ -18,14 +19,16 @@ const variants = [
     rounded: "rounded-[24px]",
     Icon: Key,
     iconColor: "text-lova-green",
+    iconWeight: "fill" as const,
     tiltDeg: -14,
   },
   {
     shape: "circle" as const,
     bg: "bg-lova-blue/25",
     rounded: "rounded-full",
-    Icon: PushPin,
+    Icon: Link,
     iconColor: "text-lova-blue",
+    iconWeight: "regular" as const,
     tiltDeg: 9,
   },
   {
@@ -34,6 +37,7 @@ const variants = [
     rounded: "rounded-full",
     Icon: CreditCard,
     iconColor: "text-lova-purple",
+    iconWeight: "fill" as const,
     tiltDeg: -17,
   },
   {
@@ -42,6 +46,7 @@ const variants = [
     rounded: "rounded-[24px]",
     Icon: ShieldCheckered,
     iconColor: "text-lova-blue",
+    iconWeight: "fill" as const,
     tiltDeg: 12,
   },
   {
@@ -50,6 +55,7 @@ const variants = [
     rounded: "rounded-[24px]",
     Icon: CalendarCheck,
     iconColor: "text-lova-orange",
+    iconWeight: "fill" as const,
     tiltDeg: -20,
   },
   {
@@ -58,11 +64,18 @@ const variants = [
     rounded: "rounded-full",
     Icon: FileArrowDown,
     iconColor: "text-lova-blue",
+    iconWeight: "fill" as const,
     tiltDeg: 16,
   },
 ] as const;
 
 type EntityIconVariant = 1 | 2 | 3 | 4 | 5 | 6;
+type IconWeight = "thin" | "light" | "regular" | "bold" | "fill" | "duotone";
+type IconComponent = ComponentType<{
+  size?: number | string;
+  weight?: IconWeight;
+  className?: string;
+}>;
 
 const GLASS_BORDER = "1px solid rgba(255, 255, 255, 0.15)";
 const GLASS_FILTER = "blur(20px) saturate(1.35)";
@@ -124,14 +137,19 @@ export default function EntityIcon({
   glass = true,
   tiltAll = false,
   size = DEFAULT_BOX_SIZE,
+  iconOverride,
+  iconWeightOverride,
 }: {
   variant: EntityIconVariant;
   glass?: boolean;
   tiltAll?: boolean;
   size?: number;
+  iconOverride?: IconComponent;
+  iconWeightOverride?: IconWeight;
 }) {
   const config = variants[variant - 1];
-  const Icon = config.Icon;
+  const Icon = iconOverride ?? config.Icon;
+  const iconWeight = iconWeightOverride ?? config.iconWeight;
   const rotate = tiltAll ? `rotate(${config.tiltDeg}deg)` : undefined;
   const iconSize = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_ICON_SIZE);
   const squareRadius = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_SQUARE_RADIUS);
@@ -149,7 +167,7 @@ export default function EntityIcon({
     >
       <Icon
         size={iconSize}
-        weight="fill"
+        weight={iconWeight}
         className={config.iconColor}
       />
     </div>

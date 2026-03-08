@@ -1,5 +1,5 @@
 import LandingButton from "@/components/landing/LandingButton";
-import { AppleLogo } from "@phosphor-icons/react/ssr";
+import { AppStoreLogo } from "@phosphor-icons/react/ssr";
 
 type HeroCtaButtonsProps = {
   className?: string;
@@ -10,10 +10,16 @@ export default function HeroCtaButtons({ className = "" }: HeroCtaButtonsProps) 
     <div className={`flex items-center justify-center ${className}`.trim()}>
       <LandingButton
         href="#"
-        label="Get on the App Store"
+        label={
+          <>
+            <span className="font-normal">Get on the </span>
+            <span>App Store</span>
+          </>
+        }
         variant="primary"
-        leadingIcon={<AppleLogo size={18} weight="fill" />}
+        leadingIcon={<AppStoreLogo size={24} weight="regular" />}
         className="px-6 py-3 text-lg font-semibold md:text-xl"
+        style={{ paddingLeft: 20, paddingRight: 28 }}
       />
     </div>
   );

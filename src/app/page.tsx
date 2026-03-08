@@ -2,53 +2,24 @@ import Image from "next/image";
 import {
   ArrowsClockwise,
   FileArrowDown,
-  Link,
   LockKey,
-  MagnifyingGlass,
-  PushPin,
   ShieldCheck,
 } from "@phosphor-icons/react/ssr";
 import HeroScrollSection from "@/components/HeroScrollSection";
 import HeroCtaButtons from "@/components/landing/HeroCtaButtons";
+import HeroStickyPanel from "@/components/landing/HeroStickyPanel";
 import SectionHeading from "@/components/landing/SectionHeading";
 import SectionHeader from "@/components/landing/SectionHeader";
 import EntityDescriptionContent from "@/components/landing/EntityDescriptionContent";
-import FeatureRow from "@/components/landing/FeatureRow";
 import PrivacyColumn from "@/components/landing/PrivacyColumn";
-
-const globalFeatureRows = [
-  {
-    icon: Link,
-    title: "Relations",
-    description:
-      "Link logins, cards, and subscriptions to see the full picture.",
-  },
-  {
-    icon: MagnifyingGlass,
-    title: "Universal Search",
-    description: "Search all entities from one place and jump directly to details.",
-  },
-  {
-    icon: PushPin,
-    title: "Pin to Home",
-    description: "Keep frequent entries on Home for faster daily access.",
-  },
-  {
-    icon: ArrowsClockwise,
-    title: "Local reminders",
-    description: "Get renewal reminders through local notifications only.",
-  },
-  {
-    icon: LockKey,
-    title: "Single vault",
-    description: "One AES-256-GCM vault file with key material protected in Keychain.",
-  },
-];
+import CreateRelationsFloatingIcon from "@/components/landing/CreateRelationsFloatingIcon";
 
 export default function Home() {
   return (
     <main className="min-h-screen pb-28 text-black">
-      <section className="flex flex-col items-center pt-16">
+      <HeroStickyPanel />
+
+      <section id="hero-header" className="flex flex-col items-center pt-16">
         <Image
           src="/logo.svg"
           alt="Lova"
@@ -76,7 +47,9 @@ export default function Home() {
         <HeroCtaButtons className="mt-8" />
       </section>
 
-      <HeroScrollSection />
+      <div id="hero-scene-section">
+        <HeroScrollSection />
+      </div>
 
       <section id="features-start" className="mt-24">
         <SectionHeader
@@ -87,25 +60,37 @@ export default function Home() {
         <EntityDescriptionContent />
       </section>
 
-      <section className="mt-24">
-        <SectionHeading
-          kicker="Global features"
-          title="Connected context, not disconnected records"
-          description="A lightweight set of capabilities that keep your vault practical every day."
+      <section id="create-relations-section" className="relative mt-40">
+        <SectionHeader
+          title="Create Relations"
+          description="Relations connect your logins, cards, and subscriptions so you always see the full context."
         />
-        <div className="rounded-[24px] bg-white px-4 sm:px-5">
-          {globalFeatureRows.map((feature, idx) => {
-            const Icon = feature.icon;
-            return (
-              <FeatureRow
-                key={feature.title}
-                icon={<Icon size={18} weight="fill" />}
-                title={feature.title}
-                description={feature.description}
-                last={idx === globalFeatureRows.length - 1}
-              />
-            );
-          })}
+        <CreateRelationsFloatingIcon />
+        <div className="mt-16 flex flex-col gap-4">
+          <article className="rounded-[24px] bg-white p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+              <h3 className="text-xl font-semibold text-black">
+                See every service connected to this login in one place.
+              </h3>
+              <div className="h-[240px] w-full rounded-[16px] bg-slate-200" aria-hidden />
+            </div>
+          </article>
+          <article className="rounded-[24px] bg-white p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+              <h3 className="text-xl font-semibold text-black">
+                Quickly find all services that rely on the same Google sign-in.
+              </h3>
+              <div className="h-[240px] w-full rounded-[16px] bg-slate-200" aria-hidden />
+            </div>
+          </article>
+          <article className="rounded-[24px] bg-white p-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+              <h3 className="text-xl font-semibold text-black">
+                Track services which are charged to this card and track your recurring payments.
+              </h3>
+              <div className="h-[240px] w-full rounded-[16px] bg-slate-200" aria-hidden />
+            </div>
+          </article>
         </div>
       </section>
 
@@ -143,7 +128,7 @@ export default function Home() {
               <FileArrowDown size={20} weight="fill" className="text-lova-blue" />
             </div>
             <h3 className="text-xl font-semibold text-black">Encrypted .lova export</h3>
-            <p className="mt-2 text-sm leading-7 text-black">
+            <p className="mt-2 h-body-base">
               Backup uses a separate password (PBKDF2), independent from your app PIN.
             </p>
           </article>
@@ -152,7 +137,7 @@ export default function Home() {
               <ShieldCheck size={20} weight="fill" className="text-lova-green" />
             </div>
             <h3 className="text-xl font-semibold text-black">Portable and restorable</h3>
-            <p className="mt-2 text-sm leading-7 text-black">
+            <p className="mt-2 h-body-base">
               Save to Files, iCloud, or any storage you choose and restore on another device anytime.
             </p>
           </article>
@@ -160,7 +145,7 @@ export default function Home() {
       </section>
 
       <section className="mt-20">
-        <p className="text-center text-sm leading-6 text-black">
+        <p className="h-body-base text-center">
           One device. One vault. No account, no cloud, no tracking.
         </p>
       </section>

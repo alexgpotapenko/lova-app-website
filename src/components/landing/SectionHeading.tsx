@@ -19,9 +19,7 @@ export default function SectionHeading({
         {kicker}
       </p>
       <h2 className="text-3xl font-semibold leading-tight text-black md:text-4xl">{title}</h2>
-      {description ? (
-        <p className="mt-2 max-w-[560px] text-sm leading-6 text-black">{description}</p>
-      ) : null}
+      {description ? <p className="mt-2 max-w-[560px] h-body-base">{description}</p> : null}
     </header>
   );
 }

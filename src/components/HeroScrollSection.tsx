@@ -15,7 +15,8 @@ import HeroPhoneScene, {
 const ANIMATION_START_SCROLL_PX = 100;
 const ANIMATION_DURATION_SCROLL_PX = 900;
 const COLLAPSE_DURATION_PX = 220;
-const BASE_SCENE_SCALE = 0.75;
+const DESKTOP_SCENE_SCALE = 1;
+const MOBILE_BASE_SCENE_SCALE = 0.75;
 
 const ICON_ROTATE_TOTAL_DEG = 95;
 
@@ -33,7 +34,7 @@ export default function HeroScrollSection() {
   const iconRefs = useRef<Array<HTMLDivElement | null>>([]);
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const rafRef = useRef<number | null>(null);
-  const [sceneScale, setSceneScale] = useState(BASE_SCENE_SCALE);
+  const [sceneScale, setSceneScale] = useState(DESKTOP_SCENE_SCALE);
 
   useEffect(() => {
     const applyProgress = (
@@ -124,7 +125,9 @@ export default function HeroScrollSection() {
     const updateScale = () => {
       // 24px + 24px layout paddings from .layout-container
       const availableWidth = Math.max(280, window.innerWidth - 48);
-      const nextScale = Math.min(BASE_SCENE_SCALE, availableWidth / WRAPPER_WIDTH);
+      const isMobile = window.innerWidth < 768;
+      const baseScale = isMobile ? MOBILE_BASE_SCENE_SCALE : DESKTOP_SCENE_SCALE;
+      const nextScale = Math.min(baseScale, availableWidth / WRAPPER_WIDTH);
       setSceneScale(nextScale);
     };
 

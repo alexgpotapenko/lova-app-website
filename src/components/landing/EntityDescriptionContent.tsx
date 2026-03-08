@@ -89,21 +89,22 @@ const ENTITY_FEATURES: Record<EntityKey, Feature[]> = {
   ],
   subscriptions: [
     {
-      title: "See where your money goes.",
+      title: "Upcoming payment",
       description:
-        "A visual split of all active subscriptions by monthly cost — so you always know what you're actually spending.",
+        "Quickly see which subscription will charge next and how much.",
       illustrationKey: "subscriptions-1",
     },
     {
-      title: "Never get charged by surprise.",
+      title: "Never get charged by surprise",
       description:
-        "Set a reminder before any renewal date and get notified on your device — no cloud, no account needed.",
+        "Set a reminder before any renewal date and get notified on your device",
       illustrationKey: "subscriptions-2",
     },
     {
-      title: "Track trials before they turn into charges.",
+      title: "See where your money goes",
       description:
-        "Mark any subscription as a free trial and keep track of when it ends — so you cancel before it costs you.",
+        "A visual breakdwon of all active subscriptions by monthly cost",
+      illustrationKey: "subscriptions-3",
     },
   ],
 };
