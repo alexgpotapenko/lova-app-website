@@ -140,7 +140,7 @@ export default function HeroScrollSection() {
   }, []);
 
   return (
-    <section className="hero-scroll-section w-full overflow-x-hidden overflow-y-visible py-16">
+    <section className="hero-scroll-section w-full overflow-visible py-16">
       <HeroPhoneScene
         sceneScale={sceneScale}
         particleRefs={particleRefs}
