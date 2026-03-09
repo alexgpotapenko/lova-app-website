@@ -11,6 +11,11 @@ export default function HeaderBg() {
     let rafId: number | null = null;
 
     const updatePosition = () => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        setIsPinned(true);
+        return;
+      }
       const y = window.scrollY;
       setIsPinned(y <= SCROLL_LOCK_PX);
     };
