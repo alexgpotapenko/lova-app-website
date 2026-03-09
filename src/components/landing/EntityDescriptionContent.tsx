@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import EntityIcon from "@/components/EntityIcon";
 import EntityFeatureCard from "@/components/landing/EntityFeatureCard";
 import {
@@ -145,16 +146,33 @@ const ICON_PLACEMENT: IconPlacement = {
   rotateDeg: -14,
 };
 
+const SECTION_ANIMATION = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.4, ease: "easeOut" as const },
+};
+const STAGGER_DELAY = 0.2;
+
 export default function EntityDescriptionContent() {
   return (
     <div className="flex w-full flex-col gap-32">
-      {ENTITIES.map((entity) => {
+      {ENTITIES.map((entity, entityIdx) => {
         const bgCircles = getBgCircles(entity.key);
         const screenSrc = getScreenSrc(entity.key);
         const iconVariant = getIconVariant(entity.key);
 
         return (
-          <section key={entity.key} className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+          <motion.section
+            key={entity.key}
+            className="grid grid-cols-1 items-start gap-5 md:grid-cols-2"
+            initial={SECTION_ANIMATION.initial}
+            whileInView={SECTION_ANIMATION.animate}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              ...SECTION_ANIMATION.transition,
+              delay: STAGGER_DELAY * entityIdx,
+            }}
+          >
             <div className="min-w-0">
               <div className="relative w-full overflow-visible">
                 <div className="h-[512px] overflow-hidden rounded-[32px]">
@@ -176,7 +194,9 @@ export default function EntityDescriptionContent() {
                       />
                     ))}
                     <div className="relative z-20 mb-10 text-center">
-                      <h2 className="text-black">{entity.label}</h2>
+                      <h2 className="text-black">
+                        {entity.label.trimEnd().match(/[.!?]$/) ? entity.label : `${entity.label.trimEnd()}.`}
+                      </h2>
                     </div>
                     <div className="relative z-20 flex justify-center">
                       <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
@@ -219,7 +239,7 @@ export default function EntityDescriptionContent() {
                 />
               ))}
             </div>
-          </section>
+          </motion.section>
         );
       })}
     </div>

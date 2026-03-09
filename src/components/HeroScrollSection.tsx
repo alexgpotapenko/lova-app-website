@@ -38,7 +38,7 @@ export default function HeroScrollSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const iconOrbitRadius = isMobile ? ICON_ORBIT_RADIUS * 0.8 : ICON_ORBIT_RADIUS;
+    const iconOrbitRadius = ICON_ORBIT_RADIUS;
     const applyProgress = (
       progress: number,
       collapseProgress: number,
@@ -148,7 +148,7 @@ export default function HeroScrollSection() {
         sceneScale={sceneScale}
         particleRefs={particleRefs}
         iconRefs={iconRefs}
-        iconOrbitRadius={isMobile ? ICON_ORBIT_RADIUS * 0.8 : ICON_ORBIT_RADIUS}
+        iconOrbitRadius={ICON_ORBIT_RADIUS}
       />
     </section>
   );

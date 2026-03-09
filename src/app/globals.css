@@ -9,6 +9,7 @@
   --color-lova-orange: #e9712e;
 
   --color-lova-blue-100: #dce8ff;
+  --color-lova-blue-700: #1557b8;
   --color-lova-green-100: #d9f5e6;
   --color-lova-purple-100: #ece0fb;
   --color-lova-orange-100: #fce8dc;
@@ -40,7 +41,7 @@ body {
 }
 
 h1 {
-  font-family: "Be Vietnam Pro", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: "Be Vietnam", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-size: clamp(2.5rem, 1.95rem + 2.35vw, 3.5rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
@@ -54,11 +55,15 @@ h1 {
 }
 
 h2 {
-  font-family: "Be Vietnam Pro", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: "Be Vietnam", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
   font-weight: 600;
+}
+
+h3 {
+  font-family: "Be Vietnam", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 .layout-container {

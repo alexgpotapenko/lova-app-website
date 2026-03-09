@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 type SectionHeaderProps = {
   title: ReactNode;
-  description: ReactNode;
+  description?: ReactNode;
   className?: string;
   titleTag?: "h1" | "h2";
 };
@@ -17,8 +17,14 @@ export default function SectionHeader({
 
   return (
     <header className={`flex flex-col items-center text-center ${className}`.trim()}>
-      <TitleTag className="max-w-[560px] text-center">{title}</TitleTag>
-      <p className="mt-5 max-w-[560px] text-center text-[21px] leading-8 text-slate-600">{description}</p>
+      <TitleTag className="max-w-[560px] text-center">
+        {typeof title === "string" && !/[.!?]$/.test(title.trimEnd())
+          ? `${title.trimEnd()}.`
+          : title}
+      </TitleTag>
+      {description != null && (
+        <p className="mt-5 max-w-[560px] text-center text-[21px] leading-8 text-slate-600">{description}</p>
+      )}
     </header>
   );
 }

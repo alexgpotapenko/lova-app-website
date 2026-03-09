@@ -104,20 +104,20 @@ export function renderIllustration(key: IllustrationKey) {
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/apple-logo.png"
-                alt="Apple"
-                width={18}
-                height={22}
-                className="h-[22px] w-[18px] object-contain"
-              />
-            </div>
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
-              <Image
                 src="/features/microsoft-logo.png"
                 alt="Microsoft"
                 width={20}
                 height={20}
                 className="h-5 w-5 object-contain"
+              />
+            </div>
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
+              <Image
+                src="/features/apple-logo.png"
+                alt="Apple"
+                width={18}
+                height={22}
+                className="h-[22px] w-[18px] object-contain"
               />
             </div>
           </div>

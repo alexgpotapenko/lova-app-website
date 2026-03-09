@@ -16,7 +16,7 @@ export const POINT_B_Y = PHONE_TOP_OFFSET + (WRAPPER_HEIGHT * PHONE_SCALE) / 2;
 // 6 icons on the "clock" positions: 12, 2, 4, 6, 8, 10.
 export const ICON_ANGLES_DEG = [-90, -30, 30, 90, 150, 210];
 export const ICON_VARIANTS: Array<1 | 2 | 3 | 4 | 5 | 6> = [1, 2, 3, 4, 5, 6];
-export const ICON_ORBIT_RADIUS = 400;
+export const ICON_ORBIT_RADIUS = 390;
 const GUIDE_RING_OFFSETS = [8, 64, 120, 176, 232];
 export const GUIDE_RING_RADII = GUIDE_RING_OFFSETS.map((d) => ICON_ORBIT_RADIUS - d);
 export const GUIDE_RING_OPACITY = [1, 0.8, 0.6, 0.4, 0.2];
