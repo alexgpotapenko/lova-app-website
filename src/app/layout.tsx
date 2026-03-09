@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Lova App",
   description: "Next.js App Router with Tailwind CSS",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
