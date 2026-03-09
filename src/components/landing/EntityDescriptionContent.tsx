@@ -179,7 +179,7 @@ export default function EntityDescriptionContent() {
                       <h2 className="text-black">{entity.label}</h2>
                     </div>
                     <div className="relative z-20 flex justify-center">
-                      <div className="relative w-[240px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
+                      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
                         <div className="relative aspect-[420/912] w-full">
                           <Image
                             src={screenSrc}
