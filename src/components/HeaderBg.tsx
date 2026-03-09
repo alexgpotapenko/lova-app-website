@@ -6,13 +6,15 @@ const SCROLL_LOCK_PX = 1000;
 
 export default function HeaderBg() {
   const [isPinned, setIsPinned] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     let rafId: number | null = null;
 
     const updatePosition = () => {
-      const isMobile = window.innerWidth < 768;
-      if (isMobile) {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
         setIsPinned(true);
         return;
       }
@@ -39,10 +41,17 @@ export default function HeaderBg() {
     };
   }, []);
 
+  // On mobile: absolute (in-flow), not sticky — avoids viewport widening from fixed layer
+  const positionClass = isMobile
+    ? "absolute top-0 left-0 right-0"
+    : isPinned
+      ? "fixed top-0 inset-x-0"
+      : "absolute inset-x-0";
+
   return (
     <div
-      className={`${isPinned ? "fixed top-0" : "absolute"} inset-x-0 -z-[1] pointer-events-none origin-top scale-50 transform-gpu md:scale-100`}
-      style={isPinned ? undefined : { top: SCROLL_LOCK_PX }}
+      className={`${positionClass} -z-[1] pointer-events-none origin-top scale-50 transform-gpu md:scale-100`}
+      style={!isMobile && !isPinned ? { top: SCROLL_LOCK_PX } : undefined}
       aria-hidden
     >
       {/* Bounding box 1740×800, top -200px, blur 200px, opacity 30% */}
@@ -52,7 +61,7 @@ export default function HeaderBg() {
         <span className="absolute left-[820px] top-[200px] w-[600px] h-[600px] rounded-full bg-lova-purple" />
         <span className="absolute left-[1140px] top-0 w-[600px] h-[600px] rounded-full bg-lova-orange" />
       </div>
-      {/* White circle 1000×1000, top -280px, same blur as colored circles */}
+      {/* White circle 1000×1000, top -280px */}
       <span className="absolute left-1/2 top-[-280px] -translate-x-1/2 w-[1000px] h-[1000px] rounded-full bg-white blur-[50px] -z-[1]" />
     </div>
   );

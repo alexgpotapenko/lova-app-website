@@ -23,9 +23,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
-        <HeaderBg />
-        <div className="layout-container min-h-screen">
-          {children}
+        <div className="relative min-h-screen overflow-x-hidden md:overflow-visible">
+          <HeaderBg />
+          <div className="layout-container min-h-screen">
+            {children}
+          </div>
         </div>
       </body>
     </html>
