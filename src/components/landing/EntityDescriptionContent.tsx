@@ -1,6 +1,5 @@
 "use client";
 
-import EntityIcon from "@/components/EntityIcon";
 import EntityFeatureCard from "@/components/landing/EntityFeatureCard";
 import {
   renderIllustration,
@@ -14,22 +13,6 @@ type Feature = {
   title: string;
   description: string;
   illustrationKey?: IllustrationKey;
-};
-
-type IconPlacement = {
-  xPercent: number;
-  yPercent: number;
-  offsetX: number;
-  offsetY: number;
-  rotateDeg: number;
-};
-
-type BgCircle = {
-  size: number;
-  top: string;
-  left: string;
-  color: string;
-  opacity?: number;
 };
 
 const ENTITIES: Array<{
@@ -111,47 +94,11 @@ function getScreenSrc(entity: EntityKey) {
   return "/screen-login-details.png";
 }
 
-function getIconVariant(entity: EntityKey) {
-  if (entity === "logins") return 1;
-  if (entity === "cards") return 3;
-  return 5;
-}
-
-function getBgCircles(entity: EntityKey): BgCircle[] {
-  const topCircleColor =
-    entity === "logins"
-      ? "var(--color-lova-green)"
-      : entity === "cards"
-        ? "var(--color-lova-purple)"
-        : "var(--color-lova-orange)";
-  const bottomRightColor =
-    entity === "cards" ? "var(--color-lova-orange)" : "var(--color-lova-purple)";
-  const bottomLeftColor =
-    entity === "logins" ? "var(--color-lova-orange)" : "var(--color-lova-green)";
-
-  return [
-    { size: 600, top: "0%", left: "0%", color: topCircleColor, opacity: 0.1 },
-    { size: 320, top: "80%", left: "50%", color: "var(--color-lova-blue)", opacity: 0.1 },
-    { size: 320, top: "72%", left: "120%", color: bottomRightColor, opacity: 0.1 },
-    { size: 320, top: "72%", left: "-20%", color: bottomLeftColor, opacity: 0.1 },
-  ];
-}
-
-const ICON_PLACEMENT: IconPlacement = {
-  xPercent: -10,
-  yPercent: 50,
-  offsetX: 64,
-  offsetY: 0,
-  rotateDeg: -14,
-};
-
 export default function EntityDescriptionContent() {
   return (
     <div className="flex w-full flex-col gap-32">
       {ENTITIES.map((entity) => {
-        const bgCircles = getBgCircles(entity.key);
         const screenSrc = getScreenSrc(entity.key);
-        const iconVariant = getIconVariant(entity.key);
 
         return (
           <section key={entity.key} className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
@@ -159,22 +106,6 @@ export default function EntityDescriptionContent() {
               <div className="relative w-full overflow-visible">
                 <div className="h-[512px] overflow-hidden rounded-[32px]">
                   <div className="relative h-full overflow-hidden pb-12 pt-10">
-                    {bgCircles.map((circle, idx) => (
-                      <span
-                        key={`${entity.key}-bg-circle-${idx}`}
-                        className="pointer-events-none absolute rounded-full blur-[40px]"
-                        style={{
-                          width: circle.size,
-                          height: circle.size,
-                          top: circle.top,
-                          left: circle.left,
-                          backgroundColor: circle.color,
-                          opacity: circle.opacity ?? 1,
-                          zIndex: idx === 0 ? 0 : 10,
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      />
-                    ))}
                     <div className="relative z-20 mb-10 text-center">
                       <h2 className="text-black">{entity.label}</h2>
                     </div>
@@ -191,16 +122,6 @@ export default function EntityDescriptionContent() {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="pointer-events-none absolute z-40 transition-all duration-500 ease-out"
-                  style={{
-                    left: `calc(${ICON_PLACEMENT.xPercent}% + ${ICON_PLACEMENT.offsetX}px)`,
-                    top: `calc(${ICON_PLACEMENT.yPercent}% + ${ICON_PLACEMENT.offsetY}px)`,
-                    transform: `translate(-50%, -50%) rotate(${ICON_PLACEMENT.rotateDeg}deg)`,
-                  }}
-                >
-                  <EntityIcon variant={iconVariant} size={128} />
                 </div>
               </div>
             </div>
