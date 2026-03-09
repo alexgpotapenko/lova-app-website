@@ -40,7 +40,7 @@ export default function Home() {
         <HeroCtaButtons className="mt-8" />
       </section>
 
-      <div id="hero-scene-section">
+      <div id="hero-scene-section" className="overflow-x-hidden">
         <HeroScrollSection />
       </div>
 
