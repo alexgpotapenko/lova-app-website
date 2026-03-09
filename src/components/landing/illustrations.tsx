@@ -29,17 +29,6 @@ export type IllustrationKey =
   | "subscriptions-2"
   | "subscriptions-3";
 
-const PIE_COLOR_POOL = [
-  "#3b82f6", // blue-500
-  "#22c55e", // green-500
-  "#a855f7", // purple-500
-  "#f97316", // orange-500
-  "#14b8a6", // teal-500
-  "#eab308", // yellow-500
-  "#ef4444", // red-500
-  "#6366f1", // indigo-500
-];
-
 type DonutSegment = {
   color: string;
   length: number;
@@ -50,29 +39,20 @@ const DONUT_RADIUS = 20;
 const DONUT_STROKE_WIDTH = 4;
 const DONUT_GAP_PX = 3;
 
-function pickUniqueRandomColors(pool: string[], count: number): string[] {
-  const colors = [...pool];
-  for (let i = colors.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [colors[i], colors[j]] = [colors[j], colors[i]];
-  }
-  return colors.slice(0, Math.min(count, colors.length));
-}
-
-function getRandomDonutSegments(): DonutSegment[] {
-  const selected = pickUniqueRandomColors(PIE_COLOR_POOL, 5);
-  const minPortion = 10;
-  const segmentCount = 5;
-  const remaining = 100 - minPortion * segmentCount;
-  const weights = Array.from({ length: segmentCount }, () => Math.random());
-  const sum = weights.reduce((acc, value) => acc + value, 0);
-  const portions = weights.map((value) => minPortion + (value / sum) * remaining);
+/** Fixed donut segments so server and client render the same (no hydration mismatch). */
+const SUBSCRIPTIONS_DONUT_SEGMENTS: DonutSegment[] = (() => {
   const circumference = 2 * Math.PI * DONUT_RADIUS;
   const effectiveGap = DONUT_GAP_PX;
-
+  // Fixed colors and approximate portions (percent): teal, indigo, yellow, green, orange
+  const parts: { color: string; portion: number }[] = [
+    { color: "#14b8a6", portion: 0.21 },
+    { color: "#6366f1", portion: 0.17 },
+    { color: "#eab308", portion: 0.18 },
+    { color: "#22c55e", portion: 0.24 },
+    { color: "#f97316", portion: 0.2 },
+  ];
   let currentAngle = 0;
-  return selected.map((color, idx) => {
-    const portion = portions[idx] / 100;
+  return parts.map(({ color, portion }) => {
     const segmentLength = Math.max(0, portion * circumference - effectiveGap);
     const segment: DonutSegment = {
       color,
@@ -82,9 +62,7 @@ function getRandomDonutSegments(): DonutSegment[] {
     currentAngle += portion * 360;
     return segment;
   });
-}
-
-const SUBSCRIPTIONS_DONUT_SEGMENTS = getRandomDonutSegments();
+})();
 
 export function renderIllustration(key: IllustrationKey) {
   if (key === "logins-1") {

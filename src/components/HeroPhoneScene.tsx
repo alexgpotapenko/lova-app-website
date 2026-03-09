@@ -17,13 +17,8 @@ export const POINT_B_Y = PHONE_TOP_OFFSET + (WRAPPER_HEIGHT * PHONE_SCALE) / 2;
 export const ICON_ANGLES_DEG = [-90, -30, 30, 90, 150, 210];
 export const ICON_VARIANTS: Array<1 | 2 | 3 | 4 | 5 | 6> = [1, 2, 3, 4, 5, 6];
 export const ICON_ORBIT_RADIUS = 400;
-export const GUIDE_RING_RADII = [
-  ICON_ORBIT_RADIUS - 8,
-  ICON_ORBIT_RADIUS - 64,
-  ICON_ORBIT_RADIUS - 120,
-  ICON_ORBIT_RADIUS - 176,
-  ICON_ORBIT_RADIUS - 232,
-];
+const GUIDE_RING_OFFSETS = [8, 64, 120, 176, 232];
+export const GUIDE_RING_RADII = GUIDE_RING_OFFSETS.map((d) => ICON_ORBIT_RADIUS - d);
 export const GUIDE_RING_OPACITY = [1, 0.8, 0.6, 0.4, 0.2];
 
 export type BgParticle = {
@@ -91,13 +86,16 @@ type HeroPhoneSceneProps = {
   sceneScale: number;
   particleRefs: MutableRefObject<Array<HTMLSpanElement | null>>;
   iconRefs: MutableRefObject<Array<HTMLDivElement | null>>;
+  iconOrbitRadius?: number;
 };
 
 export default function HeroPhoneScene({
   sceneScale,
   particleRefs,
   iconRefs,
+  iconOrbitRadius = ICON_ORBIT_RADIUS,
 }: HeroPhoneSceneProps) {
+  const guideRingRadii = GUIDE_RING_OFFSETS.map((d) => iconOrbitRadius - d);
   return (
     <div className="relative w-full" style={{ height: WRAPPER_HEIGHT * sceneScale }}>
       <div
@@ -111,7 +109,7 @@ export default function HeroPhoneScene({
           <Iphone screenSrc="/screen-home.png" />
         </div>
 
-        {GUIDE_RING_RADII.map((radius, idx) => (
+        {guideRingRadii.map((radius, idx) => (
           <span
             key={`guide-ring-${idx}`}
             className="absolute pointer-events-none rounded-full z-0"

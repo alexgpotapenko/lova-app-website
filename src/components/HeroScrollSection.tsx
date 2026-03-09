@@ -35,15 +35,17 @@ export default function HeroScrollSection() {
   const particleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const rafRef = useRef<number | null>(null);
   const [sceneScale, setSceneScale] = useState(DESKTOP_SCENE_SCALE);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const iconOrbitRadius = isMobile ? ICON_ORBIT_RADIUS * 0.8 : ICON_ORBIT_RADIUS;
     const applyProgress = (
       progress: number,
       collapseProgress: number,
       spinProgress: number,
     ) => {
       const rotation = spinProgress * ICON_ROTATE_TOTAL_DEG;
-      const pull = collapseProgress * ICON_ORBIT_RADIUS;
+      const pull = collapseProgress * iconOrbitRadius;
 
       for (let i = 0; i < ICON_ANGLES_DEG.length; i += 1) {
         const iconEl = iconRefs.current[i];
@@ -51,7 +53,7 @@ export default function HeroScrollSection() {
 
         const angleDeg = ICON_ANGLES_DEG[i] + rotation;
         const angle = (angleDeg * Math.PI) / 180;
-        const radius = ICON_ORBIT_RADIUS - pull;
+        const radius = iconOrbitRadius - pull;
 
         const x = POINT_B_X + Math.cos(angle) * radius;
         const y = POINT_B_Y + Math.sin(angle) * radius;
@@ -119,14 +121,15 @@ export default function HeroScrollSection() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const updateScale = () => {
       // 24px + 24px layout paddings from .layout-container
       const availableWidth = Math.max(280, window.innerWidth - 48);
-      const isMobile = window.innerWidth < 768;
-      const baseScale = isMobile ? MOBILE_BASE_SCENE_SCALE : DESKTOP_SCENE_SCALE;
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      const baseScale = mobile ? MOBILE_BASE_SCENE_SCALE : DESKTOP_SCENE_SCALE;
       const nextScale = Math.min(baseScale, availableWidth / WRAPPER_WIDTH);
       setSceneScale(nextScale);
     };
@@ -145,6 +148,7 @@ export default function HeroScrollSection() {
         sceneScale={sceneScale}
         particleRefs={particleRefs}
         iconRefs={iconRefs}
+        iconOrbitRadius={isMobile ? ICON_ORBIT_RADIUS * 0.8 : ICON_ORBIT_RADIUS}
       />
     </section>
   );
