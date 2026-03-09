@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const CARD_ANIMATION = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: "easeOut" },
+  transition: { duration: 0.4, ease: "easeOut" as const },
 };
 
 const STAGGER_DELAY = 0.2;
