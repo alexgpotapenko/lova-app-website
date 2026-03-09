@@ -5,7 +5,6 @@ import {
 } from "@phosphor-icons/react/ssr";
 import HeroScrollSection from "@/components/HeroScrollSection";
 import HeroCtaButtons from "@/components/landing/HeroCtaButtons";
-import HeroStickyPanel from "@/components/landing/HeroStickyPanel";
 import SectionHeader from "@/components/landing/SectionHeader";
 import EntityDescriptionContent from "@/components/landing/EntityDescriptionContent";
 import CreateRelationsFloatingIcon from "@/components/landing/CreateRelationsFloatingIcon";
@@ -13,8 +12,6 @@ import CreateRelationsFloatingIcon from "@/components/landing/CreateRelationsFlo
 export default function Home() {
   return (
     <main className="min-h-screen pb-28 text-black">
-      <HeroStickyPanel />
-
       <section id="hero-header" className="flex flex-col items-center pt-16">
         <Image
           src="/logo.svg"

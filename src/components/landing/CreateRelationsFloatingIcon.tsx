@@ -47,7 +47,7 @@ export default function CreateRelationsFloatingIcon() {
 
   return (
     <div
-      className="pointer-events-none absolute -right-16 top-24 z-10"
+      className="pointer-events-none absolute right-0 top-24 z-10 hidden md:block md:-right-16"
       style={{ transform: `translateY(${shiftY}px)` }}
     >
       <EntityIcon
