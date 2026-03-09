@@ -6,7 +6,7 @@ import {
   renderIllustration,
   type IllustrationKey,
 } from "@/components/landing/illustrations";
-import Iphone from "@/components/Iphone";
+import Image from "next/image";
 
 type EntityKey = "logins" | "cards" | "subscriptions";
 
@@ -138,10 +138,10 @@ function getBgCircles(entity: EntityKey): BgCircle[] {
 }
 
 const ICON_PLACEMENT: IconPlacement = {
-  xPercent: 0,
-  yPercent: 0,
+  xPercent: -8,
+  yPercent: 50,
   offsetX: 20,
-  offsetY: 20,
+  offsetY: 0,
   rotateDeg: -14,
 };
 
@@ -158,7 +158,7 @@ export default function EntityDescriptionContent() {
             <div className="min-w-0">
               <div className="relative w-full overflow-visible">
                 <div className="h-[512px] overflow-hidden rounded-[32px]">
-                  <div className="relative overflow-hidden pb-12 pt-10">
+                  <div className="relative h-full overflow-hidden pb-12 pt-10">
                     {bgCircles.map((circle, idx) => (
                       <span
                         key={`${entity.key}-bg-circle-${idx}`}
@@ -170,7 +170,7 @@ export default function EntityDescriptionContent() {
                           left: circle.left,
                           backgroundColor: circle.color,
                           opacity: circle.opacity ?? 1,
-                          zIndex: idx === 0 ? 0 : 30,
+                          zIndex: idx === 0 ? 0 : 10,
                           transform: "translate(-50%, -50%)",
                         }}
                       />
@@ -179,11 +179,16 @@ export default function EntityDescriptionContent() {
                       <h2 className="text-black">{entity.label}</h2>
                     </div>
                     <div className="relative z-20 flex justify-center">
-                      <Iphone
-                        responsive
-                        screenSrc={screenSrc}
-                        className="mx-auto !w-[240px] !max-w-none"
-                      />
+                      <div className="relative w-[240px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
+                        <div className="relative aspect-[420/912] w-full">
+                          <Image
+                            src={screenSrc}
+                            alt={`${entity.label} screenshot`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -11,6 +11,7 @@
   --color-lova-blue-100: #dce8ff;
   --color-lova-green-100: #d9f5e6;
   --color-lova-purple-100: #ece0fb;
+  --color-lova-orange-100: #fce8dc;
   --color-lova-bg: #f2f2f6;
 }
 
@@ -35,7 +36,7 @@ section[id] {
 body {
   @apply antialiased;
   background-color: var(--color-lova-bg);
-  color: #000;
+  color: black;
 }
 
 h1 {

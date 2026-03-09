@@ -90,7 +90,7 @@ export function renderIllustration(key: IllustrationKey) {
   if (key === "logins-1") {
     return (
       <div className="flex items-center justify-start">
-        <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+        <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <LockKey size={24} weight="fill" className="text-black" />
           <span className="min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap font-mono text-sm text-slate-700">
             {"<qo5?0[}nKSX1:Dl8hs-"}
@@ -106,16 +106,16 @@ export function renderIllustration(key: IllustrationKey) {
       <div className="flex items-center justify-start">
         <div className="flex items-center gap-3">
           <div className="flex -space-x-2">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_#fff]">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_white]">
               <EnvelopeSimple size={24} weight="fill" />
             </div>
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_#fff]">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_white]">
               <LockKey size={24} weight="fill" />
             </div>
           </div>
           <ArrowRight size={20} weight="bold" className="text-slate-400" />
           <div className="flex -space-x-2">
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_#fff]">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
                 src="/features/google-g.png"
                 alt="Google"
@@ -124,7 +124,7 @@ export function renderIllustration(key: IllustrationKey) {
                 className="h-6 w-6 object-contain"
               />
             </div>
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_#fff]">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
                 src="/features/apple-logo.png"
                 alt="Apple"
@@ -133,7 +133,7 @@ export function renderIllustration(key: IllustrationKey) {
                 className="h-[22px] w-[18px] object-contain"
               />
             </div>
-            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_#fff]">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
                 src="/features/microsoft-logo.png"
                 alt="Microsoft"
@@ -159,10 +159,10 @@ export function renderIllustration(key: IllustrationKey) {
               alt={logoFile.replace(".svg", "")}
               width={40}
               height={36}
-              className="h-9 w-auto rounded-full bg-lova-bg object-contain shadow-[0_0_0_3px_#fff]"
+              className="h-9 w-auto rounded-full bg-lova-bg object-contain shadow-[0_0_0_3px_white]"
             />
           ))}
-          <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-lova-bg text-sm font-semibold text-slate-500 shadow-[0_0_0_3px_#fff]">
+          <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-lova-bg text-sm font-semibold text-slate-500 shadow-[0_0_0_3px_white]">
             +5
           </div>
         </div>
@@ -173,7 +173,7 @@ export function renderIllustration(key: IllustrationKey) {
   if (key === "cards-2") {
     return (
       <div className="flex w-full items-center">
-        <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+        <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <Image
             src="/features/cards-2-logo.png"
             alt="Card provider"
@@ -199,13 +199,13 @@ export function renderIllustration(key: IllustrationKey) {
     return (
       <div className="flex items-center justify-start">
         <div className="flex -space-x-2">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_#fff]">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
             <Bank size={24} weight="regular" />
           </div>
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_#fff]">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
             <User size={24} weight="regular" />
           </div>
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_#fff]">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
             <CreditCard size={24} weight="regular" />
           </div>
         </div>
@@ -216,7 +216,7 @@ export function renderIllustration(key: IllustrationKey) {
   if (key === "subscriptions-1") {
     return (
       <div className="flex items-center justify-start">
-        <div className="inline-flex h-12 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+        <div className="inline-flex h-12 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <Image
             src="/features/icloud-logo.png"
             alt="iCloud"
@@ -236,7 +236,7 @@ export function renderIllustration(key: IllustrationKey) {
     return (
       <div className="flex w-full items-center">
         <div className="flex w-full items-center gap-0">
-          <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_#fff]">
+          <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
             <Image
               src="/features/netflix-logo.png"
               alt="Netflix"
@@ -251,7 +251,7 @@ export function renderIllustration(key: IllustrationKey) {
               <CaretUpDown size={12} weight="bold" className="text-slate-500" />
             </span>
           </div>
-          <span className="-ml-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-orange-100 text-lova-orange shadow-[0_0_0_3px_#fff]">
+          <span className="-ml-2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-orange-100 text-lova-orange shadow-[0_0_0_3px_white]">
             <BellRinging size={24} weight="fill" />
           </span>
         </div>
