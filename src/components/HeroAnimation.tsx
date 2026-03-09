@@ -31,7 +31,7 @@ export default function HeroAnimation({ progress }: Props) {
 
   return (
     <div className="relative inline-block w-[460px] h-[960px]">
-      <Iphone />
+      <Iphone screenSrc="/screen-home.png" />
       {Y_OFFSETS.map((offsetY, idx) => (
         <div
           key={`left-${idx}`}

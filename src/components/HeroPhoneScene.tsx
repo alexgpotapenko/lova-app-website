@@ -108,7 +108,7 @@ export default function HeroPhoneScene({
         }}
       >
         <div className="absolute left-0 z-20" style={{ top: PHONE_TOP_OFFSET }}>
-          <Iphone />
+          <Iphone screenSrc="/screen-home.png" />
         </div>
 
         {GUIDE_RING_RADII.map((radius, idx) => (

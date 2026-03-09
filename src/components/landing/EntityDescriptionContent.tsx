@@ -6,9 +6,7 @@ import {
   renderIllustration,
   type IllustrationKey,
 } from "@/components/landing/illustrations";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import Iphone from "@/components/Iphone";
 
 type EntityKey = "logins" | "cards" | "subscriptions";
 
@@ -26,34 +24,23 @@ type IconPlacement = {
   rotateDeg: number;
 };
 
-const TABS: Array<{
+type BgCircle = {
+  size: number;
+  top: string;
+  left: string;
+  color: string;
+  opacity?: number;
+};
+
+const ENTITIES: Array<{
   key: EntityKey;
   label: string;
-  activeClass: string;
-  inactiveTextClass: string;
+  features: Feature[];
 }> = [
   {
     key: "logins",
     label: "Logins",
-    activeClass: "bg-lova-green text-white",
-    inactiveTextClass: "text-lova-green",
-  },
-  {
-    key: "cards",
-    label: "Cards",
-    activeClass: "bg-lova-purple text-white",
-    inactiveTextClass: "text-lova-purple",
-  },
-  {
-    key: "subscriptions",
-    label: "Subscriptions",
-    activeClass: "bg-lova-orange text-white",
-    inactiveTextClass: "text-lova-orange",
-  },
-];
-
-const ENTITY_FEATURES: Record<EntityKey, Feature[]> = {
-  logins: [
+    features: [
     {
       title: "Password generator",
       description:
@@ -66,8 +53,12 @@ const ENTITY_FEATURES: Record<EntityKey, Feature[]> = {
         "Link sign-in methods like Google or Apple once and reuse them across all services that use the same login.",
       illustrationKey: "logins-2",
     },
-  ],
-  cards: [
+    ],
+  },
+  {
+    key: "cards",
+    label: "Cards",
+    features: [
     {
       title: "Full card details",
       description:
@@ -86,8 +77,12 @@ const ENTITY_FEATURES: Record<EntityKey, Feature[]> = {
         "Mark cards as virtual to distinguish them from physical ones.",
       illustrationKey: "cards-2",
     },
-  ],
-  subscriptions: [
+    ],
+  },
+  {
+    key: "subscriptions",
+    label: "Subscriptions",
+    features: [
     {
       title: "Upcoming payment",
       description:
@@ -106,178 +101,122 @@ const ENTITY_FEATURES: Record<EntityKey, Feature[]> = {
         "A visual breakdwon of all active subscriptions by monthly cost",
       illustrationKey: "subscriptions-3",
     },
-  ],
+    ],
+  },
+];
+
+function getScreenSrc(entity: EntityKey) {
+  if (entity === "cards") return "/screen-card-details.png";
+  if (entity === "subscriptions") return "/screen-subscription-details.png";
+  return "/screen-login-details.png";
+}
+
+function getIconVariant(entity: EntityKey) {
+  if (entity === "logins") return 1;
+  if (entity === "cards") return 3;
+  return 5;
+}
+
+function getBgCircles(entity: EntityKey): BgCircle[] {
+  const topCircleColor =
+    entity === "logins"
+      ? "var(--color-lova-green)"
+      : entity === "cards"
+        ? "var(--color-lova-purple)"
+        : "var(--color-lova-orange)";
+  const bottomRightColor =
+    entity === "cards" ? "var(--color-lova-orange)" : "var(--color-lova-purple)";
+  const bottomLeftColor =
+    entity === "logins" ? "var(--color-lova-orange)" : "var(--color-lova-green)";
+
+  return [
+    { size: 600, top: "0%", left: "0%", color: topCircleColor, opacity: 0.1 },
+    { size: 320, top: "80%", left: "50%", color: "var(--color-lova-blue)", opacity: 0.1 },
+    { size: 320, top: "72%", left: "120%", color: bottomRightColor, opacity: 0.1 },
+    { size: 320, top: "72%", left: "-20%", color: bottomLeftColor, opacity: 0.1 },
+  ];
+}
+
+const ICON_PLACEMENT: IconPlacement = {
+  xPercent: 0,
+  yPercent: 100,
+  offsetX: 20,
+  offsetY: -20,
+  rotateDeg: -14,
 };
 
 export default function EntityDescriptionContent() {
-  const [activeEntity, setActiveEntity] = useState<EntityKey>("logins");
-  const [iconPlacement, setIconPlacement] = useState<IconPlacement>({
-    xPercent: 0,
-    yPercent: 0,
-    offsetX: 0,
-    offsetY: 0,
-    rotateDeg: -12,
-  });
-  const isFirstRender = useRef(true);
-  const features = useMemo(() => ENTITY_FEATURES[activeEntity], [activeEntity]);
-  const activeScreenSrc = useMemo(() => {
-    if (activeEntity === "cards") return "/screen-card-details.png";
-    if (activeEntity === "subscriptions") return "/screen-subscription-details.png";
-    return "/screen-login-details.png";
-  }, [activeEntity]);
-  const activeIconVariant = useMemo(() => {
-    if (activeEntity === "logins") return 1;
-    if (activeEntity === "cards") return 3;
-    return 5;
-  }, [activeEntity]);
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
-    setIconPlacement({
-      xPercent: 0,
-      yPercent: 0,
-      offsetX: randomInRange(-40, 40),
-      offsetY: randomInRange(-40, 40),
-      rotateDeg: randomInRange(-25, 25),
-    });
-  }, [activeEntity]);
-
   return (
-    <div className="w-full">
-      <div className="mb-16 flex flex-wrap items-center justify-center gap-2">
-        {TABS.map((tab) => {
-          const isActive = tab.key === activeEntity;
-          return (
-            <button
-              key={tab.key}
-              type="button"
-              className={`cursor-pointer rounded-full px-6 py-3 text-base font-semibold transition-all duration-300 ease-out md:text-xl ${
-                isActive
-                  ? tab.activeClass
-                  : "bg-transparent text-slate-700 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.55)] hover:text-black"
-              }`}
-              onClick={() => setActiveEntity(tab.key)}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
+    <div className="flex w-full flex-col gap-32">
+      {ENTITIES.map((entity) => {
+        const bgCircles = getBgCircles(entity.key);
+        const screenSrc = getScreenSrc(entity.key);
+        const iconVariant = getIconVariant(entity.key);
 
-      <div className="overflow-visible md:hidden">
-        <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-visible">
-          <div className="overflow-x-auto overflow-y-visible scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="inline-flex overflow-visible pl-6 pr-6">
-              <div className="w-[672px] min-w-[672px] overflow-visible">
-                <div className="grid grid-cols-2 items-start gap-5 overflow-visible">
-                  <div className="min-w-0">
-                    <div className="relative w-full overflow-visible">
-                  <div className="overflow-hidden rounded-[24px]">
-                    <Image
-                      src={activeScreenSrc}
-                      alt="Lova app screenshot"
-                      width={420}
-                      height={912}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                  <div
-                    className="pointer-events-none absolute z-10 hidden transition-all duration-500 ease-out md:block"
-                    style={{
-                      left: `calc(${iconPlacement.xPercent}% + ${iconPlacement.offsetX}px)`,
-                      top: `calc(${iconPlacement.yPercent}% + ${iconPlacement.offsetY}px)`,
-                      transform: `translate(-50%, -50%) rotate(${iconPlacement.rotateDeg}deg)`,
-                    }}
-                  >
-                    <EntityIcon variant={activeIconVariant} size={128} />
+        return (
+          <section key={entity.key} className="grid grid-cols-1 items-start gap-5 md:grid-cols-2">
+            <div className="min-w-0">
+              <div className="relative w-full overflow-visible">
+                <div className="h-[512px] overflow-hidden rounded-[32px]">
+                  <div className="relative overflow-hidden pb-12 pt-10">
+                    {bgCircles.map((circle, idx) => (
+                      <span
+                        key={`${entity.key}-bg-circle-${idx}`}
+                        className="pointer-events-none absolute rounded-full blur-[40px]"
+                        style={{
+                          width: circle.size,
+                          height: circle.size,
+                          top: circle.top,
+                          left: circle.left,
+                          backgroundColor: circle.color,
+                          opacity: circle.opacity ?? 1,
+                          zIndex: idx === 0 ? 0 : 30,
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      />
+                    ))}
+                    <div className="relative z-20 mb-10 text-center">
+                      <h2 className="text-black">{entity.label}</h2>
+                    </div>
+                    <div className="relative z-20 flex justify-center">
+                      <Iphone
+                        responsive
+                        screenSrc={screenSrc}
+                        className="mx-auto !w-[240px] !max-w-none"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`mobile-${activeEntity}`}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.28, ease: "easeOut" }}
-                      className="flex min-w-0 flex-col gap-5 overflow-visible"
-                    >
-                      {features.map((feature) => (
-                        <EntityFeatureCard
-                          key={`mobile-card-${feature.title}`}
-                          title={feature.title}
-                          description={feature.description}
-                          illustration={
-                            feature.illustrationKey
-                              ? renderIllustration(feature.illustrationKey)
-                              : undefined
-                          }
-                        />
-                      ))}
-                    </motion.div>
-                  </AnimatePresence>
+                <div
+                  className="pointer-events-none absolute z-40 transition-all duration-500 ease-out"
+                  style={{
+                    left: `calc(${ICON_PLACEMENT.xPercent}% + ${ICON_PLACEMENT.offsetX}px)`,
+                    top: `calc(${ICON_PLACEMENT.yPercent}% + ${ICON_PLACEMENT.offsetY}px)`,
+                    transform: `translate(-50%, -50%) rotate(${ICON_PLACEMENT.rotateDeg}deg)`,
+                  }}
+                >
+                  <EntityIcon variant={iconVariant} size={128} />
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="hidden grid-cols-2 items-start gap-5 md:grid">
-        <div className="min-w-0">
-          <div className="relative w-full">
-            <div className="overflow-hidden rounded-[24px]">
-              <Image
-                src={activeScreenSrc}
-                alt="Lova app screenshot"
-                width={420}
-                height={912}
-                className="w-full object-cover"
-              />
+            <div className="flex min-w-0 flex-col gap-5">
+              {entity.features.map((feature) => (
+                <EntityFeatureCard
+                  key={`${entity.key}-${feature.title}`}
+                  title={feature.title}
+                  description={feature.description}
+                  illustration={
+                    feature.illustrationKey
+                      ? renderIllustration(feature.illustrationKey)
+                      : undefined
+                  }
+                />
+              ))}
             </div>
-            <div
-              className="pointer-events-none absolute z-10 transition-all duration-500 ease-out"
-              style={{
-                left: `calc(${iconPlacement.xPercent}% + ${iconPlacement.offsetX}px)`,
-                top: `calc(${iconPlacement.yPercent}% + ${iconPlacement.offsetY}px)`,
-                transform: `translate(-50%, -50%) rotate(${iconPlacement.rotateDeg}deg)`,
-              }}
-            >
-              <EntityIcon variant={activeIconVariant} size={128} />
-            </div>
-          </div>
-        </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeEntity}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="flex min-w-0 flex-col gap-5"
-          >
-            {features.map((feature) => (
-              <EntityFeatureCard
-                key={feature.title}
-                title={feature.title}
-                description={feature.description}
-                illustration={
-                  feature.illustrationKey
-                    ? renderIllustration(feature.illustrationKey)
-                    : undefined
-                }
-              />
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
