@@ -139,9 +139,9 @@ function getBgCircles(entity: EntityKey): BgCircle[] {
 
 const ICON_PLACEMENT: IconPlacement = {
   xPercent: 0,
-  yPercent: 100,
+  yPercent: 0,
   offsetX: 20,
-  offsetY: -20,
+  offsetY: 20,
   rotateDeg: -14,
 };
 
