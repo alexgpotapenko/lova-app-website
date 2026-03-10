@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import EntityIcon from "@/components/EntityIcon";
+import { CalendarCheck, CreditCard, Key } from "@phosphor-icons/react/ssr";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import EntityFeatureCard from "@/components/landing/EntityFeatureCard";
 import {
   renderIllustration,
@@ -16,19 +16,6 @@ type Feature = {
   title: string;
   description: string;
   illustrationKey?: IllustrationKey;
-};
-
-type IconPlacement = {
-  xPercent: number;
-  yPercent: number;
-  offsetX: number;
-  offsetY: number;
-  rotateDeg: number;
-};
-
-type IconPlacementConfig = {
-  placement: IconPlacement;
-  column: "left" | "right";
 };
 
 type BgCircle = {
@@ -112,16 +99,118 @@ const ENTITIES: Array<{
   },
 ];
 
-function getScreenSrc(entity: EntityKey) {
-  if (entity === "cards") return "/screen-card-details.png";
-  if (entity === "subscriptions") return "/screen-subscription-details.png";
-  return "/screen-login-details.png";
+function getGallerySlides(entity: EntityKey): string[] {
+  if (entity === "logins") {
+    return ["/screen-login-1.png", "/screen-login-2.png", "/screen-login-3.png"];
+  }
+  if (entity === "cards") {
+    return ["/screen-card-1.png", "/screen-card-2.png", "/screen-card-3.png"];
+  }
+  return ["/screen-subscription-1.png", "/screen-subscription-2.png", "/screen-subscription-3.png"];
 }
 
-function getIconVariant(entity: EntityKey) {
-  if (entity === "logins") return 1;
-  if (entity === "cards") return 3;
-  return 5;
+const GALLERY_DURATION_MS = 5000;
+const GALLERY_TICK_MS = 50;
+
+function ScreenshotGallery({
+  slides,
+  className,
+  ariaLabel = "Screenshot carousel",
+}: {
+  slides: readonly string[];
+  className?: string;
+  ariaLabel?: string;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState<number | null>(null);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+
+  useEffect(() => {
+    const n = slides.length;
+    if (n === 0) return;
+    intervalRef.current = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + (GALLERY_TICK_MS / GALLERY_DURATION_MS) * 100;
+        if (next >= 100) {
+          const current = activeIndexRef.current;
+          const nextIndex = (current + 1) % n;
+          setPreviousIndex(current);
+          setActiveIndex(nextIndex);
+          activeIndexRef.current = nextIndex;
+          return 0;
+        }
+        return next;
+      });
+    }, GALLERY_TICK_MS);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [activeIndex, slides.length]);
+
+  useEffect(() => {
+    if (previousIndex === null) return;
+    const t = setTimeout(() => setPreviousIndex(null), 1000);
+    return () => clearTimeout(t);
+  }, [previousIndex]);
+
+  const goTo = (index: number) => {
+    if (index !== activeIndex) {
+      setPreviousIndex(activeIndex);
+      setActiveIndex(index);
+      activeIndexRef.current = index;
+    }
+    setProgress(0);
+  };
+
+  return (
+    <div className={className} aria-roledescription="carousel" aria-label={ariaLabel}>
+      <div className="mb-6 flex justify-center gap-1">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Slide ${i + 1}`}
+            aria-current={activeIndex === i ? true : undefined}
+            onClick={() => goTo(i)}
+            className="h-[3px] w-[20px] overflow-hidden rounded-full bg-black/20"
+          >
+            {activeIndex === i ? (
+              <span
+                className="block h-full rounded-full bg-black transition-none"
+                style={{ width: `${progress}%` }}
+              />
+            ) : null}
+          </button>
+        ))}
+      </div>
+      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
+        <div className="relative aspect-[420/912] w-full">
+          {slides.map((src, i) => {
+            const isVisible = i === activeIndex || i === previousIndex;
+            const isNew = i === activeIndex;
+            return (
+              <Image
+                key={`slide-${i}`}
+                src={src}
+                alt={`Screenshot ${i + 1}`}
+                fill
+                unoptimized
+                className={isNew ? "object-cover transition-opacity duration-300" : "object-cover"}
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  zIndex: isNew ? 10 : isVisible ? 5 : 0,
+                }}
+                aria-hidden={!isVisible}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function getBgCircles(entity: EntityKey): BgCircle[] {
@@ -144,41 +233,12 @@ function getBgCircles(entity: EntityKey): BgCircle[] {
   ];
 }
 
-function getIconPlacement(entity: EntityKey): IconPlacementConfig {
-  if (entity === "logins") {
-    return {
-      placement: { xPercent: -7, yPercent: 8, offsetX: 30, offsetY: 0, rotateDeg: -14 },
-      column: "left",
-    };
-  }
-  if (entity === "subscriptions") {
-    return {
-      placement: { xPercent: -5, yPercent: 65, offsetX: 20, offsetY: -40, rotateDeg: -14 },
-      column: "left",
-    };
-  }
-  // cards — правый верхний угол блока с карточками
-  return {
-    placement: { xPercent: 110, yPercent: -5, offsetX: -64, offsetY: 64, rotateDeg: 14 },
-    column: "right",
-  };
-}
-
 const SECTION_ANIMATION = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.4, ease: "easeOut" as const },
 };
 const STAGGER_DELAY = 0.2;
-
-/** ccw = -1, cw = 1; экстремумы ±20° от базового угла */
-const SCROLL_ROTATE_DIRECTION: Record<EntityKey, number> = {
-  logins: -1,
-  cards: 1,
-  subscriptions: -1,
-};
-
-const SCROLL_ROTATE_DEG = 20;
 
 function EntitySection({
   entity,
@@ -188,27 +248,7 @@ function EntitySection({
   entityIdx: number;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const direction = SCROLL_ROTATE_DIRECTION[entity.key];
-  const iconPlacementConfig = getIconPlacement(entity.key);
-  const p = iconPlacementConfig.placement;
-  const rotate = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [p.rotateDeg - SCROLL_ROTATE_DEG * direction, p.rotateDeg + SCROLL_ROTATE_DEG * direction]
-  );
-
   const bgCircles = getBgCircles(entity.key);
-  const screenSrc = getScreenSrc(entity.key);
-  const iconVariant = getIconVariant(entity.key);
-
-  const iconStyle = {
-    left: `calc(${p.xPercent}% + ${p.offsetX}px)` as const,
-    top: `calc(${p.yPercent}% + ${p.offsetY}px)` as const,
-  };
 
   return (
     <motion.section
@@ -224,8 +264,8 @@ function EntitySection({
     >
       <div className="min-w-0">
         <div className="relative w-full overflow-visible">
-          <div className="h-[512px] overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
-            <div className="relative h-full overflow-hidden pb-12 pt-10">
+          <div className="h-[600px] overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+            <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
                 <span
                   key={`${entity.key}-bg-circle-${idx}`}
@@ -242,55 +282,30 @@ function EntitySection({
                   }}
                 />
               ))}
-              <div className="relative z-20 mb-10 text-center">
-                <h2 className="text-black">
-                  {entity.label.trimEnd().match(/[.!?]$/) ? entity.label : `${entity.label.trimEnd()}.`}
-                </h2>
-              </div>
-              <div className="relative z-20 flex justify-center">
-                <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
-                  <div className="relative aspect-[420/912] w-full">
-                    <Image
-                      src={screenSrc}
-                      alt={`${entity.label} screenshot`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+              <div className="relative z-20">
+                <div className="mb-6 flex items-end justify-center gap-2">
+                  <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center">
+                    {entity.key === "logins" && <Key size={28} weight="fill" className="text-lova-green" />}
+                    {entity.key === "cards" && <CreditCard size={28} weight="fill" className="text-lova-purple" />}
+                    {entity.key === "subscriptions" && <CalendarCheck size={28} weight="fill" className="text-lova-orange" />}
+                  </span>
+                  <h2 className="text-black">
+                    {entity.label.trimEnd().match(/[.!?]$/) ? entity.label : `${entity.label.trimEnd()}.`}
+                  </h2>
+                </div>
+                <div className="flex justify-center">
+                  <ScreenshotGallery
+                    slides={[...getGallerySlides(entity.key)]}
+                    ariaLabel={`${entity.label} screenshots`}
+                  />
                 </div>
               </div>
             </div>
           </div>
-          {iconPlacementConfig.column === "left" && (
-            <motion.div
-              className="pointer-events-none absolute z-40 origin-center"
-              style={{
-                ...iconStyle,
-                x: "-50%",
-                y: "-50%",
-                rotate,
-              }}
-            >
-              <EntityIcon variant={iconVariant} size={128} />
-            </motion.div>
-          )}
         </div>
       </div>
 
       <div className="relative flex min-w-0 flex-col gap-5">
-        {iconPlacementConfig.column === "right" && (
-          <motion.div
-            className="pointer-events-none absolute z-40 origin-center"
-            style={{
-              ...iconStyle,
-              x: "-50%",
-              y: "-50%",
-              rotate,
-            }}
-          >
-            <EntityIcon variant={iconVariant} size={128} />
-          </motion.div>
-        )}
         {entity.features.map((feature) => (
           <EntityFeatureCard
             key={`${entity.key}-${feature.title}`}

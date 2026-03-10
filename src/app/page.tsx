@@ -3,11 +3,16 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
+  DeviceMobile,
   FileArrowDown,
   FileArrowUp,
+  Key,
   ListBullets,
+  Lock,
   MagnifyingGlass,
+  Numpad,
   PushPin,
+  ScanSmiley,
   Trash,
   Globe,
   CurrencyCircleDollar,
@@ -144,26 +149,50 @@ export default function Home() {
             </div>
             <div className="relative z-10 flex flex-col gap-6">
               <div className="size-20 shrink-0 opacity-0" aria-hidden />
-              <div className="grid grid-cols-1 gap-8 md:gap-[80px] md:grid-cols-2 md:items-start">
-              <h2 className="text-xl font-semibold text-black">
-                No accounts.
-                <br />
-                No cloud.
-                <br />
-                No tracking.
-              </h2>
-              <div className="flex flex-col gap-4">
-                <p className="h-body-base text-slate-600">
-                  Your vault is protected with a PIN or Face ID and encrypted using strong, device-level security.
-                </p>
-                <p className="h-body-base text-slate-600">
-                  All data is stored locally and locked with AES-256 encryption.
-                </p>
-                <p className="h-body-base text-slate-600">
-                  The encryption key is kept in the iOS Keychain and can only be accessed after authentication.
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 md:items-start">
+                <div className="flex flex-col gap-8">
+                  <h2 className="text-xl font-semibold text-black">
+                    No accounts.
+                    <br />
+                    No cloud.
+                    <br />
+                    No tracking.
+                  </h2>
+                  <div className="flex flex-wrap gap-1">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-2">
+                      <DeviceMobile size={16} weight="regular" className="shrink-0 text-slate-700" />
+                      <span className="text-sm font-medium text-slate-700">On-device storage</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-2">
+                      <Numpad size={16} weight="regular" className="shrink-0 text-slate-700" />
+                      <span className="text-sm font-medium text-slate-700">PIN</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-2">
+                      <ScanSmiley size={16} weight="regular" className="shrink-0 text-slate-700" />
+                      <span className="text-sm font-medium text-slate-700">Face ID</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-2">
+                      <Lock size={16} weight="regular" className="shrink-0 text-slate-700" />
+                      <span className="text-sm font-medium text-slate-700">AES-256 encryption</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/60 px-3 py-2">
+                      <Key size={16} weight="regular" className="shrink-0 text-slate-700" />
+                      <span className="text-sm font-medium text-slate-700">iOS Keychain</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 flex flex-col gap-4 md:mt-0 md:pl-[42px]">
+                  <p className="h-body-base text-slate-600">
+                    Your vault is protected with a PIN or Face ID and encrypted using strong, device-level security.
+                  </p>
+                  <p className="h-body-base text-slate-600">
+                    All data is stored locally and protected with strong encryption<sup>1</sup>. The encryption key is kept in the iOS Keychain and can only be accessed after authentication.
+                  </p>
+                  <p className="mt-1 text-sm text-slate-500">
+                    <sup>1</sup> Uses industry-standard AES-256 encryption.
+                  </p>
+                </div>
               </div>
-            </div>
           </div>
         </motion.article>
         </div>
@@ -176,10 +205,13 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
-              <FileArrowDown size={48} weight="light" className="mb-3 text-lova-blue" />
+              <FileArrowDown size={48} weight="light" className="mb-5 text-lova-blue" />
               <h3 className="text-xl font-semibold text-black">Vault Backup</h3>
               <p className="mt-2 h-body-base text-slate-600">
-                Create an encrypted backup and store it wherever you trust. It is protected with its own password and encrypted with a key derived using PBKDF2.
+                Reinstalling the app? Switching to a new phone? Create a backup of your vault and store it wherever you trust.
+              </p>
+              <p className="mt-2 h-body-base text-slate-600">
+                Your backup is protected with its own password, so only someone who knows that password can restore the vault.
               </p>
             </motion.article>
             <motion.article
@@ -189,10 +221,10 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
-              <FileArrowUp size={48} weight="light" className="mb-3 text-lova-blue" />
+              <FileArrowUp size={48} weight="light" className="mb-5 text-lova-blue" />
               <h3 className="text-xl font-semibold text-black">Vault Restore</h3>
               <p className="mt-2 h-body-base text-slate-600">
-                Import your backup on another device and unlock it with the backup password. Your encryption key is securely restored and the vault is decrypted.
+                After a fresh app install, import your backup and decrypt it with the password generated during backup creation. Then set up a new PIN code — and your vault is restored and ready to use.
               </p>
             </motion.article>
           </div>
@@ -208,7 +240,7 @@ export default function Home() {
           {[
             { Icon: ListBullets, title: "Assign categories to items" },
             { Icon: PushPin, title: "Pin items to Home" },
-            { Icon: Trash, title: "Erase your vault" },
+            { Icon: Trash, title: "Erase your vault securely" },
             { Icon: CurrencyCircleDollar, title: "Select currency per subscription" },
             {
               Icon: Globe,
@@ -256,15 +288,15 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="mt-40 flex flex-col items-center gap-6 pb-10">
+      <footer id="footer" className="mt-40 flex flex-col items-center gap-6 pb-10">
         <nav className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-          <a href="mailto:alexgpotapenko@gmail.com" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
+          <a href="mailto:alexgpotapenko@gmail.com?subject=Lova%20App%20Feedback" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Send Feedback
           </a>
-          <a href="/terms" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
-            Terms and Conditions
+          <a href="/terms?from=footer" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
+            Terms of Use
           </a>
-          <a href="/privacy" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
+          <a href="/privacy?from=footer" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Privacy Policy
           </a>
         </nav>
@@ -274,6 +306,9 @@ export default function Home() {
           </p>
           <p className="h-body-base text-slate-500">
             All product names, logos, and brands are property of their respective owners.
+          </p>
+          <p className="h-body-base text-slate-500">
+            This website does not use cookies or analytics.
           </p>
         </div>
       </footer>

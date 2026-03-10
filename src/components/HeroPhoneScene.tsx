@@ -4,6 +4,7 @@ import type { MutableRefObject } from "react";
 import EntityIcon from "@/components/EntityIcon";
 import Iphone from "@/components/Iphone";
 
+
 export const WRAPPER_WIDTH = 460;
 export const WRAPPER_HEIGHT = 960;
 export const PHONE_SCALE = 0.75;
@@ -105,7 +106,10 @@ export default function HeroPhoneScene({
           transformOrigin: "top center",
         }}
       >
-        <div className="absolute left-0 z-20" style={{ top: PHONE_TOP_OFFSET }}>
+        <div
+          className="absolute left-1/2 z-20 origin-top -translate-x-1/2"
+          style={{ top: PHONE_TOP_OFFSET }}
+        >
           <Iphone screenSrc="/screen-home.png" />
         </div>
 
