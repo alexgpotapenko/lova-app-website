@@ -1,7 +1,49 @@
 "use client";
 
+import { Link } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 import { motion } from "framer-motion";
+
+function EntityCapsule({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={`entity-capsule inline-flex items-center rounded-full px-5 pt-0.5 pb-2.5 text-3xl font-semibold ${className}`}
+    >
+      {children}
+    </span>
+  );
+}
+
+const LOVA_100 = {
+  green: "var(--color-lova-green-100)",
+  orange: "var(--color-lova-orange-100)",
+  purple: "var(--color-lova-purple-100)",
+} as const;
+
+function LinkIcon({
+  left,
+  right,
+}: {
+  left: keyof typeof LOVA_100;
+  right: keyof typeof LOVA_100;
+}) {
+  return (
+    <span
+      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+      style={{
+        background: `linear-gradient(to right, ${LOVA_100[left]}, ${LOVA_100[right]})`,
+      }}
+    >
+      <Link size={16} weight="regular" className="text-black" />
+    </span>
+  );
+}
 
 const CARD_ANIMATION = {
   initial: { opacity: 0, y: 24 },
@@ -21,19 +63,19 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lova-green-100">
-            <Image
-              src="/features/apple-logo.png"
-              alt="Apple"
-              width={18}
-              height={22}
-              className="h-[22px] w-[18px] object-contain"
-            />
-          </div>
-          <h3 className="text-2xl font-semibold">
-            <span className="text-lova-green">Subscriptions using this login.</span> See the services connected to this account.
-          </h3>
+        <div className="flex min-w-0 flex-1 flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-1">
+              <EntityCapsule className="bg-lova-green-50 text-lova-green">
+                Login
+              </EntityCapsule>
+              <LinkIcon left="green" right="orange" />
+              <EntityCapsule className="bg-lova-orange-50 text-lova-orange">
+                Subscriptions
+              </EntityCapsule>
+            </div>
+            <h3 className="text-xl font-semibold text-black">
+              Link your login to multiple subscription services.
+            </h3>
         </div>
         <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
           <Image
@@ -54,19 +96,19 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lova-green-100 shadow-[0_0_0_3px_white]">
-            <Image
-              src="/features/google-g.png"
-              alt="Google"
-              width={24}
-              height={24}
-              className="h-6 w-6 object-contain"
-            />
-          </div>
-          <h3 className="text-2xl font-semibold">
-            <span className="text-lova-green">Apps signed in with this account.</span> See where this login is used for Google, Apple, or Microsoft sign-in.
-          </h3>
+        <div className="flex min-w-0 flex-1 flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-1">
+              <EntityCapsule className="bg-lova-green-50 text-lova-green">
+                Login
+              </EntityCapsule>
+              <LinkIcon left="green" right="green" />
+              <EntityCapsule className="bg-lova-green-50 text-lova-green">
+                Logins
+              </EntityCapsule>
+            </div>
+            <h3 className="text-xl font-semibold text-black">
+              Create a login that you use as SSO for other services.
+            </h3>
         </div>
         <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
           <Image
@@ -87,19 +129,19 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 2 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lova-purple-100">
-            <Image
-              src="/features/chase-logo.png"
-              alt="Chase"
-              width={24}
-              height={24}
-              className="h-6 w-6 rounded-[6px] object-contain"
-            />
-          </div>
-          <h3 className="text-2xl font-semibold">
-            <span className="text-lova-purple">Subscriptions paid with this card.</span> Know which services are charged to this card.
-          </h3>
+        <div className="flex min-w-0 flex-1 flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-1">
+              <EntityCapsule className="bg-lova-purple-50 text-lova-purple">
+                Card
+              </EntityCapsule>
+              <LinkIcon left="purple" right="orange" />
+              <EntityCapsule className="bg-lova-orange-50 text-lova-orange">
+                Subscriptions
+              </EntityCapsule>
+            </div>
+            <h3 className="text-xl font-semibold text-black">
+              Link all subscriptions to the card you pay with.
+            </h3>
         </div>
         <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
           <Image
@@ -120,19 +162,23 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 3 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-4">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lova-orange-100">
-            <Image
-              src="/features/netflix-logo.png"
-              alt="Netflix"
-              width={24}
-              height={24}
-              className="h-6 w-6 rounded-[6px] object-contain"
-            />
-          </div>
-          <h3 className="text-2xl font-semibold">
-            <span className="text-lova-orange">Login and card used for this subscription.</span> See how it's accessed and paid.
-          </h3>
+        <div className="flex min-w-0 flex-1 flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-1">
+              <EntityCapsule className="bg-lova-orange-50 text-lova-orange">
+                Subscription
+              </EntityCapsule>
+              <LinkIcon left="orange" right="green" />
+              <EntityCapsule className="bg-lova-green-50 text-lova-green">
+                Login
+              </EntityCapsule>
+              <LinkIcon left="green" right="purple" />
+              <EntityCapsule className="bg-lova-purple-50 text-lova-purple">
+                Card
+              </EntityCapsule>
+            </div>
+            <h3 className="text-xl font-semibold text-black">
+              See your subscription login and the card used for payment.
+            </h3>
         </div>
         <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
           <Image

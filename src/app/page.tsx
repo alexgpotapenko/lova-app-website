@@ -64,8 +64,8 @@ export default function Home() {
       <section id="features-start" className="mt-24">
         <SectionHeader
           className="mb-32"
-          title="What you can store."
-          description="The essentials you rely on every day."
+          title="The essentials you rely on every day."
+          description="Logins, cards, and subscriptions — in one secure place."
         />
         <EntityDescriptionContent />
       </section>
