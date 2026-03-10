@@ -57,13 +57,13 @@ export default function RelationsCards() {
   return (
     <div className="mt-16 flex flex-col gap-5">
       <motion.article
-        className="flex flex-col gap-8 rounded-[24px] bg-white p-8 sm:flex-row sm:items-start"
+        className="flex flex-col gap-0 rounded-[24px] bg-white p-1 sm:flex-row sm:items-start"
         initial={CARD_ANIMATION.initial}
         whileInView={CARD_ANIMATION.animate}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-5 p-8 pr-2">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-green-50 text-lova-green">
                 Login
@@ -77,7 +77,7 @@ export default function RelationsCards() {
               Link your login to multiple subscription services.
             </h3>
         </div>
-        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
+        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[18px]">
           <Image
             src="/features/relations-logins-subscriptions.png"
             alt=""
@@ -90,13 +90,13 @@ export default function RelationsCards() {
       </motion.article>
 
       <motion.article
-        className="flex flex-col gap-8 rounded-[24px] bg-white p-8 sm:flex-row sm:items-start"
+        className="flex flex-col gap-0 rounded-[24px] bg-white p-1 sm:flex-row sm:items-start"
         initial={CARD_ANIMATION.initial}
         whileInView={CARD_ANIMATION.animate}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-5 p-8 pr-2">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-green-50 text-lova-green">
                 Login
@@ -110,7 +110,7 @@ export default function RelationsCards() {
               Create a login that you use as SSO for other services.
             </h3>
         </div>
-        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
+        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[18px]">
           <Image
             src="/features/relations-sso.png"
             alt=""
@@ -123,13 +123,13 @@ export default function RelationsCards() {
       </motion.article>
 
       <motion.article
-        className="flex flex-col gap-8 rounded-[24px] bg-white p-8 sm:flex-row sm:items-start"
+        className="flex flex-col gap-0 rounded-[24px] bg-white p-1 sm:flex-row sm:items-start"
         initial={CARD_ANIMATION.initial}
         whileInView={CARD_ANIMATION.animate}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 2 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-5 p-8 pr-2">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-purple-50 text-lova-purple">
                 Card
@@ -143,7 +143,7 @@ export default function RelationsCards() {
               Link all subscriptions to the card you pay with.
             </h3>
         </div>
-        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
+        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[18px]">
           <Image
             src="/features/relations-card-subscriptions.png"
             alt=""
@@ -156,13 +156,13 @@ export default function RelationsCards() {
       </motion.article>
 
       <motion.article
-        className="flex flex-col gap-8 rounded-[24px] bg-white p-8 sm:flex-row sm:items-start"
+        className="flex flex-col gap-0 rounded-[24px] bg-white p-1 sm:flex-row sm:items-start"
         initial={CARD_ANIMATION.initial}
         whileInView={CARD_ANIMATION.animate}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 3 }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-5">
+        <div className="flex min-w-0 flex-1 flex-col gap-5 p-8 pr-2">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-orange-50 text-lova-orange">
                 Subscription
@@ -180,7 +180,7 @@ export default function RelationsCards() {
               See your subscription login and the card used for payment.
             </h3>
         </div>
-        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[16px]">
+        <div className="relative min-w-0 flex-1 aspect-[420/450] overflow-hidden rounded-[18px]">
           <Image
             src="/features/relations-subscription-relations.png"
             alt=""
