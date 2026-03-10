@@ -7,12 +7,12 @@ import {
   FileArrowDown,
   FileArrowUp,
   Key,
-  ListBullets,
   Lock,
-  MagnifyingGlass,
+  Moon,
   Numpad,
   PushPin,
   ScanSmiley,
+  Tag,
   Trash,
   Globe,
   CurrencyCircleDollar,
@@ -238,7 +238,7 @@ export default function Home() {
         />
         <div className="mt-16 grid grid-cols-2 items-start gap-y-16 lg:grid-cols-3">
           {[
-            { Icon: ListBullets, title: "Assign categories to items" },
+            { Icon: Tag, title: "Assign categories to items" },
             { Icon: PushPin, title: "Pin items to Home" },
             { Icon: Trash, title: "Erase your vault securely" },
             { Icon: CurrencyCircleDollar, title: "Select currency per subscription" },
@@ -251,7 +251,7 @@ export default function Home() {
                 </>
               ),
             },
-            { Icon: MagnifyingGlass, title: "Universal search" },
+            { Icon: Moon, title: "Dark mode" },
           ].map((item, i) => (
             <article
               key={typeof item.title === "string" ? item.title : `feature-${i}`}
