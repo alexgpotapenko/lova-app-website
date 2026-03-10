@@ -224,7 +224,7 @@ function EntitySection({
     >
       <div className="min-w-0">
         <div className="relative w-full overflow-visible">
-          <div className="h-[512px] overflow-hidden rounded-[32px]">
+          <div className="h-[512px] overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
             <div className="relative h-full overflow-hidden pb-12 pt-10">
               {bgCircles.map((circle, idx) => (
                 <span
