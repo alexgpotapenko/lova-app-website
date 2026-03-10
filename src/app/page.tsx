@@ -72,7 +72,7 @@ export default function Home() {
 
       <section id="create-relations-section" className="relative mt-40">
         <SectionHeader
-          title="Create Relations."
+          title="Relations."
           description="Connect your logins, cards, and subscriptions together so you always see the full context."
         />
         <RelationsCards />
