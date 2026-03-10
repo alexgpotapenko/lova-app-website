@@ -204,7 +204,7 @@ export default function Home() {
           title="More Features."
           description="Discover additional ways to manage and protect your vault."
         />
-        <div className="mt-16 grid grid-cols-1 items-start gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-2 items-start gap-y-16 lg:grid-cols-3">
           {[
             { Icon: ListBullets, title: "Assign categories to items" },
             { Icon: PushPin, title: "Pin items to Home" },
@@ -257,7 +257,7 @@ export default function Home() {
       </section>
 
       <footer className="mt-40 flex flex-col items-center gap-6 pb-10">
-        <nav className="flex gap-8">
+        <nav className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
           <a href="mailto:alexgpotapenko@gmail.com" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Send Feedback
           </a>
@@ -270,7 +270,7 @@ export default function Home() {
         </nav>
         <div className="flex max-w-[560px] flex-col items-center gap-0 text-center">
           <p className="h-body-base text-slate-500">
-            © 2026 Aleksej Potaneko. All rights reserved.
+            © 2026 Aleksej Potapenko. All rights reserved.
           </p>
           <p className="h-body-base text-slate-500">
             All product names, logos, and brands are property of their respective owners.
