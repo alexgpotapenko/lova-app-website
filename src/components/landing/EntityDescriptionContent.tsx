@@ -124,13 +124,26 @@ function ScreenshotGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState<number | null>(null);
   const [progress, setProgress] = useState(0);
+  const [isInView, setIsInView] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(activeIndex);
   activeIndexRef.current = activeIndex;
 
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const n = slides.length;
-    if (n === 0) return;
+    if (n === 0 || !isInView) return;
     intervalRef.current = setInterval(() => {
       setProgress((prev) => {
         const next = prev + (GALLERY_TICK_MS / GALLERY_DURATION_MS) * 100;
@@ -148,7 +161,7 @@ function ScreenshotGallery({
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [activeIndex, slides.length]);
+  }, [activeIndex, slides.length, isInView]);
 
   useEffect(() => {
     if (previousIndex === null) return;
@@ -166,7 +179,7 @@ function ScreenshotGallery({
   };
 
   return (
-    <div className={className} aria-roledescription="carousel" aria-label={ariaLabel}>
+    <div ref={containerRef} className={className} aria-roledescription="carousel" aria-label={ariaLabel}>
       <div className="mb-6 flex justify-center gap-1">
         {slides.map((_, i) => (
           <button
@@ -198,7 +211,7 @@ function ScreenshotGallery({
                 alt={`Screenshot ${i + 1}`}
                 fill
                 unoptimized
-                className={isNew ? "object-cover transition-opacity duration-300" : "object-cover"}
+                className={isNew ? "object-cover transition-opacity duration-1000" : "object-cover"}
                 style={{
                   opacity: isVisible ? 1 : 0,
                   zIndex: isNew ? 10 : isVisible ? 5 : 0,

@@ -80,7 +80,7 @@ export default function RelationsCards() {
         <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
           <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
             <Image
-              src="/features/relations-logins-subscriptions.png"
+              src="/features/relations-login-subscriptions.png"
               alt=""
               fill
               className="object-contain"

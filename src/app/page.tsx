@@ -208,10 +208,10 @@ export default function Home() {
               <FileArrowDown size={48} weight="light" className="mb-5 text-lova-blue" />
               <h3 className="text-xl font-semibold text-black">Vault Backup</h3>
               <p className="mt-2 h-body-base text-slate-600">
-                Reinstalling the app? Switching to a new phone? Create a backup of your vault and store it wherever you trust.
+                Switching to a new phone, or just reinstalling the app won't be an issue — create your vault's backup and store it wherever you trust.
               </p>
               <p className="mt-2 h-body-base text-slate-600">
-                Your backup is protected with its own password, so only someone who knows that password can restore the vault.
+                It's protected with its own password, so only you can restore your vault.
               </p>
             </motion.article>
             <motion.article
