@@ -50,7 +50,7 @@ export default function HeaderBg() {
 
   return (
     <div
-      className={`${positionClass} -z-[1] pointer-events-none origin-top scale-50 transform-gpu md:scale-100`}
+      className={`${positionClass} -z-[1] pointer-events-none origin-top scale-50 transform-gpu md:scale-100 m-24`}
       style={!isMobile && !isPinned ? { top: SCROLL_LOCK_PX } : undefined}
       aria-hidden
     >

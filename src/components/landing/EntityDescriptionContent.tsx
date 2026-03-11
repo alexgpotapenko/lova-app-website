@@ -356,7 +356,7 @@ function EntitySection({
 
 export default function EntityDescriptionContent() {
   return (
-    <div className="flex w-full flex-col gap-32">
+    <div className="flex w-full flex-col gap-[96px]">
       {ENTITIES.map((entity, entityIdx) => (
         <EntitySection key={entity.key} entity={entity} entityIdx={entityIdx} />
       ))}

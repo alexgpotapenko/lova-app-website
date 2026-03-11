@@ -55,7 +55,7 @@ const STAGGER_DELAY = 0.2;
 
 export default function RelationsCards() {
   return (
-    <div className="mt-16 flex flex-col gap-[64px]">
+    <div className="mt-16 flex flex-col gap-[96px]">
       <motion.article
         className="grid grid-cols-1 sm:grid-cols-2 sm:items-stretch"
         initial={CARD_ANIMATION.initial}

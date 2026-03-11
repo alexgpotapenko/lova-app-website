@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
+  Check,
   DeviceMobile,
   FileArrowDown,
   FileArrowUp,
@@ -94,7 +95,7 @@ export default function Home() {
             className="absolute -left-8 -top-6 z-20"
             style={{ transform: "rotate(-14deg)" }}
           >
-            <EntityIcon variant={4} size={128} glass />
+            <EntityIcon variant={4} size={128} glass shapeOverride="square" />
           </div>
           <motion.article
             className="relative overflow-hidden rounded-[24px] bg-white p-8"
@@ -239,10 +240,10 @@ export default function Home() {
         />
         <div className="mt-16 grid grid-cols-2 items-start gap-y-16 lg:grid-cols-3">
           {[
-            { Icon: Tag, title: "Assign categories to items" },
-            { Icon: PushPin, title: "Pin items to Home" },
-            { Icon: Trash, title: "Erase your vault securely" },
-            { Icon: CurrencyCircleDollar, title: "Select currency per subscription" },
+            { Icon: Tag, title: "Assign categories to items", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-green) 20%, transparent), color-mix(in srgb, var(--color-lova-purple) 20%, transparent))" },
+            { Icon: PushPin, title: "Pin items to Home", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-purple) 20%, transparent), color-mix(in srgb, var(--color-lova-orange) 20%, transparent))" },
+            { Icon: Trash, title: "Erase your vault securely", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-orange) 20%, transparent), color-mix(in srgb, var(--color-lova-blue) 20%, transparent))" },
+            { Icon: CurrencyCircleDollar, title: "Select currency per subscription", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-blue) 20%, transparent), color-mix(in srgb, var(--color-lova-green) 20%, transparent))" },
             {
               Icon: Globe,
               title: (
@@ -251,46 +252,156 @@ export default function Home() {
                   <span className="text-slate-400">(Internet required)</span>
                 </>
               ),
+              gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-green) 20%, transparent), color-mix(in srgb, var(--color-lova-purple) 20%, transparent))",
             },
-            { Icon: Moon, title: "Dark mode" },
+            { Icon: Moon, title: "Dark mode", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-purple) 20%, transparent), color-mix(in srgb, var(--color-lova-orange) 20%, transparent))" },
           ].map((item, i) => (
             <article
               key={typeof item.title === "string" ? item.title : `feature-${i}`}
               className="flex flex-col items-center justify-start text-center"
             >
-              <item.Icon size={32} weight="light" className="mb-3 text-black" />
+              <div
+                className="mb-3 flex size-16 items-center justify-center rounded-full"
+                style={{ background: item.gradient }}
+              >
+                <item.Icon size={32} weight="fill" className="text-black" />
+              </div>
               <h3 className="h-body-base text-black">{item.title}</h3>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="get-lova" className="mt-40">
-        <article className="relative overflow-hidden rounded-[24px] bg-white p-8">
-          <div className="flex flex-col gap-6">
-            <div className="relative">
-              <Image
-                src="/app-icon.png"
-                alt="Lova"
-                width={128}
-                height={128}
-                className="rounded-[24px] shadow-[0_0_30px_0_color(display-p3_1_1_1/0.70)]"
-              />
+      <section id="get-lova" className="relative mt-40">
+        <SectionHeader
+          title="Start for Free and Upgrade."
+          description="Try all available features with a content limit, then go unlimited."
+        />
+        <div className="relative mt-16 grid grid-cols-1 items-stretch sm:grid-cols-2">
+          <motion.article
+            className="flex flex-col rounded-[24px] bg-white p-8 sm:h-[540px]"
+            initial={CARD_ANIMATION.initial}
+            whileInView={CARD_ANIMATION.animate}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
+          >
+            <div>
+              <h2 className="text-xl font-semibold text-black">Basic</h2>
             </div>
-            <h2 className="text-xl font-semibold text-black">
-              Get Lova
-              <br />
-              on the App Store
-            </h2>
-          </div>
-        </article>
-        <div className="mt-16 flex justify-center">
-          <HeroCtaButtons />
+            <div className="mt-8 flex min-h-0 flex-1 flex-col">
+              {[
+                { icon: 1, label: "Logins", limit: 5 },
+                { icon: 3, label: "Cards", limit: 2 },
+                { icon: 5, label: "Subscriptions", limit: 2 },
+                { icon: "pin", label: "Pinned items", limit: 5 },
+                { icon: "vault", label: "Vault backups", limit: 1 },
+              ].map(({ icon, label, limit }) => (
+                <div key={label} className="flex items-center gap-3 last:[&>div:last-child]:border-b-0">
+                    <span className="shrink-0">
+                      {icon === "pin" ? (
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-lova-blue/25">
+                          <PushPin size={16} weight="fill" className="text-lova-blue" />
+                        </div>
+                      ) : icon === "vault" ? (
+                        <div className="flex h-8 w-8 items-center justify-center rounded-[6px] bg-lova-blue/25">
+                          <FileArrowDown size={16} weight="fill" className="text-lova-blue" />
+                        </div>
+                      ) : (
+                        <EntityIcon variant={icon as 1 | 2 | 3 | 5 | 6} size={32} glass={false} shapeOverride={[1, 5].includes(icon as number) ? "square" : "circle"} />
+                      )}
+                    </span>
+                    <div className="flex min-w-0 flex-1 items-center border-b border-slate-200 py-4">
+                      <span className="font-normal text-black">{limit} {label.toLowerCase()}</span>
+                    </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col">
+              <span className="h-body-base text-slate-500">Price</span>
+              <p className="font-normal text-black" style={{ fontFamily: '"Be Vietnam", Inter, sans-serif', fontSize: "clamp(1.75rem, 1.4rem + 1vw, 2.25rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>$0</p>
+            </div>
+          </motion.article>
+          <motion.article
+            className="relative flex flex-col overflow-hidden rounded-[24px] bg-white p-8 sm:h-[540px]"
+            initial={CARD_ANIMATION.initial}
+            whileInView={CARD_ANIMATION.animate}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
+          >
+            {/* Blurred circles */}
+            <div className="pointer-events-none absolute -z-0" style={{ top: -156, left: -124 }}>
+              {[
+                { size: 280, top: 120, left: -40, color: "var(--color-lova-green)" },
+                { size: 280, top: 40, left: 200, color: "var(--color-lova-purple)" },
+                { size: 280, top: 360, left: -40, color: "var(--color-lova-orange)" },
+                { size: 280, top: 280, left: 200, color: "var(--color-lova-blue)" },
+              ].map((c, i) => (
+                <span
+                  key={i}
+                  className="absolute rounded-full blur-[50px]"
+                  style={{
+                    width: c.size,
+                    height: c.size,
+                    top: c.top,
+                    left: c.left,
+                    backgroundColor: c.color,
+                    opacity: 0.16,
+                  }}
+                />
+              ))}
+            </div>
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+              <div>
+                <h2 className="text-xl font-semibold text-black">Unlimited</h2>
+              </div>
+              <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8 pt-3">
+                <div className="flex flex-row-reverse flex-nowrap justify-end">
+                {[
+                  { variant: 6 as const, shapeOverride: "square" as const },
+                  { variant: 2 as const, iconOverride: PushPin, iconWeightOverride: "fill" as const, shapeOverride: "circle" as const },
+                  { variant: 5 as const, shapeOverride: "square" as const },
+                  { variant: 3 as const, shapeOverride: "circle" as const },
+                  { variant: 1 as const, shapeOverride: "square" as const },
+                ].map(({ variant, ...rest }, i) => (
+                  <div
+                    key={i}
+                    className="relative shrink-0"
+                    style={{
+                      marginRight: i === 0 ? 0 : -12,
+                      zIndex: i,
+                    }}
+                  >
+                    <EntityIcon variant={variant} size={64} glass {...rest} />
+                  </div>
+                ))}
+              </div>
+              <ul className="flex flex-col gap-3">
+                {[
+                  "Unlimited logins, cards and subscriptions",
+                  "Unlimited pinned items on home",
+                  "Unlimited vault backups",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check size={20} weight="bold" className="mt-0.5 shrink-0 text-lova-blue" />
+                    <span className="h-body-base text-black">{item}</span>
+                  </li>
+                ))}
+                </ul>
+              </div>
+              <div className="mt-8 flex flex-col">
+                <span className="h-body-base text-slate-500">Price</span>
+                <p className="font-normal text-black" style={{ fontFamily: '"Be Vietnam", Inter, sans-serif', fontSize: "clamp(1.75rem, 1.4rem + 1vw, 2.25rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>$8.99</p>
+              </div>
+            </div>
+          </motion.article>
+        </div>
+        <div className="mt-6 w-full">
+          <HeroCtaButtons className="w-full" fullWidth buttonStyle={{ padding: 20 }} />
         </div>
       </section>
 
       <footer id="footer" className="mt-40 flex flex-col items-center gap-6 pb-10">
-        <nav className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+        <nav className="flex flex-row flex-wrap items-center justify-center gap-6">
           <a href="mailto:alexgpotapenko@gmail.com?subject=Lova%20App%20Feedback" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Send Feedback
           </a>
@@ -301,7 +412,7 @@ export default function Home() {
             Privacy Policy
           </a>
         </nav>
-        <div className="flex max-w-[560px] flex-col items-center gap-0 text-center">
+        <div className="flex flex-col items-center gap-0 text-center">
           <p className="h-body-base text-slate-500">
             © 2026 Aleksej Potapenko. All rights reserved.
           </p>
