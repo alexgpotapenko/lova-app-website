@@ -123,7 +123,7 @@ export default function Home() {
             {/* Nested rounded squares */}
             <div
               className="pointer-events-none absolute -z-0"
-              style={{ top: -160, left: -160, width: 600, height: 600, transform: "rotate(45deg)" }}
+              style={{ top: -140, left: -140, width: 600, height: 600, transform: "rotate(45deg)" }}
             >
               {[160, 240, 320, 400, 480, 560].map((size, i) => {
                 const radius = [32, 48, 64, 80, 96, 112][i];
