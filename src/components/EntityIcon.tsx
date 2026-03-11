@@ -139,6 +139,8 @@ export default function EntityIcon({
   size = DEFAULT_BOX_SIZE,
   iconOverride,
   iconWeightOverride,
+  shapeOverride,
+  tiltDeg: tiltDegOverride,
 }: {
   variant: EntityIconVariant;
   glass?: boolean;
@@ -146,21 +148,26 @@ export default function EntityIcon({
   size?: number;
   iconOverride?: IconComponent;
   iconWeightOverride?: IconWeight;
+  shapeOverride?: "circle" | "square";
+  tiltDeg?: number;
 }) {
   const config = variants[variant - 1];
   const Icon = iconOverride ?? config.Icon;
   const iconWeight = iconWeightOverride ?? config.iconWeight;
-  const rotate = tiltAll ? `rotate(${config.tiltDeg}deg)` : undefined;
+  const shape = shapeOverride ?? config.shape;
+  const tiltDeg = tiltDegOverride ?? config.tiltDeg;
+  const rotate = tiltAll ? `rotate(${tiltDeg}deg)` : undefined;
   const iconSize = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_ICON_SIZE);
   const squareRadius = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_SQUARE_RADIUS);
+  const rounded = shape === "circle" ? "rounded-full" : config.rounded;
 
   return (
     <div
-      className={`flex items-center justify-center ${config.rounded} shadow-[0_0_30px_0_color(display-p3_1_1_1/0.70)] ${glass ? "" : config.bg}`}
+      className={`flex items-center justify-center ${rounded} shadow-[0_0_30px_0_color(display-p3_1_1_1/0.70)] ${glass ? "" : config.bg}`}
       style={{
         width: size,
         height: size,
-        borderRadius: config.shape === "circle" ? 9999 : squareRadius,
+        borderRadius: shape === "circle" ? 9999 : squareRadius,
         ...(glass ? getGlassStyle(variant) : undefined),
         ...(rotate ? { transform: `${rotate} translateZ(0)` } : undefined),
       }}
