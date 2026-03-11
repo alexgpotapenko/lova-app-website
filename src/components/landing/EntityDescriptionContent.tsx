@@ -36,16 +36,22 @@ const ENTITIES: Array<{
     label: "Logins",
     features: [
     {
+      title: "Categories",
+      description:
+        "Organize your logins into categories to keep it easy to navigate.",
+      illustrationKey: "logins-1",
+    },
+    {
       title: "Password generator",
       description:
-        "Generate strong, unique passwords with a single tap to use them when creating new accounts.",
-      illustrationKey: "logins-1",
+        "Generate strong passwords when creating or editing your logins.",
+      illustrationKey: "logins-2",
     },
     {
       title: "SSO reuse",
       description:
-        "Link sign-in methods like Google or Apple once and reuse them across all services that use the same login.",
-      illustrationKey: "logins-2",
+        "Create a login used for SSO and link it to the services that rely on it.",
+      illustrationKey: "logins-3",
     },
     ],
   },
@@ -56,7 +62,7 @@ const ENTITIES: Array<{
     {
       title: "Full card details",
       description:
-        "Store the complete card details — bank and cardholder name, number, expiry date, CVV, and PIN",
+        "Store your card details, quickly copy and use them when needed.",
       illustrationKey: "cards-3",
     },
     {
@@ -101,7 +107,7 @@ const ENTITIES: Array<{
 
 function getGallerySlides(entity: EntityKey): string[] {
   if (entity === "logins") {
-    return ["/screen-login-1.png", "/screen-login-2.png", "/screen-login-3.png"];
+    return ["/screen-login-categories.png", "/screen-login-password-generator.png", "/screen-login-sso-reuse.png"];
   }
   if (entity === "cards") {
     return ["/screen-card-1.png", "/screen-card-2.png", "/screen-card-3.png"];
@@ -111,6 +117,9 @@ function getGallerySlides(entity: EntityKey): string[] {
 
 const GALLERY_DURATION_MS = 5000;
 const GALLERY_TICK_MS = 50;
+
+/** Height = 3 cards + 2 gaps (gap-5 = 20px). Cards divide space equally. */
+const CARDS_SECTION_HEIGHT = 600;
 
 function ScreenshotGallery({
   slides,
@@ -199,8 +208,14 @@ function ScreenshotGallery({
           </button>
         ))}
       </div>
-      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px] shadow-[0_0_48px_rgba(255,255,255,0.65)]">
-        <div className="relative aspect-[420/912] w-full">
+      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px]">
+        <div
+          className="relative aspect-[420/912] w-full"
+          style={{
+            maskImage: "linear-gradient(to top, transparent 0px, transparent 160px, black 320px)",
+            WebkitMaskImage: "linear-gradient(to top, transparent 0px, transparent 160px, black 320px)",
+          }}
+        >
           {slides.map((src, i) => {
             const isVisible = i === activeIndex || i === previousIndex;
             const isNew = i === activeIndex;
@@ -266,7 +281,7 @@ function EntitySection({
   return (
     <motion.section
       ref={sectionRef}
-      className="grid grid-cols-1 items-start gap-5 md:grid-cols-2"
+      className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2"
       initial={SECTION_ANIMATION.initial}
       whileInView={SECTION_ANIMATION.animate}
       viewport={{ once: true, margin: "-50px" }}
@@ -275,9 +290,9 @@ function EntitySection({
         delay: STAGGER_DELAY * entityIdx,
       }}
     >
-      <div className="min-w-0">
-        <div className="relative w-full overflow-visible">
-          <div className="h-[600px] overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+      <div className="flex min-h-0 min-w-0 flex-col">
+        <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_HEIGHT }}>
+          <div className="h-full overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
             <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
                 <span
@@ -318,7 +333,10 @@ function EntitySection({
         </div>
       </div>
 
-      <div className="relative flex min-w-0 flex-col gap-5">
+      <div
+        className="relative flex min-w-0 flex-col gap-5"
+        style={{ height: CARDS_SECTION_HEIGHT }}
+      >
         {entity.features.map((feature) => (
           <EntityFeatureCard
             key={`${entity.key}-${feature.title}`}

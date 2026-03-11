@@ -44,6 +44,7 @@ export default function Home() {
           priority
         />
         <SectionHeader
+          style={{ marginBottom: 64 }}
           title={
             <>
               Your local vault for
@@ -59,7 +60,7 @@ export default function Home() {
             </>
           }
         />
-        <HeroCtaButtons className="mt-8" />
+        <HeroCtaButtons />
       </section>
 
       <div id="hero-scene-section">
@@ -69,8 +70,8 @@ export default function Home() {
       <section id="features-start" className="mt-24">
         <SectionHeader
           className="mb-32"
-          title="The essentials you rely on every day."
-          description="Logins, cards, and subscriptions — in one secure place."
+          title="Three essentials you rely on every day."
+          description="Everything you need, ready when you need it."
         />
         <EntityDescriptionContent />
       </section>
@@ -83,7 +84,7 @@ export default function Home() {
         <RelationsCards />
       </section>
 
-      <section className="mt-40">
+      <section id="privacy-security" className="mt-40">
         <SectionHeader
           title="Privacy and Security."
           description="Everything stays on your device — protected with strong encryption and local authentication."
@@ -231,7 +232,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-40">
+      <section id="more-features" className="mt-40">
         <SectionHeader
           title="More Features."
           description="Discover additional ways to manage and protect your vault."
@@ -264,7 +265,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-40">
+      <section id="get-lova" className="mt-40">
         <article className="relative overflow-hidden rounded-[24px] bg-white p-8">
           <div className="flex flex-col gap-6">
             <div className="relative">

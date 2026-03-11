@@ -5,6 +5,7 @@ type SectionHeaderProps = {
   description?: ReactNode;
   className?: string;
   titleTag?: "h1" | "h2";
+  style?: React.CSSProperties;
 };
 
 export default function SectionHeader({
@@ -12,11 +13,15 @@ export default function SectionHeader({
   description,
   className = "",
   titleTag = "h1",
+  style,
 }: SectionHeaderProps) {
   const TitleTag = titleTag;
 
   return (
-    <header className={`flex flex-col items-center text-center ${className}`.trim()}>
+    <header
+      className={`mb-[128px] flex flex-col items-center text-center ${className}`.trim()}
+      style={style}
+    >
       <TitleTag className="max-w-[560px] text-center">
         {typeof title === "string" && !/[.!?]$/.test(title.trimEnd())
           ? `${title.trimEnd()}.`

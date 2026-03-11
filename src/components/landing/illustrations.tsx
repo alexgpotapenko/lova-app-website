@@ -7,6 +7,7 @@ import {
   EnvelopeSimple,
   LockKey,
   MagicWand,
+  Tag,
   User,
 } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
@@ -22,6 +23,7 @@ const CARD_BRAND_SVGS = [
 export type IllustrationKey =
   | "logins-1"
   | "logins-2"
+  | "logins-3"
   | "cards-1"
   | "cards-2"
   | "cards-3"
@@ -67,6 +69,25 @@ const SUBSCRIPTIONS_DONUT_SEGMENTS: DonutSegment[] = (() => {
 export function renderIllustration(key: IllustrationKey) {
   if (key === "logins-1") {
     return (
+      <div className="flex flex-row-reverse items-center justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-1.5">
+        <span className="inline-flex items-center rounded-full bg-lova-bg px-4 py-3.5 text-sm font-normal text-black shadow-[0_0_0_3px_white]">
+          Finance
+        </span>
+        <span className="inline-flex items-center rounded-full bg-lova-bg px-4 py-3.5 text-sm font-normal text-black shadow-[0_0_0_3px_white]">
+          Work
+        </span>
+        <span className="inline-flex items-center rounded-full bg-lova-bg px-4 py-3.5 text-sm font-normal text-black shadow-[0_0_0_3px_white]">
+          Personal
+        </span>
+        <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_white]">
+          <Tag size={24} weight="regular" />
+        </div>
+      </div>
+    );
+  }
+
+  if (key === "logins-2") {
+    return (
       <div className="flex items-center justify-start">
         <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <LockKey size={24} weight="fill" className="text-black" />
@@ -79,27 +100,27 @@ export function renderIllustration(key: IllustrationKey) {
     );
   }
 
-  if (key === "logins-2") {
+  if (key === "logins-3") {
     return (
       <div className="flex items-center justify-start">
         <div className="flex items-center gap-3">
-          <div className="flex -space-x-2">
+          <div className="flex flex-row-reverse justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-2">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_white]">
-              <EnvelopeSimple size={24} weight="fill" />
+              <LockKey size={24} weight="regular" />
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-green-100 text-lova-green shadow-[0_0_0_3px_white]">
-              <LockKey size={24} weight="fill" />
+              <EnvelopeSimple size={24} weight="regular" />
             </div>
           </div>
           <ArrowRight size={20} weight="bold" className="text-slate-400" />
-          <div className="flex -space-x-2">
+          <div className="flex flex-row-reverse justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-2">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/google-g.png"
-                alt="Google"
-                width={24}
-                height={24}
-                className="h-6 w-6 object-contain"
+                src="/features/apple-logo.png"
+                alt="Apple"
+                width={18}
+                height={22}
+                className="h-[22px] w-[18px] object-contain"
               />
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
@@ -113,11 +134,11 @@ export function renderIllustration(key: IllustrationKey) {
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/apple-logo.png"
-                alt="Apple"
-                width={18}
-                height={22}
-                className="h-[22px] w-[18px] object-contain"
+                src="/features/google-g.png"
+                alt="Google"
+                width={24}
+                height={24}
+                className="h-6 w-6 object-contain"
               />
             </div>
           </div>
@@ -129,20 +150,24 @@ export function renderIllustration(key: IllustrationKey) {
   if (key === "cards-1") {
     return (
       <div className="flex flex-wrap items-center">
-        <div className="flex flex-wrap items-center -space-x-2">
-          {CARD_BRAND_SVGS.map((logoFile) => (
-            <Image
-              key={logoFile}
-              src={`/card-brands/${logoFile}`}
-              alt={logoFile.replace(".svg", "")}
-              width={40}
-              height={36}
-              className="h-9 w-auto rounded-full bg-lova-bg object-contain shadow-[0_0_0_3px_white]"
-            />
-          ))}
-          <div className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-lova-bg text-sm font-semibold text-slate-500 shadow-[0_0_0_3px_white]">
+        <div className="flex flex-row-reverse flex-wrap items-center justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-2">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-sm font-semibold text-lova-purple shadow-[0_0_0_3px_white]">
             +5
           </div>
+          {[...CARD_BRAND_SVGS].reverse().map((logoFile) => (
+            <div
+              key={logoFile}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]"
+            >
+              <Image
+                src={`/card-brands/${logoFile}`}
+                alt={logoFile.replace(".svg", "")}
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -176,15 +201,15 @@ export function renderIllustration(key: IllustrationKey) {
   if (key === "cards-3") {
     return (
       <div className="flex items-center justify-start">
-        <div className="flex -space-x-2">
+        <div className="flex flex-row-reverse justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-2">
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
-            <Bank size={24} weight="regular" />
+            <CreditCard size={24} weight="regular" />
           </div>
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
             <User size={24} weight="regular" />
           </div>
           <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-purple-100 text-lova-purple shadow-[0_0_0_3px_white]">
-            <CreditCard size={24} weight="regular" />
+            <Bank size={24} weight="regular" />
           </div>
         </div>
       </div>
