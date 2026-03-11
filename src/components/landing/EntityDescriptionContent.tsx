@@ -292,7 +292,7 @@ function EntitySection({
     >
       <div className="flex min-h-0 min-w-0 flex-col">
         <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_HEIGHT }}>
-          <div className="h-full overflow-hidden rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+          <div className="h-full overflow-hidden rounded-[32px]">
             <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
                 <span
