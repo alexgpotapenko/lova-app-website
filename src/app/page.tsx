@@ -91,12 +91,6 @@ export default function Home() {
           description="Everything stays on your device — protected with strong encryption and local authentication."
         />
         <div className="relative mt-16">
-          <div
-            className="absolute -left-8 -top-6 z-20"
-            style={{ transform: "rotate(-14deg)" }}
-          >
-            <EntityIcon variant={4} size={128} glass shapeOverride="square" />
-          </div>
           <motion.article
             className="relative overflow-hidden rounded-[24px] bg-white p-8"
             initial={CARD_ANIMATION.initial}
@@ -129,11 +123,11 @@ export default function Home() {
             {/* Nested rounded squares */}
             <div
               className="pointer-events-none absolute -z-0"
-              style={{ top: -136, left: -124, width: 412, height: 412, transform: "rotate(-14deg)" }}
+              style={{ top: -158, left: -158, width: 460, height: 460 }}
             >
-              {[108, 196, 284, 372].map((size, i) => {
-                const radius = [32, 48, 64, 80][i];
-                const borderOpacity = [1, 0.8, 0.6, 0.4][i];
+              {[120, 180, 240, 300, 360, 420].map((size, i) => {
+                const radius = [32, 48, 64, 80, 96, 112][i];
+                const borderOpacity = [1, 0.8, 0.6, 0.4, 0.2, 0.05][i];
                 return (
                   <span
                     key={i}
@@ -150,7 +144,9 @@ export default function Home() {
               })}
             </div>
             <div className="relative z-10 flex flex-col gap-6">
-              <div className="size-20 shrink-0 opacity-0" aria-hidden />
+              <div className="flex size-20 shrink-0 items-center justify-center">
+                <EntityIcon variant={4} size={80} glass shapeOverride="square" />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 md:items-start">
                 <div className="flex flex-col gap-8">
                   <h2 className="text-xl font-semibold text-black">
@@ -326,7 +322,7 @@ export default function Home() {
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
+            transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
             {/* Blurred circles */}
             <div className="pointer-events-none absolute -z-0" style={{ top: -156, left: -124 }}>
