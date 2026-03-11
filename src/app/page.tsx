@@ -123,9 +123,9 @@ export default function Home() {
             {/* Nested rounded squares */}
             <div
               className="pointer-events-none absolute -z-0"
-              style={{ top: -158, left: -158, width: 460, height: 460 }}
+              style={{ top: -160, left: -160, width: 600, height: 600, transform: "rotate(45deg)" }}
             >
-              {[120, 180, 240, 300, 360, 420].map((size, i) => {
+              {[160, 240, 320, 400, 480, 560].map((size, i) => {
                 const radius = [32, 48, 64, 80, 96, 112][i];
                 const borderOpacity = [1, 0.8, 0.6, 0.4, 0.2, 0.05][i];
                 return (
