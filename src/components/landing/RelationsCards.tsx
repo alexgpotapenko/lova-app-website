@@ -13,7 +13,7 @@ function EntityCapsule({
 }) {
   return (
     <span
-      className={`entity-capsule inline-flex items-center rounded-full px-5 pt-0.5 pb-2.5 text-3xl font-semibold ${className}`}
+      className={`card-label inline-flex items-center rounded-full px-4 py-1 ${className}`}
     >
       {children}
     </span>
@@ -73,14 +73,14 @@ export default function RelationsCards() {
                 Subscriptions
               </EntityCapsule>
             </div>
-            <h3 className="text-xl font-semibold text-black">
+            <h3>
               Link your login to multiple subscription services.
             </h3>
         </div>
         <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
           <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
             <Image
-              src="/features/relations-login-subscriptions.png"
+              src="/features/relations-login-subscriptions.webp"
               alt=""
               fill
               className="object-contain"
@@ -108,14 +108,14 @@ export default function RelationsCards() {
                 Logins
               </EntityCapsule>
             </div>
-            <h3 className="text-xl font-semibold text-black">
+            <h3>
               Create a login that you use as SSO for other services.
             </h3>
         </div>
         <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
           <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
             <Image
-              src="/features/relations-sso.png"
+              src="/features/relations-sso.webp"
               alt=""
               fill
               className="object-contain"
@@ -143,7 +143,7 @@ export default function RelationsCards() {
                 Subscriptions
               </EntityCapsule>
             </div>
-            <h3 className="text-xl font-semibold text-black">
+            <h3>
               Link all subscriptions to the card you pay with.
             </h3>
         </div>
@@ -182,14 +182,14 @@ export default function RelationsCards() {
                 Card
               </EntityCapsule>
             </div>
-            <h3 className="text-xl font-semibold text-black">
+            <h3>
               See your subscription login and the card used for payment.
             </h3>
         </div>
         <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
           <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
             <Image
-              src="/features/relations-subscription-relations.png"
+              src="/features/relations-subscription-relations.webp"
               alt=""
               fill
               className="object-contain"

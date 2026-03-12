@@ -9,7 +9,6 @@ type HeroCtaButtonsProps = {
 };
 
 export default function HeroCtaButtons({ className = "", fullWidth, buttonClassName = "", buttonStyle }: HeroCtaButtonsProps) {
-  const defaultStyle = { paddingLeft: 20, paddingRight: 28 };
   return (
     <div className={`flex items-center justify-center ${className}`.trim()}>
       <LandingButton
@@ -22,8 +21,8 @@ export default function HeroCtaButtons({ className = "", fullWidth, buttonClassN
         }
         variant="primary"
         leadingIcon={<AppStoreLogo size={24} weight="regular" />}
-        className={`px-6 py-3 text-xl font-semibold ${fullWidth ? "w-full" : ""} ${buttonClassName}`.trim()}
-        style={buttonStyle ?? defaultStyle}
+        className={`pl-6 pr-8 py-4 text-xl font-semibold ${fullWidth ? "w-full" : ""} ${buttonClassName}`.trim()}
+        style={buttonStyle}
       />
     </div>
   );

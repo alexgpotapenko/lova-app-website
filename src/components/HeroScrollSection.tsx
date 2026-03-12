@@ -12,7 +12,7 @@ import HeroPhoneScene, {
   WRAPPER_WIDTH,
 } from "@/components/HeroPhoneScene";
 
-const ANIMATION_START_SCROLL_PX = 100;
+const ANIMATION_START_SCROLL_PX = 0;
 const ANIMATION_DURATION_SCROLL_PX = 900;
 const COLLAPSE_DURATION_PX = 220;
 const DESKTOP_SCENE_SCALE = 1;

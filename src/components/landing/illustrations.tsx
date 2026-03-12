@@ -116,7 +116,7 @@ export function renderIllustration(key: IllustrationKey) {
           <div className="flex flex-row-reverse justify-end [&>*]:relative [&>*:not(:last-child)]:-ml-2">
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/apple-logo.png"
+                src="/features/apple-logo.webp"
                 alt="Apple"
                 width={18}
                 height={22}
@@ -125,7 +125,7 @@ export function renderIllustration(key: IllustrationKey) {
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/microsoft-logo.png"
+                src="/features/microsoft-logo.webp"
                 alt="Microsoft"
                 width={20}
                 height={20}
@@ -134,7 +134,7 @@ export function renderIllustration(key: IllustrationKey) {
             </div>
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-lova-bg shadow-[0_0_0_3px_white]">
               <Image
-                src="/features/google-g.png"
+                src="/features/google-g.webp"
                 alt="Google"
                 width={24}
                 height={24}
@@ -178,7 +178,7 @@ export function renderIllustration(key: IllustrationKey) {
       <div className="flex w-full items-center">
         <div className="flex h-12 w-full items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <Image
-            src="/features/cards-2-logo.png"
+            src="/features/cards-2-logo.webp"
             alt="Card provider"
             width={24}
             height={24}
@@ -188,7 +188,7 @@ export function renderIllustration(key: IllustrationKey) {
             •••• 5678
           </span>
           <span className="inline-flex items-center rounded-full bg-lova-purple/15 px-2 py-1 text-xs font-semibold text-lova-purple">
-            Virutal
+            Virtual
           </span>
           <span className="inline-flex h-5 w-9 items-center rounded-full bg-white p-0.5">
             <span className="ml-auto h-4 w-4 rounded-full bg-lova-green" />
@@ -221,7 +221,7 @@ export function renderIllustration(key: IllustrationKey) {
       <div className="flex items-center justify-start">
         <div className="inline-flex h-12 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
           <Image
-            src="/features/icloud-logo.png"
+            src="/features/icloud-logo.webp"
             alt="iCloud"
             width={24}
             height={24}
@@ -241,7 +241,7 @@ export function renderIllustration(key: IllustrationKey) {
         <div className="flex w-full items-center gap-0">
           <div className="flex h-12 min-w-0 flex-1 items-center gap-3 rounded-full bg-lova-bg px-4 shadow-[0_0_0_3px_white]">
             <Image
-              src="/features/netflix-logo.png"
+              src="/features/netflix-logo.webp"
               alt="Netflix"
               width={24}
               height={24}

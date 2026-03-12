@@ -14,7 +14,7 @@ export default async function PrivacyPage({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen text-black">
-      <div className="mx-auto max-w-[720px] py-16">
+      <div className="layout-container py-16">
         <Link
           href={backHref}
           className="mb-12 inline-block font-medium text-lova-blue hover:text-lova-blue-700"
@@ -22,13 +22,13 @@ export default async function PrivacyPage({ searchParams }: Props) {
           Back to Home Page
         </Link>
 
-        <h1 className="text-3xl font-semibold text-black">Privacy Policy</h1>
+        <h1>Privacy Policy</h1>
         <p className="mt-2 text-slate-500">Last updated: 2026</p>
 
         <div className="mt-10 space-y-10 text-slate-700">
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">Overview</h2>
-            <p className="leading-relaxed">
+            <h2 className="mb-3">Overview</h2>
+            <p className="h-body-base leading-relaxed">
               Lova is designed with privacy as a core principle. The app does not
               require accounts, does not use cloud storage, and does not track
               users.
@@ -40,10 +40,10 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Data Collection
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova does <strong>not collect personal data</strong>.
             </p>
             <p className="mt-3 leading-relaxed">
@@ -62,10 +62,10 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Local Data Storage
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               All user data is stored locally on the device inside an encrypted
               vault.
             </p>
@@ -90,10 +90,10 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Backup Files
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova allows users to create encrypted backup files with the
               .lova extension.
             </p>
@@ -114,10 +114,10 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Internet Access
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova may use internet access only for optional features such as
               fetching public service logos.
             </p>
@@ -127,48 +127,48 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Third-Party Services
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova does not use third-party analytics, advertising networks, or
               tracking services.
             </p>
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Data Sharing
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova does not share user data with the developer or with third
               parties.
             </p>
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Children&apos;s Privacy
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova does not knowingly collect data from children under the age
               of 13.
             </p>
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Changes to This Policy
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               This Privacy Policy may be updated in future versions of the app.
               Any changes will be published on this page.
             </p>
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">Contact</h2>
-            <p className="leading-relaxed">
+            <h2 className="mb-3">Contact</h2>
+            <p className="h-body-base leading-relaxed">
               If you have questions about this Privacy Policy, please contact:{" "}
               <a
                 href="mailto:alexgpotapenko@gmail.com"

@@ -24,12 +24,12 @@ export default function LandingButton({
   style,
 }: LandingButtonProps) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/70";
+    "landing-btn inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/70 no-underline";
   const sizeClass =
     size === "compact" ? "px-3 py-2 text-sm" : "px-5 py-3 text-base";
   const styles =
     variant === "primary"
-      ? "bg-lova-blue text-white hover:bg-lova-blue/90"
+      ? "bg-lova-blue text-white hover:bg-lova-blue-700 hover:text-white"
       : "bg-white/90 text-slate-900 hover:bg-white";
 
   return (

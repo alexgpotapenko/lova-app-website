@@ -14,7 +14,7 @@ export default async function TermsPage({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen text-black">
-      <div className="mx-auto max-w-[720px] py-16">
+      <div className="layout-container py-16">
         <Link
           href={backHref}
           className="mb-12 inline-block font-medium text-lova-blue hover:text-lova-blue-700"
@@ -22,15 +22,15 @@ export default async function TermsPage({ searchParams }: Props) {
           Back to Home Page
         </Link>
 
-        <h1 className="text-3xl font-semibold text-black">Terms of Use</h1>
+        <h1>Terms of Use</h1>
         <p className="mt-2 text-slate-500">Last updated: 2026</p>
 
         <div className="mt-10 space-y-10 text-slate-700">
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Acceptance of Terms
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               By downloading or using Lova, you agree to these Terms of Use.
             </p>
             <p className="mt-3 leading-relaxed">
@@ -39,10 +39,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Use of the App
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova is a personal productivity tool that allows users to store and
               manage private information such as logins, cards, and
               subscriptions.
@@ -53,10 +53,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Data Responsibility
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               All data entered into Lova is stored locally on the user&apos;s
               device.
             </p>
@@ -72,8 +72,8 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">Backups</h2>
-            <p className="leading-relaxed">
+            <h2 className="mb-3">Backups</h2>
+            <p className="h-body-base leading-relaxed">
               Users are responsible for creating and storing backups if they
               wish to preserve their data.
             </p>
@@ -84,10 +84,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               No Warranty
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               Lova is provided &quot;as is&quot; without warranties of any kind.
             </p>
             <p className="mt-3 leading-relaxed">
@@ -97,10 +97,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Limitation of Liability
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               To the maximum extent permitted by law, the developer is not liable
               for any loss of data, financial loss, or damages resulting from
               the use of the app.
@@ -108,10 +108,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Intellectual Property
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               The Lova app, its design, and its content are the intellectual
               property of the developer.
             </p>
@@ -122,10 +122,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               End-User License Agreement
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               This application is licensed under the Apple Standard End User
               License Agreement (EULA).
             </p>
@@ -142,10 +142,10 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">
+            <h2 className="mb-3">
               Changes to Terms
             </h2>
-            <p className="leading-relaxed">
+            <p className="h-body-base leading-relaxed">
               These Terms of Use may be updated from time to time. Continued use
               of the app after updates constitutes acceptance of the revised
               terms.
@@ -153,8 +153,8 @@ export default async function TermsPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold text-black">Contact</h2>
-            <p className="leading-relaxed">
+            <h2 className="mb-3">Contact</h2>
+            <p className="h-body-base leading-relaxed">
               For questions regarding these Terms of Use, please contact:{" "}
               <a
                 href="mailto:alexgpotapenko@gmail.com"

@@ -107,12 +107,12 @@ const ENTITIES: Array<{
 
 function getGallerySlides(entity: EntityKey): string[] {
   if (entity === "logins") {
-    return ["/screen-login-categories.png", "/screen-login-password-generator.png", "/screen-login-sso-reuse.png"];
+    return ["/screen-login-categories.webp", "/screen-login-password-generator.webp", "/screen-login-sso-reuse.webp"];
   }
   if (entity === "cards") {
-    return ["/screen-card-1.png", "/screen-card-2.png", "/screen-card-3.png"];
+    return ["/screen-card-1.webp", "/screen-card-2.webp", "/screen-card-3.webp"];
   }
-  return ["/screen-subscription-1.png", "/screen-subscription-2.png", "/screen-subscription-3.png"];
+  return ["/screen-subscription-1.webp", "/screen-subscription-2.webp", "/screen-subscription-3.webp"];
 }
 
 const GALLERY_DURATION_MS = 5000;
@@ -292,7 +292,7 @@ function EntitySection({
     >
       <div className="flex min-h-0 min-w-0 flex-col">
         <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_HEIGHT }}>
-          <div className="h-full overflow-hidden rounded-[32px]">
+          <div className="h-full rounded-[32px] blur-container-safari-fix-32">
             <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
                 <span
@@ -311,13 +311,13 @@ function EntitySection({
                 />
               ))}
               <div className="relative z-20">
-                <div className="mb-6 flex items-end justify-center gap-2">
+                <div className="mb-6 flex items-center justify-center gap-2">
                   <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center">
                     {entity.key === "logins" && <Key size={28} weight="fill" className="text-lova-green" />}
                     {entity.key === "cards" && <CreditCard size={28} weight="fill" className="text-lova-purple" />}
                     {entity.key === "subscriptions" && <CalendarCheck size={28} weight="fill" className="text-lova-orange" />}
                   </span>
-                  <h2 className="text-black">
+                  <h2>
                     {entity.label.trimEnd().match(/[.!?]$/) ? entity.label : `${entity.label.trimEnd()}.`}
                   </h2>
                 </div>

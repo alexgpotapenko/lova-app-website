@@ -28,7 +28,7 @@ export default function SectionHeader({
           : title}
       </TitleTag>
       {description != null && (
-        <p className="mt-5 text-center text-[21px] leading-8 text-slate-600">{description}</p>
+        <p className="mt-5 text-center text-section-desc">{description}</p>
       )}
     </header>
   );

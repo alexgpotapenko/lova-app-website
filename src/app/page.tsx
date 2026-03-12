@@ -61,7 +61,7 @@ export default function Home() {
             </>
           }
         />
-        <HeroCtaButtons />
+        <HeroCtaButtons className="pb-10" />
       </section>
 
       <div id="hero-scene-section">
@@ -98,7 +98,7 @@ export default function Home() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
-            <div className="pointer-events-none absolute inset-0 overflow-clip rounded-[24px]">
+            <div className="pointer-events-none absolute inset-0 blur-container-safari-fix">
               {/* Behind icon: 4 blurred circles */}
               <div className="absolute -z-0" style={{ top: -156, left: -124 }}>
                 {[
@@ -151,7 +151,7 @@ export default function Home() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 md:items-start">
                 <div className="flex flex-col gap-8">
-                  <h2 className="text-xl font-semibold text-black">
+                  <h2>
                     No accounts.
                     <br />
                     No cloud.
@@ -206,7 +206,7 @@ export default function Home() {
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
               <FileArrowDown size={48} weight="light" className="mb-5 text-lova-blue" />
-              <h3 className="text-xl font-semibold text-black">Vault Backup</h3>
+              <h3 className="h-body-semibold text-black">Vault Backup</h3>
               <p className="mt-2 h-body-base text-slate-600">
                 Switching to a new phone, or just reinstalling the app won't be an issue — create your vault's backup and store it wherever you trust.
               </p>
@@ -222,7 +222,7 @@ export default function Home() {
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
               <FileArrowUp size={48} weight="light" className="mb-5 text-lova-blue" />
-              <h3 className="text-xl font-semibold text-black">Vault Restore</h3>
+              <h3 className="h-body-semibold text-black">Vault Restore</h3>
               <p className="mt-2 h-body-base text-slate-600">
                 After a fresh app install, import your backup and decrypt it with the password generated during backup creation. Then set up a new PIN code — and your vault is restored and ready to use.
               </p>
@@ -272,61 +272,63 @@ export default function Home() {
 
       <section id="get-lova" className="relative mt-40">
         <SectionHeader
-          title="Start for Free and Upgrade."
+          title="Start for Free."
           description="Try all available features with a content limit, then go unlimited."
         />
         <div className="relative mt-16 grid grid-cols-1 items-stretch sm:grid-cols-2">
           <motion.article
-            className="flex flex-col rounded-[24px] bg-white p-8 sm:h-[540px]"
+            className="flex flex-col rounded-[24px] bg-white p-8 pb-4 sm:h-[540px]"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
             <div>
-              <h2 className="text-xl font-semibold text-black">Basic</h2>
+              <h3 className="card-label">Basic</h3>
             </div>
-            <div className="mt-8 flex min-h-0 flex-1 flex-col">
+            <div className="mt-8 grid min-h-0 flex-1 grid-cols-2 content-start gap-8 items-start">
               {[
                 { icon: 1, label: "Logins", limit: 5 },
                 { icon: 3, label: "Cards", limit: 2 },
                 { icon: 5, label: "Subscriptions", limit: 2 },
                 { icon: "pin", label: "Pinned items", limit: 5 },
-                { icon: "vault", label: "Vault backups", limit: 1 },
+                { icon: "vault", label: "Vault backup", limit: 1 },
               ].map(({ icon, label, limit }) => (
-                <div key={label} className="flex items-center gap-3 last:[&>div:last-child]:border-b-0">
-                    <span className="shrink-0">
-                      {icon === "pin" ? (
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-lova-blue/25">
-                          <PushPin size={16} weight="fill" className="text-lova-blue" />
-                        </div>
-                      ) : icon === "vault" ? (
-                        <div className="flex h-8 w-8 items-center justify-center rounded-[6px] bg-lova-blue/25">
-                          <FileArrowDown size={16} weight="fill" className="text-lova-blue" />
-                        </div>
-                      ) : (
-                        <EntityIcon variant={icon as 1 | 2 | 3 | 5 | 6} size={32} glass={false} shapeOverride={[1, 5].includes(icon as number) ? "square" : "circle"} />
-                      )}
-                    </span>
-                    <div className="flex min-w-0 flex-1 items-center border-b border-slate-200 py-4">
-                      <span className="font-normal text-black">{limit} {label.toLowerCase()}</span>
+                <div key={label} className="flex flex-col items-start gap-2">
+                  {icon === "pin" ? (
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lova-blue/25">
+                      <PushPin size={20} weight="fill" className="text-lova-blue" />
                     </div>
+                  ) : icon === "vault" ? (
+                    <div className="flex h-10 w-10 items-center justify-center rounded-[6px] bg-lova-blue/25">
+                      <FileArrowDown size={20} weight="fill" className="text-lova-blue" />
+                    </div>
+                  ) : (
+                    <EntityIcon variant={icon as 1 | 2 | 3 | 5 | 6} size={40} glass={false} shapeOverride={[1, 5].includes(icon as number) ? "square" : "circle"} />
+                  )}
+                  <span className="font-normal text-black">{limit} {label.toLowerCase()}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-col">
-              <span className="h-body-base text-slate-500">Price</span>
-              <p className="font-normal text-black" style={{ fontFamily: '"Be Vietnam", Inter, sans-serif', fontSize: "clamp(1.75rem, 1.4rem + 1vw, 2.25rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>$0</p>
+            <div className="mt-8 flex items-center gap-4 border-t border-black/8 pt-4">
+              <p className="shrink-0 text-price text-black">$0</p>
+              <p className="min-w-0 text-sm text-slate-600">
+                Download for free on the
+                <br />
+                <a href="#" className="font-medium text-lova-blue hover:text-lova-blue-700">
+                  App Store
+                </a>
+              </p>
             </div>
           </motion.article>
           <motion.article
-            className="relative flex flex-col overflow-clip rounded-[24px] bg-white p-8 sm:h-[540px]"
+            className="relative flex flex-col overflow-clip rounded-[24px] bg-white p-8 pb-4 sm:h-[540px]"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
-            <div className="pointer-events-none absolute inset-0 overflow-clip rounded-[24px]">
+            <div className="pointer-events-none absolute inset-0 blur-container-safari-fix">
               {/* Blurred circles */}
               <div className="absolute -z-0" style={{ top: -156, left: -124 }}>
                 {[
@@ -352,9 +354,9 @@ export default function Home() {
             </div>
             <div className="relative z-10 flex min-h-0 flex-1 flex-col">
               <div>
-                <h2 className="text-xl font-semibold text-black">Unlimited</h2>
+                <h3 className="card-label">Unlimited</h3>
               </div>
-              <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8 pt-3">
+              <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
                 <div className="flex flex-row-reverse flex-nowrap justify-end">
                 {[
                   { variant: 6 as const, shapeOverride: "square" as const },
@@ -377,9 +379,9 @@ export default function Home() {
               </div>
               <ul className="flex flex-col gap-3">
                 {[
-                  "Unlimited logins, cards and subscriptions",
-                  "Unlimited pinned items on home",
-                  "Unlimited vault backups",
+                  "Unlimited logins, cards, and subscriptions",
+                  "Unlimited pinned items",
+                  "Unlimited backups",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <Check size={20} weight="bold" className="mt-0.5 shrink-0 text-lova-blue" />
@@ -388,9 +390,11 @@ export default function Home() {
                 ))}
                 </ul>
               </div>
-              <div className="mt-8 flex flex-col">
-                <span className="h-body-base text-slate-500">Price</span>
-                <p className="font-normal text-black" style={{ fontFamily: '"Be Vietnam", Inter, sans-serif', fontSize: "clamp(1.75rem, 1.4rem + 1vw, 2.25rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}>$8.99</p>
+              <div className="mt-8 flex items-center gap-4 border-t border-black/8 pt-4">
+                <p className="shrink-0 text-price text-black">$8.99</p>
+                <p className="min-w-0 text-sm text-slate-600">
+                  Unlock with a one-time in-app purchase
+                </p>
               </div>
             </div>
           </motion.article>
@@ -400,7 +404,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="footer" className="mt-40 flex flex-col items-center gap-6 pb-10">
+      <footer id="footer" className="mt-32 flex flex-col items-center gap-6 pb-10">
         <nav className="flex flex-row flex-wrap items-center justify-center gap-6">
           <a href="mailto:alexgpotapenko@gmail.com?subject=Lova%20App%20Feedback" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Send Feedback
