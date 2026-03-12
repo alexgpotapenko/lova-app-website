@@ -241,8 +241,8 @@ export default function Home() {
           {[
             { Icon: Tag, title: "Assign categories to items", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-green) 20%, transparent), color-mix(in srgb, var(--color-lova-purple) 20%, transparent))" },
             { Icon: PushPin, title: "Pin items to Home", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-purple) 20%, transparent), color-mix(in srgb, var(--color-lova-orange) 20%, transparent))" },
-            { Icon: Trash, title: "Erase your vault securely", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-orange) 20%, transparent), color-mix(in srgb, var(--color-lova-blue) 20%, transparent))" },
             { Icon: CurrencyCircleDollar, title: "Select currency per subscription", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-blue) 20%, transparent), color-mix(in srgb, var(--color-lova-green) 20%, transparent))" },
+            { Icon: Trash, title: "Erase your vault securely", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-orange) 20%, transparent), color-mix(in srgb, var(--color-lova-blue) 20%, transparent))" },
             {
               Icon: Globe,
               title: (
