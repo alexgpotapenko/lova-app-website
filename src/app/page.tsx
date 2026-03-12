@@ -92,39 +92,40 @@ export default function Home() {
         />
         <div className="relative mt-16">
           <motion.article
-            className="relative overflow-hidden rounded-[24px] bg-white p-8"
+            className="relative overflow-clip rounded-[24px] bg-white p-8"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
-            {/* Behind icon: 4 blurred circles */}
-            <div className="pointer-events-none absolute -z-0" style={{ top: -156, left: -124 }}>
-              {[
-                { size: 280, top: 0, left: 0, color: "var(--color-lova-green)" },
-                { size: 280, top: 0, left: 240, color: "var(--color-lova-purple)" },
-                { size: 280, top: 240, left: 0, color: "var(--color-lova-orange)" },
-                { size: 280, top: 240, left: 240, color: "var(--color-lova-blue)" },
-              ].map((c, i) => (
-                <span
-                  key={i}
-                  className="absolute rounded-full blur-[50px]"
-                  style={{
-                    width: c.size,
-                    height: c.size,
-                    top: c.top,
-                    left: c.left,
-                    backgroundColor: c.color,
-                    opacity: 0.16,
-                  }}
-                />
-              ))}
-            </div>
-            {/* Nested rounded squares */}
-            <div
-              className="pointer-events-none absolute -z-0"
-              style={{ top: -140, left: -140, width: 600, height: 600, transform: "rotate(45deg)" }}
-            >
+            <div className="pointer-events-none absolute inset-0 overflow-clip rounded-[24px]">
+              {/* Behind icon: 4 blurred circles */}
+              <div className="absolute -z-0" style={{ top: -156, left: -124 }}>
+                {[
+                  { size: 280, top: 0, left: 0, color: "var(--color-lova-green)" },
+                  { size: 280, top: 0, left: 240, color: "var(--color-lova-purple)" },
+                  { size: 280, top: 240, left: 0, color: "var(--color-lova-orange)" },
+                  { size: 280, top: 240, left: 240, color: "var(--color-lova-blue)" },
+                ].map((c, i) => (
+                  <span
+                    key={i}
+                    className="absolute rounded-full blur-[50px]"
+                    style={{
+                      width: c.size,
+                      height: c.size,
+                      top: c.top,
+                      left: c.left,
+                      backgroundColor: c.color,
+                      opacity: 0.16,
+                    }}
+                  />
+                ))}
+              </div>
+              {/* Nested rounded squares */}
+              <div
+                className="absolute -z-0"
+                style={{ top: -140, left: -140, width: 600, height: 600, transform: "rotate(45deg)" }}
+              >
               {[160, 240, 320, 400, 480, 560].map((size, i) => {
                 const radius = [32, 48, 64, 80, 96, 112][i];
                 const borderOpacity = [1, 0.8, 0.6, 0.4, 0.2, 0.05][i];
@@ -142,6 +143,7 @@ export default function Home() {
                   />
                 );
               })}
+              </div>
             </div>
             <div className="relative z-10 flex flex-col gap-6">
               <div className="flex size-20 shrink-0 items-center justify-center">
@@ -318,33 +320,35 @@ export default function Home() {
             </div>
           </motion.article>
           <motion.article
-            className="relative flex flex-col overflow-hidden rounded-[24px] bg-white p-8 sm:h-[540px]"
+            className="relative flex flex-col overflow-clip rounded-[24px] bg-white p-8 sm:h-[540px]"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
-            {/* Blurred circles */}
-            <div className="pointer-events-none absolute -z-0" style={{ top: -156, left: -124 }}>
-              {[
-                { size: 280, top: 120, left: -40, color: "var(--color-lova-green)" },
-                { size: 280, top: 40, left: 200, color: "var(--color-lova-purple)" },
-                { size: 280, top: 360, left: -40, color: "var(--color-lova-orange)" },
-                { size: 280, top: 280, left: 200, color: "var(--color-lova-blue)" },
-              ].map((c, i) => (
-                <span
-                  key={i}
-                  className="absolute rounded-full blur-[50px]"
-                  style={{
-                    width: c.size,
-                    height: c.size,
-                    top: c.top,
-                    left: c.left,
-                    backgroundColor: c.color,
-                    opacity: 0.16,
-                  }}
-                />
-              ))}
+            <div className="pointer-events-none absolute inset-0 overflow-clip rounded-[24px]">
+              {/* Blurred circles */}
+              <div className="absolute -z-0" style={{ top: -156, left: -124 }}>
+                {[
+                  { size: 280, top: 120, left: -40, color: "var(--color-lova-green)" },
+                  { size: 280, top: 40, left: 200, color: "var(--color-lova-purple)" },
+                  { size: 280, top: 360, left: -40, color: "var(--color-lova-orange)" },
+                  { size: 280, top: 280, left: 200, color: "var(--color-lova-blue)" },
+                ].map((c, i) => (
+                  <span
+                    key={i}
+                    className="absolute rounded-full blur-[50px]"
+                    style={{
+                      width: c.size,
+                      height: c.size,
+                      top: c.top,
+                      left: c.left,
+                      backgroundColor: c.color,
+                      opacity: 0.16,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
             <div className="relative z-10 flex min-h-0 flex-1 flex-col">
               <div>
