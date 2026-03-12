@@ -246,7 +246,8 @@ export default function Home() {
               Icon: Globe,
               title: (
                 <>
-                  Automatic logo fetching{" "}
+                  Automatic logo fetching
+                  <br />
                   <span className="text-slate-400">(Internet required)</span>
                 </>
               ),

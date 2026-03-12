@@ -197,7 +197,7 @@ function ScreenshotGallery({
             aria-label={`Slide ${i + 1}`}
             aria-current={activeIndex === i ? true : undefined}
             onClick={() => goTo(i)}
-            className="h-[3px] w-[20px] overflow-hidden rounded-full bg-black/20"
+            className="h-[3px] w-8 overflow-hidden rounded-full bg-black/20"
           >
             {activeIndex === i ? (
               <span
@@ -311,7 +311,7 @@ function EntitySection({
                 />
               ))}
               <div className="relative z-20">
-                <div className="mb-6 flex items-center justify-center gap-2">
+                <div className="mb-6 flex items-center justify-center gap-2 -ml-4">
                   <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center">
                     {entity.key === "logins" && <Key size={28} weight="fill" className="text-lova-green" />}
                     {entity.key === "cards" && <CreditCard size={28} weight="fill" className="text-lova-purple" />}
