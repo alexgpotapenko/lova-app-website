@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   Check,
   DeviceMobile,
+  EnvelopeSimple,
   FileArrowDown,
   FileArrowUp,
   Key,
@@ -407,8 +408,9 @@ export default function Home() {
 
       <footer id="footer" className="mt-32 flex flex-col items-center gap-6 pb-10">
         <nav className="flex flex-row flex-wrap items-center justify-center gap-6">
-          <a href="mailto:alexgpotapenko@gmail.com?subject=Lova%20App%20Feedback" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
-            Send Feedback
+          <a href="mailto:alexgpotapenko@gmail.com?subject=Lova%20App%20Support" className="inline-flex items-center gap-1.5 h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
+            <EnvelopeSimple size={20} weight="regular" className="shrink-0" />
+            Support
           </a>
           <a href="/terms?from=footer" className="h-body-base font-medium text-lova-blue hover:text-lova-blue-700">
             Terms of Use
@@ -419,7 +421,7 @@ export default function Home() {
         </nav>
         <div className="flex flex-col items-center gap-0 text-center">
           <p className="h-body-base text-slate-500">
-            © 2026 Aleksej Potapenko. All rights reserved.
+            Made with ❤️ by Aleksej Potapenko · 2026
           </p>
           <p className="h-body-base text-slate-500">
             All product names, logos, and brands are property of their respective owners.
