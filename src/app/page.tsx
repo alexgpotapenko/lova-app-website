@@ -279,16 +279,16 @@ export default function Home() {
         />
         <div className="relative mt-16 grid grid-cols-1 items-stretch sm:grid-cols-2">
           <motion.article
-            className="flex flex-col rounded-[24px] bg-white p-8 pb-4 sm:h-[540px]"
+            className="flex flex-col rounded-[24px] bg-white p-8 pb-4"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
             <div>
-              <h3 className="card-label">Basic</h3>
+              <h3 className="card-label">Basic.</h3>
             </div>
-            <div className="mt-8 grid min-h-0 flex-1 grid-cols-2 content-start gap-8 items-start">
+            <div className="mt-8 grid grid-cols-2 content-start gap-8 items-start">
               {[
                 { icon: 1, label: "Logins", limit: 5 },
                 { icon: 3, label: "Cards", limit: 2 },
@@ -324,7 +324,7 @@ export default function Home() {
             </div>
           </motion.article>
           <motion.article
-            className="relative flex flex-col overflow-clip rounded-[24px] bg-white p-8 pb-4 sm:h-[540px]"
+            className="relative flex flex-col overflow-clip rounded-[24px] bg-white p-8 pb-4"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
@@ -356,7 +356,7 @@ export default function Home() {
             </div>
             <div className="relative z-10 flex min-h-0 flex-1 flex-col">
               <div>
-                <h3 className="card-label">Unlimited</h3>
+                <h3 className="card-label">Unlimited.</h3>
               </div>
               <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
                 <div className="flex flex-row-reverse flex-nowrap justify-end">
@@ -383,7 +383,7 @@ export default function Home() {
                 {[
                   "Unlimited logins, cards, and subscriptions",
                   "Unlimited pinned items",
-                  "Unlimited backups",
+                  "Unlimited vault backups",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <Check size={20} weight="bold" className="mt-0.5 shrink-0 text-lova-blue" />
