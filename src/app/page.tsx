@@ -55,9 +55,9 @@ export default function Home() {
           }
           description={
             <>
-              Keep your logins, cards, and subscriptions organized
+              Keep your logins, cards, and subscriptions securely
               <br />
-              in one secure place.
+              organized on your iPhone.
             </>
           }
         />
