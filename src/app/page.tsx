@@ -399,7 +399,9 @@ export default function Home() {
               <div className="mt-8 flex items-center gap-4 border-t border-black/8 pt-4">
                 <p className="shrink-0 text-price text-black">$8.99</p>
                 <p className="min-w-0 text-sm text-slate-600">
-                  Unlock with a one-time in-app purchase
+                  Unlock with a one-time
+                <br />
+                in-app purchase
                 </p>
               </div>
             </div>
