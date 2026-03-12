@@ -207,13 +207,15 @@ export default function Home() {
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
               <FileArrowDown size={48} weight="light" className="mb-5 text-lova-blue" />
-              <h3 className="h-body-semibold text-black">Vault Backup</h3>
-              <p className="mt-2 h-body-base text-slate-600">
-                Switching to a new phone, or just reinstalling the app won't be an issue — create your vault's backup and store it wherever you trust.
-              </p>
-              <p className="mt-2 h-body-base text-slate-600">
-                It's protected with its own password, so only you can restore your vault.
-              </p>
+              <div className="flex flex-col gap-2">
+                <h3 className="h-body-semibold text-black">Vault Backup</h3>
+                <p className="h-body-base text-slate-600">
+                  Switching to a new phone, or just reinstalling the app won't be an issue — create your vault's backup and store it wherever you trust.
+                </p>
+                <p className="h-body-base text-slate-600">
+                  It's protected with its own password, so only you can restore your vault.
+                </p>
+              </div>
             </motion.article>
             <motion.article
               className="rounded-[24px] bg-white p-8"
@@ -223,10 +225,12 @@ export default function Home() {
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
               <FileArrowUp size={48} weight="light" className="mb-5 text-lova-blue" />
-              <h3 className="h-body-semibold text-black">Vault Restore</h3>
-              <p className="mt-2 h-body-base text-slate-600">
-                After a fresh app install, import your backup and decrypt it with the password generated during backup creation. Then set up a new PIN code — and your vault is restored and ready to use.
-              </p>
+              <div className="flex flex-col gap-2">
+                <h3 className="h-body-semibold text-black">Vault Restore</h3>
+                <p className="h-body-base text-slate-600">
+                  After a fresh app install, import your backup and decrypt it with the password generated during backup creation. Then set up a new PIN code — and your vault is restored and ready to use.
+                </p>
+              </div>
             </motion.article>
           </div>
         </div>

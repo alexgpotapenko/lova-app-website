@@ -14,10 +14,10 @@ export default function EntityFeatureCard({
   const hasIllustration = Boolean(illustration);
 
   return (
-    <article className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[24px] bg-white">
+    <article className="flex flex-col overflow-hidden rounded-[24px] bg-white">
       {hasIllustration ? <div className="p-6">{illustration}</div> : null}
       <div className={hasIllustration ? "px-6 pb-6 pt-0" : "p-6"}>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <h3 className="h-body-semibold text-black">{title}</h3>
           <p className="h-body-base">{description}</p>
         </div>

@@ -118,8 +118,8 @@ function getGallerySlides(entity: EntityKey): string[] {
 const GALLERY_DURATION_MS = 5000;
 const GALLERY_TICK_MS = 50;
 
-/** Height = 3 cards + 2 gaps (gap-5 = 20px). Cards divide space equally. */
-const CARDS_SECTION_HEIGHT = 600;
+/** Min height = 3 cards (~195.5px) + 2 gaps (20px) ≈ 626px */
+const CARDS_SECTION_MIN_HEIGHT = 626;
 
 function ScreenshotGallery({
   slides,
@@ -291,7 +291,7 @@ function EntitySection({
       }}
     >
       <div className="flex min-h-0 min-w-0 flex-col">
-        <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_HEIGHT }}>
+        <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_MIN_HEIGHT }}>
           <div className="h-full rounded-[32px] blur-container-safari-fix-32">
             <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
@@ -333,10 +333,7 @@ function EntitySection({
         </div>
       </div>
 
-      <div
-        className="relative flex min-w-0 flex-col gap-5"
-        style={{ height: CARDS_SECTION_HEIGHT }}
-      >
+      <div className="relative flex min-w-0 flex-col gap-5">
         {entity.features.map((feature) => (
           <EntityFeatureCard
             key={`${entity.key}-${feature.title}`}
