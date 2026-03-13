@@ -427,7 +427,7 @@ export default function Home() {
         </nav>
         <div className="flex flex-col items-center gap-0 text-center">
           <p className="h-body-base text-slate-500">
-            Made with ❤️ by Aleksej Potapenko · 2026
+            Made by Aleksej Potapenko · 2026
           </p>
           <p className="h-body-base text-slate-500">
             All product names, logos, and brands are property of their respective owners.
