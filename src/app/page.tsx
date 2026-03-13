@@ -56,7 +56,7 @@ export default function Home() {
           }
           description={
             <>
-              Keep your logins, cards, and subscriptions securely
+              Keep your logins, cards, and subscriptions securely{" "}
               <br className="hidden md:block" />
               organized on your iPhone.
             </>
