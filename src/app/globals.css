@@ -149,6 +149,14 @@ h3 {
   -webkit-clip-path: inset(0 round 32px);
 }
 
+.blur-container-safari-fix-40 {
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  clip-path: inset(0 round 40px);
+  -webkit-clip-path: inset(0 round 40px);
+}
+
 button:disabled,
 button[aria-disabled="true"],
 [role="button"][aria-disabled="true"] {

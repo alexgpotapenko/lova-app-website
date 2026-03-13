@@ -208,7 +208,7 @@ function ScreenshotGallery({
           </button>
         ))}
       </div>
-      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[32px]">
+      <div className="relative w-[280px] max-w-none overflow-hidden rounded-[40px]">
         <div
           className="relative aspect-[420/912] w-full"
           style={{
@@ -292,7 +292,7 @@ function EntitySection({
     >
       <div className="flex min-h-0 min-w-0 flex-col">
         <div className="relative w-full overflow-visible" style={{ height: CARDS_SECTION_MIN_HEIGHT }}>
-          <div className="h-full rounded-[32px] blur-container-safari-fix-32">
+          <div className="h-full rounded-[40px] blur-container-safari-fix-40">
             <div className="relative h-full overflow-hidden pb-12 pt-8">
               {bgCircles.map((circle, idx) => (
                 <span

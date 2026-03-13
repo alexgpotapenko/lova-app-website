@@ -63,7 +63,7 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
       >
-        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[24px] bg-white p-6">
+        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[40px] bg-white p-6">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-green-50 text-lova-green">
                 Login
@@ -77,8 +77,8 @@ export default function RelationsCards() {
               Link your login to multiple subscription services.
             </h3>
         </div>
-        <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
-          <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
+        <div className="relative z-0 min-w-0 overflow-hidden rounded-[40px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+          <div className="relative aspect-[420/450] w-full overflow-hidden">
             <Image
               src="/features/relations-login-subscriptions.webp"
               alt=""
@@ -98,7 +98,7 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
       >
-        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[24px] bg-white p-6">
+        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[40px] bg-white p-6">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-green-50 text-lova-green">
                 Login
@@ -112,8 +112,8 @@ export default function RelationsCards() {
               Create a login that you use as SSO for other services.
             </h3>
         </div>
-        <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
-          <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
+        <div className="relative z-0 min-w-0 overflow-hidden rounded-[40px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+          <div className="relative aspect-[420/450] w-full overflow-hidden">
             <Image
               src="/features/relations-sso.webp"
               alt=""
@@ -133,7 +133,7 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 2 }}
       >
-        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[24px] bg-white p-6">
+        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[40px] bg-white p-6">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-purple-50 text-lova-purple">
                 Card
@@ -147,8 +147,8 @@ export default function RelationsCards() {
               Link all subscriptions to the card you pay with.
             </h3>
         </div>
-        <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
-          <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
+        <div className="relative z-0 min-w-0 overflow-hidden rounded-[40px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+          <div className="relative aspect-[420/450] w-full overflow-hidden">
             <Image
               src="/features/relations-card-subscriptions.png"
               alt=""
@@ -168,7 +168,7 @@ export default function RelationsCards() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 3 }}
       >
-        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[24px] bg-white p-6">
+        <div className="relative z-10 flex min-w-0 flex-col gap-5 rounded-[40px] bg-white p-6">
             <div className="flex flex-wrap items-center gap-1">
               <EntityCapsule className="bg-lova-orange-50 text-lova-orange">
                 Subscription
@@ -186,8 +186,8 @@ export default function RelationsCards() {
               See your subscription login and the card used for payment.
             </h3>
         </div>
-        <div className="relative z-0 min-w-0 rounded-[24px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
-          <div className="relative aspect-[420/450] w-full overflow-hidden rounded-[16px]">
+        <div className="relative z-0 min-w-0 overflow-hidden rounded-[40px] px-4 pt-4 shadow-[0_0_80px_rgba(0,0,0,0.06)]">
+          <div className="relative aspect-[420/450] w-full overflow-hidden">
             <Image
               src="/features/relations-subscription-relations.webp"
               alt=""
