@@ -379,7 +379,7 @@ export default function Home() {
                       zIndex: i,
                     }}
                   >
-                    <EntityIcon variant={variant} size={64} glass {...rest} />
+                    <EntityIcon variant={variant} size={64} glass blurPx={6} {...rest} />
                   </div>
                 ))}
               </div>

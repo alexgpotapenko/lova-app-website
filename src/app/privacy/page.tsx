@@ -32,7 +32,7 @@ export default async function PrivacyPage({ searchParams }: Props) {
           className="mb-5"
         />
         <h1>Privacy Policy</h1>
-        <p className="mt-2 text-slate-500">Last updated: 2026</p>
+        <p className="mt-2 text-slate-500">Last updated: March 2026</p>
 
         <div className="mt-10 space-y-10 text-slate-700">
           <section>
@@ -176,16 +176,24 @@ export default async function PrivacyPage({ searchParams }: Props) {
           </section>
 
           <section>
-            <h2 className="mb-3">Contact</h2>
-            <p className="h-body-base leading-relaxed">
-              If you have questions about this Privacy Policy, please contact:{" "}
-              <a
-                href="mailto:alexgpotapenko@gmail.com"
-                className="font-medium text-lova-blue hover:text-lova-blue-700"
-              >
-                alexgpotapenko@gmail.com
-              </a>
-            </p>
+            <h2 className="mb-3">About Lova</h2>
+            <div className="space-y-3">
+              <p className="h-body-base leading-relaxed">
+                Operated and distributed through the Apple App Store by Maryia Esvanjyia.
+              </p>
+              <p className="h-body-base leading-relaxed">
+                Created and developed by Aleksej Potapenko.
+              </p>
+              <p className="h-body-base leading-relaxed">
+                For questions regarding Lova, please contact:{" "}
+                <a
+                  href="mailto:alexgpotapenko@gmail.com"
+                  className="font-medium text-lova-blue hover:text-lova-blue-700"
+                >
+                  alexgpotapenko@gmail.com
+                </a>
+              </p>
+            </div>
           </section>
         </div>
       </div>

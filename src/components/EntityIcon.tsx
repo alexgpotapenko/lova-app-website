@@ -77,56 +77,77 @@ type IconComponent = ComponentType<{
   className?: string;
 }>;
 
-const GLASS_BORDER = "1px solid rgba(255, 255, 255, 0.15)";
-const GLASS_FILTER = "blur(20px) saturate(1.35)";
+const GLASS_BORDER = "1px solid rgba(255, 255, 255, 0.5)";
+const DEFAULT_GLASS_BLUR_PX = 20;
 
-function getGlassStyle(variant: EntityIconVariant): {
+function getGlassFilter(blurPx: number) {
+  return `blur(${blurPx}px) saturate(1.35)`;
+}
+
+const OUTER_SHADOW = "0 0 30px 0 rgba(255, 255, 255, 0.7)";
+const VARIANT_INNER_SHADOWS: Record<EntityIconVariant, string> = {
+  1: `inset 0 0 16px 0 rgba(37, 177, 101, 0.20), ${OUTER_SHADOW}`,
+  2: `inset 0 0 16px 0 rgba(32, 109, 229, 0.20), ${OUTER_SHADOW}`,
+  3: `inset 0 0 16px 0 rgba(125, 51, 212, 0.20), ${OUTER_SHADOW}`,
+  4: `inset 0 0 16px 0 rgba(32, 109, 229, 0.20), ${OUTER_SHADOW}`,
+  5: `inset 0 0 16px 0 rgba(233, 113, 46, 0.20), ${OUTER_SHADOW}`,
+  6: `inset 0 0 16px 0 rgba(32, 109, 229, 0.20), ${OUTER_SHADOW}`,
+};
+
+function getGlassStyle(variant: EntityIconVariant, blurPx: number): {
   backgroundColor: string;
   border: string;
+  boxShadow: string;
   backdropFilter: string;
   WebkitBackdropFilter: string;
   isolation: "isolate";
   transform?: string;
 } {
+  const filter = getGlassFilter(blurPx);
   switch (variant) {
     case 1:
       return {
-        backgroundColor: "rgba(37, 177, 101, 0.24)",
+        backgroundColor: "rgba(37, 177, 101, 0.2)",
         border: GLASS_BORDER,
-        backdropFilter: GLASS_FILTER,
-        WebkitBackdropFilter: GLASS_FILTER,
+        boxShadow: VARIANT_INNER_SHADOWS[1],
+        backdropFilter: filter,
+        WebkitBackdropFilter: filter,
         isolation: "isolate",
       };
     case 2:
       return {
-        backgroundColor: "rgba(32, 109, 229, 0.24)",
+        backgroundColor: "rgba(32, 109, 229, 0.2)",
         border: GLASS_BORDER,
-        backdropFilter: GLASS_FILTER,
-        WebkitBackdropFilter: GLASS_FILTER,
+        boxShadow: VARIANT_INNER_SHADOWS[2],
+        backdropFilter: filter,
+        WebkitBackdropFilter: filter,
         isolation: "isolate",
       };
     case 3:
       return {
-        backgroundColor: "rgba(125, 51, 212, 0.24)",
+        backgroundColor: "rgba(125, 51, 212, 0.2)",
         border: GLASS_BORDER,
-        backdropFilter: GLASS_FILTER,
-        WebkitBackdropFilter: GLASS_FILTER,
+        boxShadow: VARIANT_INNER_SHADOWS[3],
+        backdropFilter: filter,
+        WebkitBackdropFilter: filter,
         isolation: "isolate",
       };
     case 5:
       return {
-        backgroundColor: "rgba(233, 113, 46, 0.24)",
+        backgroundColor: "rgba(233, 113, 46, 0.2)",
         border: GLASS_BORDER,
-        backdropFilter: GLASS_FILTER,
-        WebkitBackdropFilter: GLASS_FILTER,
+        boxShadow: VARIANT_INNER_SHADOWS[5],
+        backdropFilter: filter,
+        WebkitBackdropFilter: filter,
         isolation: "isolate",
       };
     default:
       return {
-        backgroundColor: "rgba(32, 109, 229, 0.24)",
+        backgroundColor: "rgba(32, 109, 229, 0.2)",
         border: GLASS_BORDER,
-        backdropFilter: GLASS_FILTER,
-        WebkitBackdropFilter: GLASS_FILTER,
+        boxShadow: VARIANT_INNER_SHADOWS[variant],
+        backdropFilter: filter,
+        WebkitBackdropFilter: filter,
         isolation: "isolate",
       };
   }
@@ -141,6 +162,7 @@ export default function EntityIcon({
   iconWeightOverride,
   shapeOverride,
   tiltDeg: tiltDegOverride,
+  blurPx = DEFAULT_GLASS_BLUR_PX,
 }: {
   variant: EntityIconVariant;
   glass?: boolean;
@@ -150,6 +172,7 @@ export default function EntityIcon({
   iconWeightOverride?: IconWeight;
   shapeOverride?: "circle" | "square";
   tiltDeg?: number;
+  blurPx?: number;
 }) {
   const config = variants[variant - 1];
   const Icon = iconOverride ?? config.Icon;
@@ -163,12 +186,12 @@ export default function EntityIcon({
 
   return (
     <div
-      className={`flex items-center justify-center ${rounded} shadow-[0_0_30px_0_color(display-p3_1_1_1/0.70)] ${glass ? "" : config.bg}`}
+      className={`flex items-center justify-center ${rounded} ${glass ? "" : config.bg}`}
       style={{
         width: size,
         height: size,
         borderRadius: shape === "circle" ? 9999 : squareRadius,
-        ...(glass ? getGlassStyle(variant) : undefined),
+        ...(glass ? getGlassStyle(variant, blurPx) : { boxShadow: OUTER_SHADOW }),
         ...(rotate ? { transform: `${rotate} translateZ(0)` } : undefined),
       }}
     >
