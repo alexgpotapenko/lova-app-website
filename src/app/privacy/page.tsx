@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CaretLeft } from "@phosphor-icons/react/ssr";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,11 +15,12 @@ export default async function PrivacyPage({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen text-black">
-      <div className="layout-container py-16">
+      <div className="layout-container !px-0 py-16">
         <Link
           href={backHref}
-          className="mb-12 inline-block font-medium text-lova-blue hover:text-lova-blue-700"
+          className="mb-12 inline-flex items-center gap-1 font-medium text-lova-blue hover:text-lova-blue-700"
         >
+          <CaretLeft size={16} weight="bold" className="shrink-0" />
           Back to Home Page
         </Link>
 
