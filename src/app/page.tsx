@@ -206,7 +206,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
-              <FileArrowDown size={48} weight="light" className="mb-5 text-lova-blue" />
+              <FileArrowDown size={48} weight="fill" className="mb-5 text-lova-blue" />
               <div className="flex flex-col gap-2">
                 <h3 className="h-body-semibold text-black">Vault Backup</h3>
                 <p className="h-body-base text-slate-600">
@@ -224,7 +224,7 @@ export default function Home() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 1 }}
             >
-              <FileArrowUp size={48} weight="light" className="mb-5 text-lova-blue" />
+              <FileArrowUp size={48} weight="fill" className="mb-5 text-lova-blue" />
               <div className="flex flex-col gap-2">
                 <h3 className="h-body-semibold text-black">Vault Restore</h3>
                 <p className="h-body-base text-slate-600">

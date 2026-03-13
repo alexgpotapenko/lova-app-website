@@ -25,10 +25,10 @@ const STAR_ORBIT_ROTATE_CCW_DEG = 58;
 const STAR_SPIN_ROTATE_DEG = 84;
 
 /**
- * Анимация hero:
- * 1) 6 иконок по кругу (12/2/4/6/8/10) вращаются как единая система 600px скролла.
- * 2) Фоновые частицы вращаются в обе стороны.
- * 3) После 600px иконки стягиваются в центр iPhone и исчезают.
+ * Hero animation:
+ * 1) 6 icons in a circle (12/2/4/6/8/10) rotate as a single system over 600px of scroll.
+ * 2) Background particles rotate in both directions.
+ * 3) After 600px the icons collapse toward the iPhone center and fade out.
  */
 export default function HeroScrollSection() {
   const iconRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -98,7 +98,7 @@ export default function HeroScrollSection() {
         (window.scrollY - ANIMATION_START_SCROLL_PX - ANIMATION_DURATION_SCROLL_PX) /
         COLLAPSE_DURATION_PX;
       const collapseProgress = Math.min(1, Math.max(0, rawCollapse));
-      // Во время стягивания продолжаем вращение круга из 6 иконок.
+      // During shrinking we continue rotating the ring of 6 icons.
       const spinProgress = progress + collapseProgress * 0.6;
       applyProgress(progress, collapseProgress, spinProgress);
     };

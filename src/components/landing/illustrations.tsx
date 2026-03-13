@@ -45,13 +45,13 @@ const DONUT_GAP_PX = 3;
 const SUBSCRIPTIONS_DONUT_SEGMENTS: DonutSegment[] = (() => {
   const circumference = 2 * Math.PI * DONUT_RADIUS;
   const effectiveGap = DONUT_GAP_PX;
-  // Fixed colors and approximate portions (percent): teal, indigo, yellow, green, orange
+  // Fixed colors and portions — contrasting segment sizes
   const parts: { color: string; portion: number }[] = [
-    { color: "#14b8a6", portion: 0.21 },
-    { color: "#6366f1", portion: 0.17 },
-    { color: "#eab308", portion: 0.18 },
-    { color: "#22c55e", portion: 0.24 },
-    { color: "#f97316", portion: 0.2 },
+    { color: "#f97316", portion: 0.4 },
+    { color: "#22c55e", portion: 0.27 },
+    { color: "#eab308", portion: 0.13 },
+    { color: "#6366f1", portion: 0.1 },
+    { color: "#14b8a6", portion: 0.1 },
   ];
   let currentAngle = 0;
   return parts.map(({ color, portion }) => {
