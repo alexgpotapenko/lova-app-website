@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CaretLeft } from "@phosphor-icons/react/ssr";
 import type { Metadata } from "next";
 
@@ -18,12 +19,18 @@ export default async function TermsPage({ searchParams }: Props) {
       <div className="layout-container !px-0 py-16">
         <Link
           href={backHref}
-          className="mb-12 inline-flex items-center gap-1 font-medium text-lova-blue hover:text-lova-blue-700"
+          className="mb-16 inline-flex items-center gap-1 font-medium text-lova-blue hover:text-lova-blue-700"
         >
           <CaretLeft size={16} weight="bold" className="shrink-0" />
           Back to Home Page
         </Link>
-
+        <Image
+          src="/logo.svg"
+          alt="Lova"
+          width={120}
+          height={120}
+          className="mb-5"
+        />
         <h1>Terms of Use</h1>
         <p className="mt-2 text-slate-500">Last updated: 2026</p>
 
