@@ -133,11 +133,11 @@ export default function Home() {
                 return (
                   <span
                     key={i}
-                    className="absolute left-1/2 top-1/2 border bg-transparent"
+                    className="privacy-nested-square-outline absolute left-1/2 top-1/2 border bg-transparent"
                     style={{
                       width: size,
                       height: size,
-                      borderRadius: radius,
+                      ["--outline-br" as string]: `${radius}px`,
                       borderColor: `rgba(255, 255, 255, ${borderOpacity})`,
                       transform: "translate(-50%, -50%)",
                     }}
