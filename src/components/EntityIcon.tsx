@@ -16,6 +16,7 @@ const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-green/25",
+    rounded: "rounded-[24px]",
     Icon: Key,
     iconColor: "text-lova-green",
     iconWeight: "fill" as const,
@@ -24,6 +25,7 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-blue/25",
+    rounded: "rounded-full",
     Icon: Link,
     iconColor: "text-lova-blue",
     iconWeight: "regular" as const,
@@ -32,6 +34,7 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-purple/25",
+    rounded: "rounded-full",
     Icon: CreditCard,
     iconColor: "text-lova-purple",
     iconWeight: "fill" as const,
@@ -40,6 +43,7 @@ const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-blue/25",
+    rounded: "rounded-[24px]",
     Icon: ShieldCheckered,
     iconColor: "text-lova-blue",
     iconWeight: "fill" as const,
@@ -48,6 +52,7 @@ const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-orange/25",
+    rounded: "rounded-[24px]",
     Icon: CalendarCheck,
     iconColor: "text-lova-orange",
     iconWeight: "fill" as const,
@@ -56,6 +61,7 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-blue/25",
+    rounded: "rounded-full",
     Icon: FileArrowDown,
     iconColor: "text-lova-blue",
     iconWeight: "fill" as const,
@@ -176,18 +182,15 @@ export default function EntityIcon({
   const rotate = tiltAll ? `rotate(${tiltDeg}deg)` : undefined;
   const iconSize = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_ICON_SIZE);
   const squareRadius = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_SQUARE_RADIUS);
-  const cornerClass =
-    shape === "circle" ? "entity-icon-squircle-round" : "entity-icon-squircle-square";
+  const rounded = shape === "circle" ? "rounded-full" : config.rounded;
 
   return (
     <div
-      className={`flex items-center justify-center ${cornerClass} ${glass ? "" : config.bg}`}
+      className={`flex items-center justify-center ${rounded} ${glass ? "" : config.bg}`}
       style={{
         width: size,
         height: size,
-        ...(shape === "square"
-          ? { ["--entity-br" as string]: `${squareRadius}px` }
-          : undefined),
+        borderRadius: shape === "circle" ? 9999 : squareRadius,
         ...(glass ? getGlassStyle(variant, blurPx) : { boxShadow: OUTER_SHADOW }),
         ...(rotate ? { transform: `${rotate} translateZ(0)` } : undefined),
       }}
