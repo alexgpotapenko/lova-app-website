@@ -11,7 +11,7 @@ export default function Iphone({ screenSrc = "/screen-home.webp" }: { screenSrc?
         alt="App screen"
         width={420}
         height={912}
-        className="absolute left-5 top-6 object-cover rounded-[40px]"
+        className="absolute left-5 top-6 object-cover rounded-card-40"
       />
       <Image
         src="/iphone.webp"

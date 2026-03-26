@@ -93,7 +93,7 @@ export default function Home() {
         />
         <div className="relative mt-16">
           <motion.article
-            className="relative overflow-clip rounded-[40px] bg-white p-8"
+            className="relative overflow-clip rounded-card-40 bg-white p-8"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
@@ -200,7 +200,7 @@ export default function Home() {
         <div className="mt-5 flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <motion.article
-              className="rounded-[40px] bg-white p-8"
+              className="rounded-card-40 bg-white p-8"
               initial={CARD_ANIMATION.initial}
               whileInView={CARD_ANIMATION.animate}
               viewport={{ once: true, margin: "-50px" }}
@@ -218,7 +218,7 @@ export default function Home() {
               </div>
             </motion.article>
             <motion.article
-              className="rounded-[40px] bg-white p-8"
+              className="rounded-card-40 bg-white p-8"
               initial={CARD_ANIMATION.initial}
               whileInView={CARD_ANIMATION.animate}
               viewport={{ once: true, margin: "-50px" }}
@@ -283,7 +283,7 @@ export default function Home() {
         />
         <div className="relative mt-16 grid grid-cols-1 items-stretch sm:grid-cols-2">
           <motion.article
-            className="flex flex-col rounded-[40px] bg-white p-8 pb-4"
+            className="flex flex-col rounded-card-40 bg-white p-8 pb-4"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
@@ -328,7 +328,7 @@ export default function Home() {
             </div>
           </motion.article>
           <motion.article
-            className="relative flex flex-col overflow-clip rounded-[40px] bg-white p-8 pb-4"
+            className="relative flex flex-col overflow-clip rounded-card-40 bg-white p-8 pb-4"
             initial={CARD_ANIMATION.initial}
             whileInView={CARD_ANIMATION.animate}
             viewport={{ once: true, margin: "-50px" }}
