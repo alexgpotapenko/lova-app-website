@@ -290,27 +290,23 @@ export default function Home() {
             transition={{ ...CARD_ANIMATION.transition, delay: STAGGER_DELAY * 0 }}
           >
             <div>
-              <h3 className="card-label">Basic.</h3>
+              <h3 className="card-label">Basic</h3>
             </div>
             <div className="mt-8 grid grid-cols-2 content-start gap-8 items-start">
               {[
-                { icon: 1, label: "Logins", limit: 5 },
-                { icon: 3, label: "Cards", limit: 2 },
-                { icon: 5, label: "Subscriptions", limit: 2 },
-                { icon: "pin", label: "Pinned items", limit: 5 },
-                { icon: "vault", label: "Vault backup", limit: 1 },
-              ].map(({ icon, label, limit }) => (
+                { icon: 1 as const, shape: "square" as const, label: "Logins", limit: 5 },
+                { icon: 3 as const, shape: "circle" as const, label: "Cards", limit: 2 },
+                { icon: 5 as const, shape: "square" as const, label: "Subscriptions", limit: 2 },
+                { icon: "pin" as const, label: "Pinned items", limit: 5 },
+                { icon: 6 as const, shape: "square" as const, label: "Vault backup", limit: 1 },
+              ].map(({ icon, shape, label, limit }) => (
                 <div key={label} className="flex flex-col items-start gap-2">
                   {icon === "pin" ? (
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lova-blue/25">
                       <PushPin size={20} weight="fill" className="text-lova-blue" />
                     </div>
-                  ) : icon === "vault" ? (
-                    <div className="flex h-10 w-10 items-center justify-center rounded-[6px] bg-lova-blue/25">
-                      <FileArrowDown size={20} weight="fill" className="text-lova-blue" />
-                    </div>
                   ) : (
-                    <EntityIcon variant={icon as 1 | 2 | 3 | 5 | 6} size={40} glass={false} shapeOverride={[1, 5].includes(icon as number) ? "square" : "circle"} />
+                    <EntityIcon variant={icon} size={40} glass={false} shapeOverride={shape} />
                   )}
                   <span className="font-normal text-black">{limit} {label.toLowerCase()}</span>
                 </div>
@@ -360,7 +356,7 @@ export default function Home() {
             </div>
             <div className="relative z-10 flex min-h-0 flex-1 flex-col">
               <div>
-                <h3 className="card-label">Unlimited.</h3>
+                <h3 className="card-label">Unlimited</h3>
               </div>
               <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
                 <div className="flex flex-row-reverse flex-nowrap justify-end">

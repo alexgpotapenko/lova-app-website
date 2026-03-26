@@ -10,13 +10,12 @@ import type { ComponentType } from "react";
 
 const DEFAULT_BOX_SIZE = 128;
 const DEFAULT_ICON_SIZE = 72;
-const DEFAULT_SQUARE_RADIUS = 24;
+const DEFAULT_SQUARE_RADIUS = 32;
 
 const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-green/25",
-    rounded: "rounded-[24px]",
     Icon: Key,
     iconColor: "text-lova-green",
     iconWeight: "fill" as const,
@@ -25,7 +24,6 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-blue/25",
-    rounded: "rounded-full",
     Icon: Link,
     iconColor: "text-lova-blue",
     iconWeight: "regular" as const,
@@ -34,7 +32,6 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-purple/25",
-    rounded: "rounded-full",
     Icon: CreditCard,
     iconColor: "text-lova-purple",
     iconWeight: "fill" as const,
@@ -43,7 +40,6 @@ const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-blue/25",
-    rounded: "rounded-[24px]",
     Icon: ShieldCheckered,
     iconColor: "text-lova-blue",
     iconWeight: "fill" as const,
@@ -52,7 +48,6 @@ const variants = [
   {
     shape: "square" as const,
     bg: "bg-lova-orange/25",
-    rounded: "rounded-[24px]",
     Icon: CalendarCheck,
     iconColor: "text-lova-orange",
     iconWeight: "fill" as const,
@@ -61,7 +56,6 @@ const variants = [
   {
     shape: "circle" as const,
     bg: "bg-lova-blue/25",
-    rounded: "rounded-full",
     Icon: FileArrowDown,
     iconColor: "text-lova-blue",
     iconWeight: "fill" as const,
@@ -182,15 +176,18 @@ export default function EntityIcon({
   const rotate = tiltAll ? `rotate(${tiltDeg}deg)` : undefined;
   const iconSize = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_ICON_SIZE);
   const squareRadius = Math.round((size / DEFAULT_BOX_SIZE) * DEFAULT_SQUARE_RADIUS);
-  const rounded = shape === "circle" ? "rounded-full" : config.rounded;
+  const cornerClass =
+    shape === "circle" ? "rounded-full" : "entity-icon-squircle-square";
 
   return (
     <div
-      className={`flex items-center justify-center ${rounded} ${glass ? "" : config.bg}`}
+      className={`flex items-center justify-center ${cornerClass} ${glass ? "" : config.bg}`}
       style={{
         width: size,
         height: size,
-        borderRadius: shape === "circle" ? 9999 : squareRadius,
+        ...(shape === "square"
+          ? { ["--entity-br" as string]: `${squareRadius}px` }
+          : { borderRadius: 9999 }),
         ...(glass ? getGlassStyle(variant, blurPx) : { boxShadow: OUTER_SHADOW }),
         ...(rotate ? { transform: `${rotate} translateZ(0)` } : undefined),
       }}
