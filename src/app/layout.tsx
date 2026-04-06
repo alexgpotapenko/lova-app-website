@@ -1,9 +1,10 @@
 import "./globals.css";
 import HeaderBg from "@/components/HeaderBg";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Lova App",
+  title: "Lova: Local Vault",
   description: "Next.js App Router with Tailwind CSS",
   icons: {
     icon: "/favicon.svg",
@@ -32,6 +33,7 @@ export default function RootLayout({
             {children}
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
