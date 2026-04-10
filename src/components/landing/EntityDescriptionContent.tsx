@@ -72,7 +72,7 @@ const ENTITIES: Array<{
       illustrationKey: "cards-1",
     },
     {
-      title: "Virtual cards",
+      title: "Virtual card indication",
       description:
         "Mark cards as virtual to distinguish them from physical ones.",
       illustrationKey: "cards-2",
@@ -84,13 +84,13 @@ const ENTITIES: Array<{
     label: "Subscriptions",
     features: [
     {
-      title: "Upcoming payment",
+      title: "Upcoming payment indication",
       description:
         "Quickly see which subscription will charge next and how much.",
       illustrationKey: "subscriptions-1",
     },
     {
-      title: "Never get charged by surprise",
+      title: "Renewal reminder",
       description:
         "Set a reminder before any renewal date and get notified on your device",
       illustrationKey: "subscriptions-2",
