@@ -16,7 +16,7 @@ import {
   ScanSmiley,
   Tag,
   Trash,
-  Globe,
+  Image as ImageIcon,
   CurrencyCircleDollar,
 } from "@phosphor-icons/react/ssr";
 import EntityIcon from "@/components/EntityIcon";
@@ -248,7 +248,7 @@ export default function Home() {
             { Icon: CurrencyCircleDollar, title: "Select currency per subscription", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-blue) 20%, transparent), color-mix(in srgb, var(--color-lova-green) 20%, transparent))" },
             { Icon: Trash, title: "Erase your vault securely", gradient: "linear-gradient(to right, color-mix(in srgb, var(--color-lova-orange) 20%, transparent), color-mix(in srgb, var(--color-lova-blue) 20%, transparent))" },
             {
-              Icon: Globe,
+              Icon: ImageIcon,
               title: (
                 <>
                   Automatic logo fetching
