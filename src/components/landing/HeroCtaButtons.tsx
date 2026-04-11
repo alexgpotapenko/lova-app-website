@@ -15,7 +15,7 @@ export default function HeroCtaButtons({ className = "", fullWidth, buttonClassN
         href="#"
         label={
           <>
-            <span className="font-normal">Get on the </span>
+            <span className="font-normal">Coming Soon on the </span>
             <span>App Store</span>
           </>
         }
