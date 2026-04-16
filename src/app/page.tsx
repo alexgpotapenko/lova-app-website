@@ -321,7 +321,7 @@ export default function Home() {
               <p className="min-w-0 text-sm text-slate-600">
                 Download for free on the
                 <br />
-                <a href="#" className="font-medium text-lova-blue hover:text-lova-blue-700">
+                <a href="https://apps.apple.com/us/app/lova-local-vault/id6761713936" className="font-medium text-lova-blue hover:text-lova-blue-700">
                   App Store
                 </a>
               </p>

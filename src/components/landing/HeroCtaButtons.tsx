@@ -12,10 +12,10 @@ export default function HeroCtaButtons({ className = "", fullWidth, buttonClassN
   return (
     <div className={`flex items-center justify-center ${className}`.trim()}>
       <LandingButton
-        href="#"
+        href="https://apps.apple.com/us/app/lova-local-vault/id6761713936"
         label={
           <>
-            <span className="font-normal">Coming Soon on the </span>
+            <span className="font-normal">Get on the </span>
             <span>App Store</span>
           </>
         }
