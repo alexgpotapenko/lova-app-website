@@ -49,7 +49,8 @@ export default function Home() {
           style={{ marginBottom: 64 }}
           title={
             <>
-              Your local vault for
+              Your <span className="italic">lo</span>cal{" "}
+              <span className="italic">va</span>ult for
               <br />
               what matters.
             </>
