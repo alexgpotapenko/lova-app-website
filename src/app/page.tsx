@@ -303,13 +303,13 @@ export default function Home() {
               ].map(({ icon, shape, label, limit }) => (
                 <div key={label} className="flex flex-col items-start gap-2">
                   {icon === "pin" ? (
-                    <div className="transition-transform duration-300 ease-out hover:rotate-[30deg]">
+                    <div className="transition-transform duration-300 ease-out hover:rotate-[30deg] hover:scale-110">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lova-blue/25">
                         <PushPin size={20} weight="fill" className="text-lova-blue" />
                       </div>
                     </div>
                   ) : (
-                    <div className="transition-transform duration-300 ease-out hover:rotate-[30deg]">
+                    <div className="transition-transform duration-300 ease-out hover:rotate-[30deg] hover:scale-110">
                       <EntityIcon variant={icon} size={40} glass={false} shapeOverride={shape} />
                     </div>
                   )}
@@ -374,7 +374,7 @@ export default function Home() {
                 ].map(({ variant, ...rest }, i) => (
                   <div
                     key={i}
-                    className="relative shrink-0 transition-transform duration-300 ease-out hover:rotate-[30deg]"
+                    className="relative shrink-0 transition-transform duration-300 ease-out hover:rotate-[30deg] hover:scale-110"
                     style={{
                       marginRight: i === 0 ? 0 : -12,
                       zIndex: i,

@@ -3,9 +3,32 @@ import HeaderBg from "@/components/HeaderBg";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
+const siteUrl =
+  process.env.VERCEL_PROJECT_PRODUCTION_URL != null
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL != null
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Lova: Local Vault",
-  description: "Next.js App Router with Tailwind CSS",
+  description:
+    "Keep your logins, cards, and subscriptions securely organized on your iPhone.",
+  openGraph: {
+    title: "Lova: Local Vault",
+    description:
+      "Keep your logins, cards, and subscriptions securely organized on your iPhone.",
+    type: "website",
+    images: [{ url: "/app-icon.png", width: 512, height: 512, alt: "Lova" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Lova: Local Vault",
+    description:
+      "Keep your logins, cards, and subscriptions securely organized on your iPhone.",
+    images: ["/app-icon.png"],
+  },
   icons: {
     icon: "/favicon.svg",
   },
