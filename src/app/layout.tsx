@@ -21,12 +21,21 @@ export const metadata: Metadata = {
       "Keep your logins, cards, and subscriptions securely organized on your iPhone.",
     type: "website",
     url: siteUrl,
+    images: [
+      {
+        url: "/og-cover.jpg",
+        width: 800,
+        height: 600,
+        alt: "Lova: Local Vault",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Lova: Local Vault",
     description:
       "Keep your logins, cards, and subscriptions securely organized on your iPhone.",
+    images: ["/og-cover.jpg"],
   },
   icons: {
     icon: "/favicon.svg",
